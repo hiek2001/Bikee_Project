@@ -40,6 +40,8 @@
     background-color: rgb(52, 73, 94);
 	
 }
+div a#findId{font-weight:bold;margin-left:370px;}
+div a#findPw{font-weight:bold;}
 
 
 </style>
@@ -147,6 +149,8 @@ function validate() {
 	                        <input type="password" class="form-control" name="memPw" id="memPw" placeholder="Enter Password"><br>
 	                        <input type="checkbox" name="saveId" id="saveId" <%= saveId!=null ? "checked" : "" %>>
 							<label for="saveId">Remember Id</label>
+							<a style="color:white" id="findId" href="<%=request.getContextPath() %>/views/member/findId.jsp"/>Find ID</a>
+							<a style="color:white" id="findPw" href="<%=request.getContextPath()%>/views/member/findPw.jsp"/>/ PW</a>
 	                    	</div>
 		                	
 		                	<div class="modal-footer">
