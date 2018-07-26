@@ -110,4 +110,39 @@ public class MemberDAO {
 		close(pstmt);
 		return isAble;
 	}
+
+	public int memberUpdateEnd(Connection conn,Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateMember");
+		System.out.println(sql);
+		/*MEM_BIRTHDATE = ?, MEM_PHONE =?, MEM_EMAIL =?,MEM_ADDR = ? WHERE MEM_ID = ?
+				1 생일
+				2 폰
+				3 이멜
+				4 주소
+				5 WHERE 아이디*/
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, m.getMem_birthdate());
+			pstmt.setString(2, m.getMem_phone());
+			pstmt.setString(3, m.getMem_email());
+			pstmt.setString(4, m.getMem_addr());
+			pstmt.setString(5, m.getMem_id());
+			result=pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		close(pstmt);
+		
+		
+		return result;
+	}
+
+
+
+
 }

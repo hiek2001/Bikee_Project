@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file='/views/common/header.jsp' %>
+
+<%
+Member m = (Member)request.getAttribute("member");
+	
+
+
+	
+%>
 <style>
 	.col-md-6{padding-right: 10px;padding-left: 0px;}
 .colorgraph {
@@ -17,6 +25,7 @@
 
 </style>
 <script>
+
 $(function () {
     $('.button-checkbox').each(function () {
 
@@ -90,38 +99,46 @@ $(function () {
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
+		<form role="form" method="post" id="updateForm" action="<%= request.getContextPath() %>/member/memberUpdateEnd">
 			<h2>회원정보 변경<small >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수정할 정보를 입력해 주세요.</small></h2>
 			<hr class="colorgraph">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
+					<!-- 아이디 -->
 					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="아이디" tabindex="1">
+						<label>아이디</label>
+           				<input type="text" value="<%=m.getMem_id() %>" name="userId" id="userId" class="form-control input-lg" placeholder="아이디" tabindex="1" readonly>
+					</div>
+					<!-- 이름 -->
+					<div class="form-group">
+						<label>이름</label>
+						<input type="text" value="<%=m.getMem_name() %>" name="userName" id="userName" class="form-control input-lg" placeholder="이름" tabindex="2" readonly>
+					</div>
+					<!-- 생년월일 -->
+					<div class="form-group">
+						<label>생년월일</label>
+						<input type="number" value="<%=m.getMem_birthdate() %>" name="userBirthday" id="userBirthday" class="form-control input-lg" placeholder="생년월일" tabindex="3" required>
+					</div>
+					<!-- 이메일 -->
+					<div class="form-group">
+						<label>이메일</label>
+						<input type="email"  name="userEmail" id="userEmail" value="<%=m.getMem_email() %>" class="form-control input-lg" placeholder="이메일" tabindex="4" required >
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="이름" tabindex="2">
-					</div>
-				</div>
 			</div>
-			<div class="form-group">
-				<input type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="생년월일" tabindex="3">
-			</div>
-			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="이메일" tabindex="4">
-			</div>
+			
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="주소" tabindex="5">
+						<label>주소</label>
+						<input type="text"  name="userAddress" id="userAddress" value="<%=m.getMem_addr() %>" class="form-control input-lg" placeholder="주소" tabindex="5" required value="<%=m.getMem_phone()%>">
 					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="전화번호" tabindex="6">
+						<label>전화번호</label>
+						<input type="text" value="<%=m.getMem_phone() %>" name="userPhone" id="userPhone" class="form-control input-lg" placeholder="전화번호" tabindex="6" required>
 					</div>
 				</div>
+				
 			</div>
 			
 			

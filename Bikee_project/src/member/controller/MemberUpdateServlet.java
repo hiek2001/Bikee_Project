@@ -14,7 +14,7 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/member/memberUpdate")
+@WebServlet("/memberUpdate")
 public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,14 +30,18 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("mem_id");
+		String userId = request.getParameter("memId");
 		System.out.println(userId);
-		
-
-		
+		Member m = new MemberService().selectOne(userId);
+		System.out.println(m);
+		request.setAttribute("member", m);
 		request.getRequestDispatcher("/views/member/memberUpdate.jsp").forward(request, response);
 		
 		
+		
+
+		
+	
 		
 		
 		
