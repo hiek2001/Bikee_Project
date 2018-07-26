@@ -35,14 +35,8 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common.css?ver=1"> <!-- common.css -->
    
 <style>
-
-.navbar .dropdown ul {
-    background-color: rgb(52, 73, 94);
-	
-}
-
-
 </style>
+
 </head>
 
 <script>

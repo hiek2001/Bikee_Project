@@ -50,6 +50,11 @@
 	background-color: white;
 }
 
+.navbar .dropdown ul {
+    background-color: rgb(52, 73, 94);
+	
+}
+
 
 /* LoginModal */
 .modal {
