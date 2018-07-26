@@ -50,13 +50,15 @@ public class CenterFormUpdateServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		int no = Integer.parseInt(mpreq.getParameter("no"));
+		int password = Integer.parseInt(mpreq.getParameter("password"));
 		String title = mpreq.getParameter("title");
 		String content = mpreq.getParameter("content");
 		String origin = mpreq.getOriginalFileName("file");
 		String rename = mpreq.getFilesystemName("file");
-		  
+		
 		Center c = new Center();
 		c.setCenterNo(no);
+		c.setCenterPwd(password);
 		c.setCenterTitle(title);
 		c.setCenterContent(content);
 		c.setOriginalFileName(origin);

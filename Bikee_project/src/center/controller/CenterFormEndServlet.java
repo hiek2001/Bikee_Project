@@ -54,7 +54,7 @@ public class CenterFormEndServlet extends HttpServlet {
 		String content =mpreq.getParameter("content");
 		String origin = mpreq.getOriginalFileName("file");
 		String rename = mpreq.getFilesystemName("file");
-		int password = Integer.parseInt(request.getParameter("password"));
+		int password = Integer.parseInt(mpreq.getParameter("password"));
 		
 		Center c = new Center();
 		c.setCenterWriter(writer);
