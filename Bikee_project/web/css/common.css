@@ -38,7 +38,7 @@
 .navbar-nav li a:hover, .navbar-nav li.active a {
 	color: rgb(7, 48, 110) !important;
     background-color: #fff !important;
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid rgb(30, 104, 203);
 }
 
 .navbar-default .navbar-toggle {
@@ -49,6 +49,7 @@
 .icon-bar {
 	background-color: white;
 }
+
 
 /* LoginModal */
 .modal {

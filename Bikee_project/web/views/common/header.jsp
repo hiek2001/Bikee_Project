@@ -23,6 +23,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>BIKEE</title>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> <!-- jQuery -->
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script> <!-- bootstrap.js -->
@@ -32,10 +33,16 @@
 <link href="<%= request.getContextPath() %>/css/bootstrap/bootstrap.css" rel="stylesheet"> <!-- bootstrap.css -->
 <link href="<%= request.getContextPath() %>/css/bootstrap/bootstrap-theme.css" rel="stylesheet"> <!-- bootstrap-theme.css -->
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common.css?ver=1"> <!-- common.css -->
+   
+<style>
+
+.navbar .dropdown ul {
+    background-color: rgb(52, 73, 94);
+	
+}
 
 
-
-<title>BIKEE</title>   
+</style>
 </head>
 
 <script>
@@ -83,17 +90,25 @@ function validate() {
 	                <li><a href="<%= request.getContextPath() %>/introduce.jsp">소개</a></li>
 
 	                <li>
-                    <% if(session.getAttribute("memberLoggedIn") != null){%>
+                    <% if(session.getAttribute("memberLoggedIn") != null) { %>
                   		<a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a>
-               		<%  } else{%>
+               		<% } else { %>
                   		<a href="#intro">공지사항</a>
-               		<%} %>
+               		<% } %>
                		</li>
 
 	                <li><a href="<%= request.getContextPath() %>/views/lent/lentTicket.jsp">이용권 구매</a></li>
 
 	                <li><a href="#shop">대여소 조회</a></li>
-                    <li><a href="<%=request.getContextPath()%>/community/communityList">커뮤니티</a></li>
+                    <!-- href="<%=request.getContextPath()%>/community/communityList" -->
+                    <li class="dropdown">
+                    	<a class="dropdown-toggle" data-toggle="dropdown" href="#" >커뮤니티<span class="caret"></span></a>
+                    	<ul class="dropdown-menu">
+                    		<li><a href="<%=request.getContextPath()%>/community/communityList">커뮤니티 1</a></li>
+                    		<li><a href="#">커뮤니티 2</a></li>
+                    		<li><a href="#">커뮤니티 3</a></li>
+                   		</ul>
+                    </li>
                     <li><a href="<%=request.getContextPath()%>/centerList">고객센터</a></li>
 	            </ul>
 	            <ul class="nav navbar-nav navbar-right">
