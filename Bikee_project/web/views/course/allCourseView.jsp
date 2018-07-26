@@ -5,25 +5,12 @@
 
 	<style>
 	/* 큰 영역 나누기 */
-		#content{
-			width : 80%;
-			height : 1000px;
-			border : 1px solid red;
-			margin : 10%;
-			
-			}
 		.sidenav{
-			width : 19%;
-			height : 70%;
-			border : 1px solid blue;
-			display: inline-block;
-			float : left;
-			text-align: center;
+			height : 700px;
+			
 		}
 		#map{
-			display : inline-block;
-			width : 79%;
-			height : 70%;
+			height : 700px;
 			}
 		.shopinfo{
 			display : inline-block;
@@ -76,7 +63,37 @@
 		})
 	});
 	</script>
-	<div id ="content">
+	<div class = "container">
+		<div class = "row content">
+			<div class = "col-sm-3 sidenav">
+				<h2>대여소목록</h2>
+				<h3 class = "shop_name" alt="서울특별시 송파구 송파대로 570">잠실한강</h3>
+				<h3 class = "shop_name" alt="서울특별시 동작구 노량진로 147">노량진역</h3>
+				<h3 class = "shop_name" alt="경기 성남시 수정구 태평동 7003-13">탄천</h3>
+				<h3 class = "shop_name" alt="인천 남동구 논현동 754-3">소래포구역</h3>
+				<h3 class = "shop_name" alt="경기 남양주시 조안면 진중리 279-2">북한강</h3>
+			
+			
+			
+			</div>
+			<div id = "map" class = "col-sm-9">
+			
+			</div>
+		
+		
+		
+		</div>
+	
+	
+	</div>
+	<div class ="container">
+		<div class = "row contenet">
+			<div class = "col-sm-4"></div>
+			<div class = "col-sm-4"></div>
+			<div class = "col-sm-4"></div>
+		</div>
+	</div>
+	<!-- <div class = "container">
 		<div class = "sidenav" >
 			<h2>대여소목록</h2>
 			<h3 class = "shop_name" alt="서울특별시 송파구 송파대로 570">잠실한강</h3>
@@ -91,6 +108,7 @@
 		
 		<div id="map"></div>
 
-		<div class = "shopinfo"></div>
+		
 	</div>
+	<div class = "shopinfo"></div> -->
 <%@ include file= '/views/common/footer.jsp' %>
