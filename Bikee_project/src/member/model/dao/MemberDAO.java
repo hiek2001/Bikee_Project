@@ -65,8 +65,6 @@ public class MemberDAO {
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("insertMember");
-		System.out.println(sql);
-		System.out.println(m);
 		try {
 			
 			pstmt=conn.prepareStatement(sql);
@@ -115,7 +113,7 @@ public class MemberDAO {
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("updateMember");
-		System.out.println(sql);
+
 		/*MEM_BIRTHDATE = ?, MEM_PHONE =?, MEM_EMAIL =?,MEM_ADDR = ? WHERE MEM_ID = ?
 				1 생일
 				2 폰
@@ -142,6 +140,120 @@ public class MemberDAO {
 		return result;
 	}
 
+	public Member findId(Connection conn, String findPhone)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member m = null;
+		String sql = prop.getProperty("findId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, findPhone);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				m = new Member();
+				
+				// DB 컬럼명을 따른다.
+				m.setMem_id(rs.getString("mem_id"));
+				m.setMem_pw(rs.getString("mem_pw"));
+				m.setMem_name(rs.getString("mem_name"));
+				m.setMem_birthdate(rs.getInt("mem_birthdate"));
+				m.setMem_phone(rs.getString("mem_phone"));
+				m.setMem_email(rs.getString("mem_email"));
+				m.setMem_addr(rs.getString("mem_addr"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return m;
+	}
+	
+	public boolean checkId2(Connection conn, String findId)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		//아이디 값이 있으면 false, 아이디 값 사용 가능
+		boolean isAble=true;
+		String sql=prop.getProperty("selectOne");
+	
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, findId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) isAble=false;
+			else isAble=true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		close(rs);
+		close(pstmt);
+
+		return isAble;
+	}
+	
+	public int changePw(Connection conn, Member m)
+	{
+		//비밀번호 update하기
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("changePw");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMem_pw());
+			pstmt.setString(2, m.getMem_id());
+			result=pstmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		close(pstmt);
+		
+		return result;
+	}
+	
+	public Member checkId3(Connection conn, String findId)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member m = null;
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, findId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				m = new Member();
+				
+				// DB 컬럼명을 따른다.
+				m.setMem_id(rs.getString("mem_id"));
+				m.setMem_pw(rs.getString("mem_pw"));
+				m.setMem_name(rs.getString("mem_name"));
+				m.setMem_birthdate(rs.getInt("mem_birthdate"));
+				m.setMem_phone(rs.getString("mem_phone"));
+				m.setMem_email(rs.getString("mem_email"));
+				m.setMem_addr(rs.getString("mem_addr"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+	
+		return m;
+	}
 
 
 

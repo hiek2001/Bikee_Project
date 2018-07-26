@@ -50,7 +50,7 @@
 			<div class="form-group" >
 				<label for="provision">
 					<div id="provision" class="col-md-offset-3 col-md-10">
-						<textarea class="form-control" rows="25" cols="200" style="resize:none" >
+						<textarea class="form-control" rows="25" cols="200" style="resize:none" readonly>
 제 1조 (목적)
  본 약관은 "바이키 대여시스템" (이하 "당 사이트")이 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 이용자와 당 사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다.
 
