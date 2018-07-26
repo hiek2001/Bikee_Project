@@ -97,7 +97,7 @@ function validate() {
 	            </ul>
 	            <ul class="nav navbar-nav navbar-right">
 	            	<% if(memberLoggedIn != null) { %>
-	            		<li><a href="<%= request.getContextPath() %>/member/memberUpdate"><span class="glyphicon glyphicon-lock"> 마이페이지</span></a></li>
+	            		<li><a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-lock"> 마이페이지</span></a></li>
             		    <li><a href="<%= request.getContextPath() %>/member/memberLogout"><span class="glyphicon glyphicon-user"> Logout</span></a></li>
 	            	<% } else { %>
 					<li><a href="#" data-toggle="modal" data-target="#loginModal" data-backdroup="static"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
