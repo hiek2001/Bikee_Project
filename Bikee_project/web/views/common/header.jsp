@@ -105,7 +105,6 @@ function validate() {
 	                <li><a href="<%= request.getContextPath() %>/views/course/allCourseView.jsp">대여소 조회</a></li>
 	                <li><a href="<%=request.getContextPath()%>/community/communityList">커뮤니티</a></li>
 	                <li><a href="<%=request.getContextPath()%>/centerList">고객센터</a></li>
-	                <li><a href="#shop">대여소 조회</a></li>
                     <!-- href="<%=request.getContextPath()%>/community/communityList" -->
                     <li class="dropdown">
                     	<a class="dropdown-toggle" data-toggle="dropdown" href="#" >커뮤니티<span class="caret"></span></a>
