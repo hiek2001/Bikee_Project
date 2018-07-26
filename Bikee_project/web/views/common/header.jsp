@@ -106,9 +106,8 @@ function validate() {
                     <li class="dropdown">
                     	<a class="dropdown-toggle" data-toggle="dropdown" href="#" >커뮤니티<span class="caret"></span></a>
                     	<ul class="dropdown-menu">
-                    		<li><a href="<%=request.getContextPath()%>/community/communityList">커뮤니티 1</a></li>
-                    		<li><a href="#">커뮤니티 2</a></li>
-                    		<li><a href="#">커뮤니티 3</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/community/communityList">자유게시판</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/reviewList">이용후기</a></li>
                    		</ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/centerList">고객센터</a></li>

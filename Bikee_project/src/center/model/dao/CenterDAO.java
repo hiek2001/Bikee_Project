@@ -111,10 +111,11 @@ public class CenterDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,  c.getCenterTitle());
-			pstmt.setString(2, c.getCenterWriter());
-			pstmt.setString(3, c.getCenterContent());
-			pstmt.setString(4, null);
+			pstmt.setInt(2, c.getCenterPwd());
+			pstmt.setString(3, c.getCenterWriter());
+			pstmt.setString(4, c.getCenterContent());
 			pstmt.setString(5, null);
+			pstmt.setString(6, null);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
