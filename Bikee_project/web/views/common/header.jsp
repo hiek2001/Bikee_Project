@@ -31,7 +31,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%= request.getContextPath() %>/css/bootstrap/bootstrap.css" rel="stylesheet"> <!-- bootstrap.css -->
 <link href="<%= request.getContextPath() %>/css/bootstrap/bootstrap-theme.css" rel="stylesheet"> <!-- bootstrap-theme.css -->
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common.css?var=1"> <!-- common.css -->
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common.css?ver=1"> <!-- common.css -->
 
 
 
@@ -76,34 +76,36 @@ function validate() {
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="<%= request.getContextPath() %>">BIKEE</a>
+	            <a class="navbar-brand" href="<%= request.getContextPath() %>">HOME</a>
 	        </div>
 	        <div class="collapse navbar-collapse" id="myNavbar">
 	            <ul class="nav navbar-nav">
 	                <li><a href="<%= request.getContextPath() %>/introduce.jsp">소개</a></li>
 
 	                <li>
-	                <% if(session.getAttribute("memberLoggedIn") !=null){%>
-						<a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a>
-					<%  } else{%>
-						<a href="#intro">공지사항</a>
-					<%} %>
-					</li>
-	                <li><a href="<%= request.getContextPath() %>/views/navbar/purchase.jsp">이용권 구매</a></li>
+                    <% if(session.getAttribute("memberLoggedIn") != null){%>
+                  		<a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a>
+               		<%  } else{%>
+                  		<a href="#intro">공지사항</a>
+               		<%} %>
+               		</li>
+
+	                <li><a href="<%= request.getContextPath() %>/views/lent/lentTicket.jsp">이용권 구매</a></li>
 
 	                <li><a href="#shop">대여소 조회</a></li>
-	                <li><a href="<%=request.getContextPath()%>/community/communityList">커뮤니티</a></li>
-	                <li><a href="<%=request.getContextPath()%>/centerList">고객센터</a></li>
+                    <li><a href="<%=request.getContextPath()%>/community/communityList">커뮤니티</a></li>
+                    <li><a href="<%=request.getContextPath()%>/centerList">고객센터</a></li>
 	            </ul>
 	            <ul class="nav navbar-nav navbar-right">
-	            	<% if(memberLoggedIn != null) { %>
-	            		<li><a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-lock"> 마이페이지</span></a></li>
-            		    <li><a href="<%= request.getContextPath() %>/member/memberLogout"><span class="glyphicon glyphicon-user"> Logout</span></a></li>
-	            	<% } else { %>
-					<li><a href="#" data-toggle="modal" data-target="#loginModal" data-backdroup="static"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <% if(memberLoggedIn != null) { %>
+                    <%-- <li><a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-lock"> 마이페이지</span></a></li> --%>
+                    <li><a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-lock"> 마이페이지</span></a></li>
+                    <li><a href="<%= request.getContextPath() %>/member/memberLogout"><span class="glyphicon glyphicon-user"> Logout</span></a></li>
+                <% } else { %>
+               		<li><a href="#" data-toggle="modal" data-target="#loginModal" data-backdroup="static"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     <li><a href="<%= request.getContextPath() %>/views/member/joinTerms.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <% } %>
-	            </ul>
+                <% } %>
+               </ul>
 	        </div>
 	    </div>
 	</nav>
@@ -119,13 +121,15 @@ function validate() {
                 <form action="<%=request.getContextPath()%>/member/memberLogin" id="loginModalFrm" method="post" onsubmit="return validate()">
                 	<div class="modal-body">
         	            <div class="form-group">
-	                        <label for="userId">UserId</label>
+        	            	<i class="fa fa-user icon"></i>
+	                        <label for="userId"> UserId</label>
 	                        <input type="text" class="form-control" name="memId" id="memId" placeholder="Enter userId" value="<%= saveId!=null ? saveId : "" %>">
 	              		    </div>
 	                    
 	                    	<div class="form-group">
-	                        <label for="password">Password</label>
-	                        <input type="password" class="form-control" name="memPw" id="memPw" placeholder="Enter Pasasword"><br>
+	                    	<i class="fa fa-key icon"></i>
+	                        <label for="password"> Password</label>
+	                        <input type="password" class="form-control" name="memPw" id="memPw" placeholder="Enter Password"><br>
 	                        <input type="checkbox" name="saveId" id="saveId" <%= saveId!=null ? "checked" : "" %>>
 							<label for="saveId">Remember Id</label>
 	                    	</div>

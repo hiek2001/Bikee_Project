@@ -16,25 +16,29 @@
 /*Navbar*/
 .navbar {
 	margin-bottom: 0;
-    background-color: #34495E;
+    background-color: rgb(7, 48, 110);
     z-index: 9999;
     border: 0;
-    font-size: 12px !important;
     line-height: 1.4 !important;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
     border-radius: 0;
     verticel-align: middle;
     letter-spacing: 4px;
+    /* 네비 상단 고정 */
+    position: sticky;
+    top: 0;
 }
 
 .navbar li a, .navbar .navbar-brand {
-	font-size: 1.5em;
+	font-size: 1.25em;
+	font-weight: 100;
     color: #fff !important;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
-	color: rgb(30, 86, 173) !important;
+	color: rgb(7, 48, 110) !important;
     background-color: #fff !important;
+    border-bottom: 3px solid red;
 }
 
 .navbar-default .navbar-toggle {
@@ -47,15 +51,15 @@
 }
 
 /* LoginModal */
- .modal {
+.modal {
 	text-align: center;
 }
 
- .modal-content {
+.modal-content {
 	background-color: rgb(30, 86, 173);
 	color: #fff;
 	position: static;
-} 
+}
 
 @media screen and (min-width: 768px) { 
 	.modal:before {
@@ -70,7 +74,7 @@
 	display: inline-block;
 	text-align: left;
 	vertical-align: middle;
-} 
+}
 
 
 /* Footer */
@@ -108,9 +112,13 @@ footer i {
 	padding: 1em;
 }
 
-.footer1 {
+#footerIntro {
+	font-style: italic;
+	min-height: 200px;
 	background-color: rgb(43, 43, 43);
 	font-size: 1.5em;
-	color: rgb(73, 74, 77);
+	color: rgb(145, 145, 145);
 	font-weight: 700;
+	padding: 2.3em;
 }
+
