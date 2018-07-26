@@ -39,7 +39,35 @@
 	}
 }
 
-/* 포트폴리오 */
+/* point */
+#point {
+	margin: 2em 0;
+}
+
+#point .fa {
+	color: rgb(7, 48, 110);
+	padding: 10px 0px;
+    font-size: 50px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#point .fa:hover {
+    opacity: 0.75;
+}
+
+#point h1 {
+	font-weight: 700;
+}
+
+#point p {
+	font-size: 1.3em;
+	font-weight: 700;
+	padding: 1px;
+}
+
+/* 포트폴리오
 #port {
 	max-width: 100%;
 	margin-top: -30px;
@@ -60,26 +88,11 @@
 	height: auto;
 	margin-bottom: 10px;
 }
-
-/* point */
-#point {
-	margin-top: 2em;
-}
-
-#point h1 {
-	font-weight: 700;
-}
-
-#point p {
-	font-size: 1.3em;
-	font-weight: 700;
-	padding: 1px;
-}
-
-/* 서비스 */
-i {
-	color: rgb(17, 70, 150);
-	font-size: 50px;
+*/
+ 
+/* 서비스 
+#service .fa:hover {
+    opacity: 0.75;
 }
 
 #service h1 {
@@ -89,3 +102,4 @@ i {
 #service .col-sm-4 {
 	padding: 20px;
 }
+*/

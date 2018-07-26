@@ -5,7 +5,7 @@
 </script>
 
 <!-- footer -->
-<div id='footer1' class="container-fluid text-center">
+<div id='footerIntro' class="container-fluid text-center">
 	<div>
 		<p>"It's all prepared. All i need to do is move forward. Every thing depends on only out</p>
 		<p> mind. JUST RIDE IT."</p>
