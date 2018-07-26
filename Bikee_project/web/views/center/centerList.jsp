@@ -40,22 +40,31 @@
    {	
 	   	location.href="<%=request.getContextPath()%>/centerForm";		
    }
+   
+   $(function (){
+	   $(".checkA").click(function(){
+		    var no = $(this).attr('id');
+		    var pwd = $(this).attr('name');
+			$("#centerNo_").val(no);
+			$("#centerPw").val(pwd);
+	   });
+   });
+   
    function fn_checkPwd() {
-		// 비밀번호 입력했는지 안했는지 체크         
+	   var pwd = $("[name=centerPw]").val();
+	   
 		if($('#checkPwd').val().trim().length == 0) { // val() => 값. trim() => 공백 제거. 
 			alert("비밀번호를 입력하세요");
 			$('#checkPwd').focus(); 
+			return false;
+		}else if($('#checkPwd').val()!=pwd){
+			alert("비밀번호가 틀립니다. 다시 입력해주세요.");
 			return false;
 		}
 		return true;
 	}
 																   
-   $(function (){
-	   $(".checkA").click(function(){
-		    var no = $(this).attr('id');  
-			$("#centerNo_").val(no);
-	   });
-   });
+
    
 </script>
 <section>
@@ -98,8 +107,7 @@
 								<%-- <td><a href='<%=request.getContextPath()%>/centerView?no=<%=c.getCenterNo()%>'><%=c.getCenterTitle() %></a></td> --%>
 								<td>
 									<i class="material-icons">lock_outline</i>
-									<a href='#' id="<%=c.getCenterNo() %>" class="checkA" data-toggle="modal" data-target="#checkPwdmodal" data-backdroup="static"><%=c.getCenterTitle() %></a>
-									
+									<a href='#' id="<%=c.getCenterNo() %>" name="<%=c.getCenterPwd() %>" class="checkA" data-toggle="modal" data-target="#checkPwdmodal" data-backdroup="static"><%=c.getCenterTitle() %></a>
 									<div class="modal fade modal_left" id="checkPwdmodal" role="dialog" data-backdrop="false" tabindex="-1">
 					                <div class="modal-dialog modal-80size">
 					                  <!-- Modal 내용-->
@@ -115,6 +123,7 @@
 							                      	 <h3 class="txtcenter text-center" style="margin-bottom:40px;margin-top:0px">비밀번호 입력</h3>
 									                 <input type="password" id="checkPwd" name="checkPwd" class="form-control form-control-sm validate ml-0" placeholder="Enter password">
 									                 <input type="hidden" id="centerNo_" name="centerNo_"/>
+									                 <input type="hidden" id="centerPw" name="centerPw"/>
 									           	  </div>
 							            	
 							                     <div class="modal-footer modal_line">
@@ -133,7 +142,6 @@
 								<%} %>
 								</td>
 								<td>답변대기</td>
-								<!-- <td>답변대기</td> -->
 							</tr>
 							
 							<%} %>
