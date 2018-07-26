@@ -6,6 +6,7 @@
 	String writer=request.getParameter("writer");
 	String title=request.getParameter("title");
 	String content=request.getParameter("content");
+	int password = Integer.parseInt(request.getParameter("password"));
 %>
 <style>
 	div.container-fluid{padding-top:10px; padding-bottom:10px}
@@ -66,6 +67,17 @@
    				<label class="control-label col-sm-2">NAME</label>
    				<div class="col-sm-10">
    					<input type="text" class="form-control" name="writer" readonly value="<%=writer%>"/>
+   				</div>
+   			</div>
+   			<div class="col-lg-3"></div>
+   		</div>
+   		
+   		<div class="row form-group" style="padding-top:40px">
+   			<div class="col-lg-3"></div>
+   			<div class="col-lg-6">
+   				<label class="control-label col-sm-2">PASSWORD</label>
+   				<div class="col-sm-10">
+   					<input type="password" class="form-control" name="password" value="<%=password%>" required/>
    				</div>
    			</div>
    			<div class="col-lg-3"></div>

@@ -14,13 +14,20 @@
     	function validate(){
     		var content=$("[name=content]").val();
     		var title=$("[name=title]").val();
+    		var password=$("[name=password]").val();
     		
-    		if(title.trim().length==0){
+    		if(password.trim().length==0){
+    			alert("비밀번호를 입력하세요");
+    			return false;
+    		}else if(title.trim().length==0){
     			alert("제목을 입력하세요");
     			return false;
     		}
     		else if(content.trim().length==0){
     			alert("내용을 입력하세요");
+    			return false;
+    		}else if(password.length<3||password.length>5){
+    			alert("비밀번호는 4자리로 입력해주세요.");
     			return false;
     		}
     		return true;
@@ -56,6 +63,17 @@
    			</div>
    			<div class="col-lg-3"></div>
    			
+   		</div>
+   		
+   		<div class="row form-group" style="padding-top:40px">
+   			<div class="col-lg-3"></div>
+   			<div class="col-lg-6">
+   				<label class="control-label col-sm-2">PASSWORD</label>
+   				<div class="col-sm-10">
+   					<input type="text" class="form-control" name="password" placeholder="4자리 입력" required/>
+   				</div>
+   			</div>
+   			<div class="col-lg-3"></div>
    		</div>
    		
    		<div class="row form-group" style="padding-top:40px">

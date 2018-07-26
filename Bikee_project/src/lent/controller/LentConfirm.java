@@ -1,26 +1,27 @@
-package center.controller;
+package lent.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import center.model.service.CenterService;
-import center.model.vo.Center;
+import lent.model.service.LentService;
+import lent.model.vo.LentBike;
 
 /**
- * Servlet implementation class CenterViewServlet
+ * Servlet implementation class LentConfirm
  */
-@WebServlet("/centerView")
-public class CenterViewServlet extends HttpServlet {
+@WebServlet("/lent/lentConfirm")
+public class LentConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CenterViewServlet() {
+    public LentConfirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +30,20 @@ public class CenterViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("centerNo_"));
+		String merchantUid = request.getParameter("merchantUid");
+		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
+		String bikeId = request.getParameter("bikeId");
+		String buyDate =  request.getParameter("buyDate");
+		String returnDate = request.getParameter("returnDate");
+		String buyerId = request.getParameter("buyerId");
+		String shopId = request.getParameter("shopId");
 		
-		Center c = new CenterService().selectCenter(no);
+		LentBike lb = new LentBike(merchantUid, methodNum, bikeId, null, null, buyerId, shopId);
 		
-		if(c!=null) {
-			request.setAttribute("c", c);
-			request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "조회된 게시물이 없습니다.");
-			request.setAttribute("loc", "/view/center/centerList.jsp");
-			request.getRequestDispatcher("/views/common/centerMsg.jsp").forward(request, response);
-		}
+		int result = new LentService().insertLent(lb);
+		
+		
+		
 	}
 
 	/**

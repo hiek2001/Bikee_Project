@@ -51,9 +51,40 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-		
-		
-		
+	}
+	
+	public Member findId(String findPhone)
+	{
+		Connection conn=getConnection();
+		Member m=new MemberDAO().findId(conn,findPhone);
+		close(conn);
+		return m;
+	}
+
+	public boolean checkId2(String findId)
+	{
+		Connection conn=getConnection();
+		boolean isAble=new MemberDAO().checkId2(conn,findId);
+		close(conn);
+		return isAble;
+	}
+	
+	public int changePw(Member m)
+	{
+		Connection conn=getConnection();
+		int result=new MemberDAO().changePw(conn,m);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public Member checkId3(String findId)
+	{
+		Connection conn=getConnection();
+		Member m=new MemberDAO().checkId3(conn,findId);
+		close(conn);
+		return m;
 	}
 
 

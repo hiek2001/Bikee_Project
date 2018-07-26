@@ -41,6 +41,7 @@ public class CenterDAO {
 			while(rs.next()) {
 				c = new Center();
 				c.setCenterNo(rs.getInt("center_no"));
+				c.setCenterPwd(rs.getInt("center_password"));
 				c.setCenterTitle(rs.getString("center_title"));
 				c.setCenterWriter(rs.getString("center_writer"));
 				c.setCenterContent(rs.getString("center_content"));
@@ -88,6 +89,7 @@ public class CenterDAO {
 			if(rs.next()) {
 				c = new Center();
 				c.setCenterNo(rs.getInt("center_no"));
+				c.setCenterPwd(rs.getInt("center_password"));
 				c.setCenterTitle(rs.getString("center_title"));
 				c.setCenterWriter(rs.getString("center_writer"));
 				c.setCenterContent(rs.getString("center_content"));
@@ -110,11 +112,12 @@ public class CenterDAO {
 		int result =0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,  c.getCenterTitle());
-			pstmt.setString(2, c.getCenterWriter());
-			pstmt.setString(3, c.getCenterContent());
-			pstmt.setString(4, null);
+			pstmt.setInt(1, c.getCenterPwd());
+			pstmt.setString(2,  c.getCenterTitle());
+			pstmt.setString(3, c.getCenterWriter());
+			pstmt.setString(4, c.getCenterContent());
 			pstmt.setString(5, null);
+			pstmt.setString(6, null);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -129,11 +132,12 @@ public class CenterDAO {
 		int result=0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, c.getCenterTitle());
-			pstmt.setString(2, c.getOriginalFileName());
-			pstmt.setString(3, c.getRenameFileName());
-			pstmt.setString(4, c.getCenterContent());
-			pstmt.setInt(5, c.getCenterNo());
+			pstmt.setInt(1, c.getCenterPwd());
+			pstmt.setString(2, c.getCenterTitle());
+			pstmt.setString(3, c.getOriginalFileName());
+			pstmt.setString(4, c.getRenameFileName());
+			pstmt.setString(5, c.getCenterContent());
+			pstmt.setInt(6, c.getCenterNo());
 			
 			result =pstmt.executeUpdate();
 		}catch(Exception e) {

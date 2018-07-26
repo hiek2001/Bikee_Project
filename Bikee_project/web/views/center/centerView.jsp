@@ -20,13 +20,13 @@
 </style>
 <script>
 	function fn_update(){
-		location.href="<%=request.getContextPath()%>/views/community/communityUpdate.jsp?writer=<%=c%>&title=<%=c.getCenterTitle()%>&content=<%=c.getCenterContent() %>&no=<%=c.getCenterNo()%>";
+		location.href="<%=request.getContextPath()%>/views/center/centerUpdate.jsp?writer=<%=c.getCenterWriter()%>&title=<%=c.getCenterTitle()%>&content=<%=c.getCenterContent() %>&no=<%=c.getCenterNo()%>&password=<%=c.getCenterPwd()%>";
 	}
 	function fn_delete(){
-		location.href="<%=request.getContextPath()%>/community/communityDelete?no=<%=c.getCenterNo()%>";
+		location.href="<%=request.getContextPath()%>/centerDelete?no=<%=c.getCenterNo()%>";
 	}
 	function fn_cancel(){
-		location.href="<%=request.getContextPath()%>/community/communityList";
+		location.href="<%=request.getContextPath()%>/centerList";
 	}
 </script>
 <section>
@@ -37,7 +37,7 @@
 		    </div>
 		    <div class="row" >
 			    <div class="col-lg-8 main_title text-center">
-			    	CUSTOMER CENTER
+			    	COMMUNICATION
 			    </div>
 			    <div class="col-lg-8 content"> 
 			    	
