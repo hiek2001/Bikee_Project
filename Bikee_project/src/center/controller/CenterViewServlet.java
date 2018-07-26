@@ -29,8 +29,9 @@ public class CenterViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("no"));
-
+		//int no = Integer.parseInt(request.getParameter("no"));
+		int no = Integer.parseInt(request.getParameter("centerNo_"));
+		
 		
 		Center c = new CenterService().selectCenter(no);
 		

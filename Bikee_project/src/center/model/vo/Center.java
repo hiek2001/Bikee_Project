@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Center {
 	private int centerNo;
+	private int centerPwd;
 	private String centerTitle;
 	private String centerWriter;
 	private String centerContent;
@@ -13,10 +14,11 @@ public class Center {
 	
 	public Center() {}
 
-	public Center(int centerNo, String centerTitle, String centerWriter, String centerContent, String originalFileName,
-			String renameFileName, Date centerDate) {
+	public Center(int centerNo, int centerPwd, String centerTitle, String centerWriter, String centerContent,
+			String originalFileName, String renameFileName, Date centerDate) {
 		super();
 		this.centerNo = centerNo;
+		this.centerPwd = centerPwd;
 		this.centerTitle = centerTitle;
 		this.centerWriter = centerWriter;
 		this.centerContent = centerContent;
@@ -25,12 +27,22 @@ public class Center {
 		this.centerDate = centerDate;
 	}
 
+
+
 	public int getCenterNo() {
 		return centerNo;
 	}
 
 	public void setCenterNo(int centerNo) {
 		this.centerNo = centerNo;
+	}
+	
+	public int getCenterPwd() {
+		return centerPwd;
+	}
+
+	public void setCenterPwd(int centerPwd) {
+		this.centerPwd = centerPwd;
 	}
 
 	public String getCenterTitle() {
@@ -83,10 +95,9 @@ public class Center {
 
 	@Override
 	public String toString() {
-		return "Center [centerNo=" + centerNo + ", centerTitle=" + centerTitle + ", centerWriter=" + centerWriter
-				+ ", centerContent=" + centerContent + ", originalFileName=" + originalFileName + ", renameFileName="
-				+ renameFileName + ", centerDate=" + centerDate + "]";
+		return "Center [centerNo=" + centerNo + ", centerPwd=" + centerPwd + ", centerTitle=" + centerTitle
+				+ ", centerWriter=" + centerWriter + ", centerContent=" + centerContent + ", originalFileName="
+				+ originalFileName + ", renameFileName=" + renameFileName + ", centerDate=" + centerDate + "]";
 	}
-	
 	
 }
