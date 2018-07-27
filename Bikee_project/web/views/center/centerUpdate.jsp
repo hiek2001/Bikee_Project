@@ -118,7 +118,8 @@
    		<div class="row" style="padding-top:40px;padding-bottom:100px">
    			<div class="col-lg-4"></div>
    			<div class="col-lg-4">
-   					<button type="submit" class="btn btn-primary" value="등록하기" onclick="return validate();" style="background-color:#1E68CB; height:50px;width:482px " >save</button></div>
+   					<button type="submit" class="btn btn-primary" value="등록하기" onclick="return validate();" style="background-color:#1E68CB; height:50px;width:400px " >save</button>
+   			</div>
    			<div class="col-lg-4"></div>
    		</div>
     </div>
