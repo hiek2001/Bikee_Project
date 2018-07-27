@@ -145,6 +145,7 @@
 					               </div>
 							</div>
 								</td>
+								<td></td>
 								<td><%=c.getCenterWriter() %></td>
 								<td><%=c.getCenterDate() %></td>
 								<td><%if(c.getOriginalFileName()!=null){%>

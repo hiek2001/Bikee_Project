@@ -28,6 +28,15 @@
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/centerList";
 	}
+	function viewDate(){
+		var comment=$("[name=comment]").val();
+		
+		if(comment.trim().length==0){
+			alert("내용을 입력하세요");
+			return false;
+		}
+		return true;
+	}
 </script>
 <section>
 
@@ -87,22 +96,28 @@
 			   			<div class="col-lg-3"></div>
 			   		</div>
 			   			<%} else if(memberLoggedIn.getMem_id().equals("admin")){%>
+			   			 <form action="<%=request.getContextPath()%>/commentAdd" method="post">
 			   				<div class="row" style="padding-top:40px;">
 					   			<div class="col-lg-3"></div>
 					   			<div class="col-lg-6" style="padding:0px">
-					   				<textarea rows="10" cols="85" style="width:644.32px; height:250px;"></textarea>
+					   				<textarea rows="10" name="comment"cols="85" style="width:644.32px; height:250px;"></textarea>
 					   			</div>
 					   			<div class="col-lg-3"></div>
 			   				</div>
 			   				<div class="row" style="padding-top:40px;padding-bottom:100px">
 			   					<div class="col-lg-4"></div>
    								<div class="col-lg-4">
-			   					<button type="submit" class="btn btn-primary" value="등록하기" onclick="return validate();" style="background-color:#1E68CB; height:50px;width:400px " >save</button>
+	   								<input type="hidden" name="refNo" value="<%=c.getCenterNo()%>">
+	   								<input type="hidden" name="writer" value="<%=memberLoggedIn.getMem_id()%>"/>
+				   					<button type="submit" class="btn btn-primary" value="등록하기" onclick="return viewDate();" style="background-color:#1E68CB; height:50px;width:400px " >save</button>
 			   					</div>
 			   					<div class="col-lg-4"></div>
 			   				</div>
-			   			<%} %>
-			   		<%} else{ %>
+			   			</form>
+			   		<%}else{%>
+			   			<div class="row" style="padding-top:40px;padding-bottom:100px"></div>
+			   		<%} %>
+			   			<% } else{ %>
 			   			<div class="row" style="padding-top:40px;padding-bottom:100px"></div>
 			   		<%}%>
 			    </div>
