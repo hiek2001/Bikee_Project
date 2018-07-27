@@ -38,12 +38,14 @@ public class LentConfirm extends HttpServlet {
 		String buyerId = request.getParameter("buyerId");
 		String shopId = request.getParameter("shopId");
 		
-		LentBike lb = new LentBike(merchantUid, methodNum, bikeId, null, null, buyerId, shopId);
+		LentBike insertLb = new LentBike(merchantUid, methodNum, bikeId, null, null, buyerId, shopId);
+		new LentService().insertLent(insertLb);
 		
-		int result = new LentService().insertLent(lb);
+		LentBike selectLb = new LentService().selectLentBike(merchantUid);
 		
+		request.setAttribute("selectLb", selectLb);
 		
-		
+//		request.getRequestDispatcher("/views/lent/lentConfirmOK.jsp").forward(request, response);
 	}
 
 	/**
