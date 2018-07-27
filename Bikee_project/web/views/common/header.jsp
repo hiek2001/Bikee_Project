@@ -38,11 +38,19 @@
 
 .navbar .dropdown ul {
     background-color: rgb(52, 73, 94);
-	
 }
 div a#findId{font-weight:bold;margin-left:370px;}
 div a#findPw{font-weight:bold;}
-
+li.admin-member a:hover ul li{
+	color: rgb(7, 48, 110) !important;
+    background-color: #fff !important;
+    border-bottom: 3px solid rgb(30, 104, 203);
+}
+/* .navbar-nav li a:hover, .navbar-nav li.active a {
+	color: rgb(7, 48, 110) !important;
+    background-color: #fff !important;
+    border-bottom: 3px solid rgb(30, 104, 203);
+} */
 
 </style>
 </head>
@@ -89,8 +97,12 @@ function validate() {
 	        </div>
 	        <div class="collapse navbar-collapse" id="myNavbar">
 	            <ul class="nav navbar-nav">
-	                <li><a href="<%= request.getContextPath() %>/introduce.jsp">소개</a></li>
-
+	            	<li class="dropdown">
+                    	<a class="dropdown-toggle" data-toggle="dropdown" href="#" >소개<span class="caret"></span></a>
+			                <ul class="dropdown-menu">
+			                <li><a href="<%=request.getContextPath()%>/views/introduction/introduce.jsp">사업소개</a></li>
+							<li><a href="<%=request.getContextPath()%>/views/introduction/bikeIntroduction.jsp">자전거종류</a></li>
+							</ul>
 	                <li>
                     <% if(session.getAttribute("memberLoggedIn") != null) { %>
                   		<a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a>
@@ -103,13 +115,7 @@ function validate() {
 
 	                <li><a href="#shop">대여소 조회</a></li>
                     <!-- href="<%=request.getContextPath()%>/community/communityList" -->
-                    <li class="dropdown">
-                    	<a class="dropdown-toggle" data-toggle="dropdown" href="#" >커뮤니티<span class="caret"></span></a>
-                    	<ul class="dropdown-menu">
-                    		<li><a href="<%=request.getContextPath()%>/community/communityList">커뮤니티 1</a></li>
-                    		<li><a href="#">커뮤니티 2</a></li>
-                    		<li><a href="#">커뮤니티 3</a></li>
-                   		</ul>
+                    <li><a class="dropdown-toggle" href="<%=request.getContextPath()%>/community/communityList" >커뮤니티</a></li>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/centerList">고객센터</a></li>
 	            </ul>
@@ -122,6 +128,16 @@ function validate() {
                		<li><a href="#" data-toggle="modal" data-target="#loginModal" data-backdroup="static"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     <li><a href="<%= request.getContextPath() %>/views/member/joinTerms.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <% } %>
+                <% if(memberLoggedIn!=null && memberLoggedIn.getMem_id().equals("admin")) { %>
+				<li id='dropdown admin-member'>
+				<a href='#' class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 관리자<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+		                <li><a href="<%=request.getContextPath() %>/MemberViewServlet">회원관리</a></li>
+						<li><a href="#">자전거관리</a></li>
+						<li><a href="#">결제관리</a></li>
+					</ul>
+				</li>
+				<%} %>
                </ul>
 	        </div>
 	    </div>

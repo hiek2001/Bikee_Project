@@ -1,6 +1,6 @@
 package member.model.dao;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import member.model.vo.Member;
@@ -255,6 +256,39 @@ public class MemberDAO {
 		return m;
 	}
 
-
+	public ArrayList<Member> memberView(Connection conn)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Member> list = new ArrayList<>();
+		Member m=null;
+		String sql = prop.getProperty("MemberAll");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				m=new Member();
+				
+				// DB 컬럼명을 따른다.
+				m.setMem_id(rs.getString("mem_id"));
+				m.setMem_pw(rs.getString("mem_pw"));
+				m.setMem_name(rs.getString("mem_name"));
+				m.setMem_birthdate(rs.getInt("mem_birthdate"));
+				m.setMem_phone(rs.getString("mem_phone"));
+				m.setMem_email(rs.getString("mem_email"));
+				m.setMem_addr(rs.getString("mem_addr"));
+				list.add(m);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(list);
+		return list;
+	}
 
 }
