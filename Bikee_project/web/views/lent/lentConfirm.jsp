@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="lent.model.vo.LentBike" %>
+<%@ page import="lent.model.vo.LentBike, bike.model.vo.Bike, shop.model.vo.Shop" %>
 <%
 	int methodNum = (int) request.getAttribute("methodNum");
-	String bikeId = (String) request.getAttribute("bikeId");
+	Bike bike = (Bike) request.getAttribute("bike");
 	String buyDate =  (String) request.getAttribute("buyDate");
 	String returnDate = (String) request.getAttribute("returnDate");
-	String shopId = (String) request.getAttribute("shopId");
+	Shop shop = (Shop) request.getAttribute("shop");
 %>
     
 <%@ include file= '/views/common/header.jsp' %>
@@ -21,7 +21,7 @@ IMP.request_pay({
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
     merchant_uid : 'mUid' + new Date().getTime(), // 가맹점에서 생성/관리하는 고유 주문번호
-    name : '<%= bikeId %>',
+    name : '<%= bike.getBikeId() %>',
     amount : 100,
     buyer_email : '<%= memberLoggedIn.getMem_email() %>',
     buyer_name : '<%= memberLoggedIn.getMem_name() %>',
@@ -34,7 +34,7 @@ IMP.request_pay({
         msg += '거래ID : ' + rsp.merchant_uid + "\n";
         msg += '결제 금액 : ' + rsp.paid_amount + "\n";
         msg += '카드 승인번호 : ' + rsp.apply_num + "\n";
-        location.href = "<%= request.getContextPath() %>/lent/lentConfirm?merchantUid="+rsp.merchant_uid+"&methodNum=<%=methodNum%>&bikeId=<%=bikeId%>&buyDate=<%=buyDate%>&returnDate=<%=returnDate%>&buyerId=<%=memberLoggedIn.getMem_id()%>&shopId=<%=shopId%>";
+        location.href = "<%= request.getContextPath() %>/lent/lentConfirm?merchantUid="+rsp.merchant_uid+"&methodNum=<%=methodNum%>&bikeId=<%=bike.getBikeId()%>&buyDate=<%=buyDate%>&returnDate=<%=returnDate%>&buyerId=<%=memberLoggedIn.getMem_id()%>&shopId=<%=shop.getShopId()%>";
     } else {
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;

@@ -1,11 +1,15 @@
 package lent.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import lent.model.service.LentService;
+import lent.model.vo.PurchaseTicket;
 
 /**
  * Servlet implementation class PurchaseTest
@@ -26,11 +30,14 @@ public class LentTicket extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// /views/lent/lentIntro.jsp
+		// /views/lent/lentChoice.jsp로 전송.
 		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
 		
-		request.setAttribute("methodNum", methodNum);
+		// lentTicket에서 선택한 이용권에 맞는 purchase_ticket 객체 생성.
+		PurchaseTicket pt = new LentService().selectPurchaseTicket(methodNum); 
 		
+		
+		request.setAttribute("pt", pt);
 		request.getRequestDispatcher("/views/lent/lentChoice.jsp").forward(request, response);
 	}
 

@@ -1,13 +1,19 @@
 package lent.controller;
 
+import java.awt.List;
 import java.io.IOException;
-import java.util.Date;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bike.model.service.BikeService;
+import bike.model.vo.Bike;
+import shop.model.service.ShopService;
+import shop.model.vo.Shop;
 
 /**
  * Servlet implementation class LentChoice
@@ -33,13 +39,16 @@ public class LentChoice extends HttpServlet {
 		String buyDate =  request.getParameter("buyDate");
 		String returnDate = request.getParameter("returnDate");
 		String shopId = request.getParameter("shopId");
-		String date = request.getParameter("date");
+		
+		Bike bike = new BikeService().selectBike(bikeId);
+		
+		Shop shop = new ShopService().selectShop(shopId);
 		
 		request.setAttribute("methodNum", methodNum);
-		request.setAttribute("bikeId", bikeId);
+		request.setAttribute("bike", bike);
 		request.setAttribute("buyDate", buyDate);
 		request.setAttribute("returnDate", returnDate);
-		request.setAttribute("shopId", shopId);
+		request.setAttribute("shop", shop);
 		
 		request.getRequestDispatcher("/views/lent/lentConfirm.jsp").forward(request, response);
 	}
