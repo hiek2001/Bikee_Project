@@ -30,7 +30,7 @@ $(function() {
 	        <a href="#"><img src="<%=request.getContextPath() %>/images/index/carousel_1.jpg"></a>
 	        <div class="carousel-caption">
 	            <h2>누구나</h2>
-	            <p>BIKEE는 남녀노소 누구나 이용 가능합니다11.</p>
+	            <p>BIKEE는 남녀노소 누구나 이용 가능합니다111.</p>
 	        </div>
 	    </div>
 
