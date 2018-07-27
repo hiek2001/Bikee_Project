@@ -67,7 +67,6 @@ public class LentDAO {
 			pstmt.setString(3, insertLb.getBikeId());
 			pstmt.setString(4, insertLb.getBuyerId());
 			pstmt.setString(5, insertLb.getShopId());
-			
 			result = pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
