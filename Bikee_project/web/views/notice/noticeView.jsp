@@ -154,11 +154,12 @@
 					<textarea  name="updateContent" placeholder="<%=notice.getNoticeContent()%>" value="update_notice"  cols="85"   name="content" style="height:200px" onKeyup="var m=50;var s=this.scrollHeight;if(s>=m)this.style.pixelHeight=s+4"></textarea><p></p>
 					<input type="hidden" name="updateNo" value="<%=notice.getNoticeNo() %>">
 			 		<input type="button" value="수정" onclick="fn_updateNotice()" class="btn btn-default"/>
-			 		<input type="button" value="삭제" onclick="deleteNotice()" class="btn btn-default">
+			 		<input type="button" value="삭제" onclick="deleteNotice()" class="btn btn-default " >
 			 		
 	 			<%} %>
 	 			<input type="button" value="뒤로가기" onclick="returnList()" class="btn btn-default">
 	 			<hr>
+
 	 		</form>
 		</div>	 
 	</div>

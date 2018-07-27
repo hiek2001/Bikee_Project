@@ -79,6 +79,7 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+	
 	public List<NoticeComment> selectNoticeCommentList(int no) {
 		Connection conn =getConnection();
 		List<NoticeComment> list = new NoticeDAO().selectNoticeCommentList(conn,no);
