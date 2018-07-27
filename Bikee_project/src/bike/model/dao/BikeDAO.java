@@ -1,6 +1,6 @@
 package bike.model.dao;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.Properties;
 
 import bike.model.vo.Bike;
+import bike.model.vo.BikePrice;
 
 public class BikeDAO {
 	private Properties prop;
@@ -52,5 +53,33 @@ public class BikeDAO {
 		}
 		
 		return bike;
+	}
+	
+	public BikePrice selectBikePrice(Connection conn, String bikeType) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectBikePrice");
+		BikePrice bp = null;
+		System.out.println(sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bikeType);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				bp = new BikePrice();
+				bp.setBikeType(rs.getString("bike_type"));
+				bp.setPrice(rs.getInt("price"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(bp);
+		return bp;
 	}
 }
