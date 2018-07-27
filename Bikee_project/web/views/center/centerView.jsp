@@ -86,8 +86,21 @@
 			   			</div>
 			   			<div class="col-lg-3"></div>
 			   		</div>
-			   			<%} else{%>
-			   				<div class="row" style="padding-top:40px;padding-bottom:100px"></div>
+			   			<%} else if(memberLoggedIn.getMem_id().equals("admin")){%>
+			   				<div class="row" style="padding-top:40px;">
+					   			<div class="col-lg-3"></div>
+					   			<div class="col-lg-6" style="padding:0px">
+					   				<textarea rows="10" cols="85" style="width:644.32px; height:250px;"></textarea>
+					   			</div>
+					   			<div class="col-lg-3"></div>
+			   				</div>
+			   				<div class="row" style="padding-top:40px;padding-bottom:100px">
+			   					<div class="col-lg-4"></div>
+   								<div class="col-lg-4">
+			   					<button type="submit" class="btn btn-primary" value="등록하기" onclick="return validate();" style="background-color:#1E68CB; height:50px;width:400px " >save</button>
+			   					</div>
+			   					<div class="col-lg-4"></div>
+			   				</div>
 			   			<%} %>
 			   		<%} else{ %>
 			   			<div class="row" style="padding-top:40px;padding-bottom:100px"></div>

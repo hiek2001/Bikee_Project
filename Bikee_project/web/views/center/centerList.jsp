@@ -6,6 +6,7 @@
 <%
 	List<Center> list = (List<Center>)request.getAttribute("list");
 	String pageBar =(String)request.getAttribute("pageBar");
+	
 %>
 <style>
 	div.container-fluid{padding-top:10px; padding-bottom:10px}
@@ -43,10 +44,16 @@
    
    $(function (){
 	   $(".checkA").click(function(){
+		   var id = $('.checkId').attr('id');
 		    var no = $(this).attr('id');
 		    var pwd = $(this).attr('name');
-			$("#centerNo_").val(no);
-			$("#centerPw").val(pwd);
+		    if(id=='admin'){
+		    	location.href="<%=request.getContextPath()%>/centerView?centerNo_="+no;
+		    }else{
+		    	$("#centerNo_").val(no);
+				$("#centerPw").val(pwd);
+		    }
+			
 	   });
    });
    
@@ -101,6 +108,9 @@
 							</tr>
 					   </thead>
 						<tbody>
+							<%if(session.getAttribute("memberLoggedIn")!=null) {%>
+							<input type="hidden" class="checkId"id="<%=memberLoggedIn.getMem_id()%>"/>
+							<%} %>
 							<%for(Center c :list) {%>
 							<tr>
 								<td><%=c.getCenterNo() %></td>
