@@ -19,6 +19,7 @@ h5 a{text-align: center; }
 }
 .updateForm{margin: 60px;}
 </style>
+
 <script>
 $(function() {
 	$('#nowPw').blur(function () {
@@ -26,7 +27,7 @@ $(function() {
 		var hiddenPw = $('#hiddenPw').val().trim();
 		
 		if(nowPw !=hiddenPw) {
-			alert("현재 비밀번호가 맞지 않습니다!!")
+			alert("현재 비밀번호가 맞지 않습니다.")
 			$('#nowPw').val("");
 			return;
 
@@ -36,10 +37,19 @@ $(function() {
 
 $(function() {
 	$('#checkPw').blur(function () {
+		var nowPw = $('#nowPw').val().trim();
 		var pw1 = $('#updatePw').val().trim();
 		var pw2 = $('#checkPw').val().trim();
+		
+		if(nowPw == pw1 || nowPw ==pw2){
+			alert("현재 비밀번호는 사용하실 수 없습니다.");
+			$('#updatePw').val("");
+			$('#checkPw').val("");
+			$('#updatePw').focus();
+			return;
+		}
 		if(pw1 !=pw2){
-			alert("비밀번호 일치하지 않음!!!!!")
+			alert("입력하신 비밀번호가 일치하지 않습니다.")
 			$('#updatePw').val("");
 			$('#checkPw').val("");
 			$('#updatePw').focus();
@@ -88,6 +98,14 @@ $(function() {
 					</div>
 					<input type="hidden" name="userId" id="userId" value="<%=m.getMem_id() %>">
 					<input type="hidden" name="hiddenPw" id="hiddenPw" value="<%=m.getMem_pw()%>">
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					
+					<div class="form-group">
+					<img src="images/testImage/test1.jpg" style="height: 300px;width: 200px;border-radius: 3px 5px 8px 10px;"></img>
+					
+					</div>
+					
 				</div>
 				
 			</div>

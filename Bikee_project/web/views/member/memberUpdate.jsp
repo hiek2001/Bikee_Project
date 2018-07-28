@@ -24,70 +24,21 @@ Member m = (Member)request.getAttribute("member");
 </style>
 <script>
 
-$(function () {
-    $('.button-checkbox').each(function () {
 
-        // Settings
-        var $widget = $(this),
-            $button = $widget.find('button'),
-            $checkbox = $widget.find('input:checkbox'),
-            color = $button.data('color'),
-            settings = {
-                on: {
-                    icon: 'glyphicon glyphicon-check'
-                },
-                off: {
-                    icon: 'glyphicon glyphicon-unchecked'
-                }
-            };
 
-        // Event Handlers
-        $button.on('click', function () {
-            $checkbox.prop('checked', !$checkbox.is(':checked'));
-            $checkbox.triggerHandler('change');
-            updateDisplay();
-        });
-        $checkbox.on('change', function () {
-            updateDisplay();
-        });
 
-        // Actions
-        function updateDisplay() {
-            var isChecked = $checkbox.is(':checked');
 
-            // Set the button's state
-            $button.data('state', (isChecked) ? "on" : "off");
+$(function() {
+	$('#userPw').blur(function () {
+		var userPw = $('#userPw').val().trim();
+		var passwordCheck = $('#passwordCheck').val().trim();
 
-            // Set the button's icon
-            $button.find('.state-icon')
-                .removeClass()
-                .addClass('state-icon ' + settings[$button.data('state')].icon);
-
-            // Update the button's color
-            if (isChecked) {
-                $button
-                    .removeClass('btn-default')
-                    .addClass('btn-' + color + ' active');
-            }
-            else {
-                $button
-                    .removeClass('btn-' + color + ' active')
-                    .addClass('btn-default');
-            }
-        }
-
-        // Initialization
-        function init() {
-
-            updateDisplay();
-
-            // Inject the icon if applicable
-            if ($button.find('.state-icon').length == 0) {
-                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
-            }
-        }
-        init();
-    });
+		if(userPw !=passwordCheck){
+			alert("현재 비밀번호와 일치하지 않습니다.")
+			$('#userPw').val("");
+			return;
+		}
+	})
 });
 
 </script>
@@ -121,8 +72,13 @@ $(function () {
 				<div class="col-xs-12 col-sm-6 col-md-6">		
 					<!-- 생년월일 -->
 					<div class="form-group">
-						<label>생년월일</label>
-						<input type="number" value="<%=m.getMem_birthdate() %>" name="userBirthday" id="userBirthday" class="form-control input-lg" placeholder="생년월일" tabindex="3" required>
+						<label>비밀번호</label>
+						<input type="password" value="" name="userPw" id="userPw" class="form-control input-lg" placeholder="비밀번호" tabindex="3" required>
+						<input type="hidden" value="<%=m.getMem_pw()%>" id="passwordCheck"> 
+					</div>
+					<div class="form-group">
+						<label>이메일</label>
+						<input type="email"  name="userEmail" id="userEmail" value="<%=m.getMem_email() %>" class="form-control input-lg" placeholder="이메일" tabindex="4" required >
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
@@ -130,6 +86,10 @@ $(function () {
 					<div class="form-group">
 						<label>전화번호</label>
 						<input type="text" value="<%=m.getMem_phone() %>" name="userPhone" id="userPhone" class="form-control input-lg" placeholder="전화번호" tabindex="6" required>
+					</div>
+					<div class="form-group">
+						<label>생년월일</label>
+						<input type="number" value="<%=m.getMem_birthdate() %>" name="userBirthday" id="userBirthday" class="form-control input-lg" placeholder="생년월일" tabindex="3" required>
 					</div>
 					
 				</div>
@@ -141,10 +101,7 @@ $(function () {
 						<label>주소</label>
 						<input type="text"  name="userAddress" id="userAddress" value="<%=m.getMem_addr() %>" class="form-control input-lg" placeholder="주소" tabindex="5" required value="<%=m.getMem_phone()%>">
 					</div><br>
-					<div class="form-group">
-						<label>이메일</label>
-						<input type="email"  name="userEmail" id="userEmail" value="<%=m.getMem_email() %>" class="form-control input-lg" placeholder="이메일" tabindex="4" required >
-					</div>
+					
 				</div>
 				
 			</div>
