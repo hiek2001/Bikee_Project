@@ -21,6 +21,22 @@ $(function() {
 	    interval : 3000,
 	});
 })
+$(function() {
+		$.ajax({
+			url:"<%=request.getContextPath()%>/notice/noticeListAjax",
+			type:"post",	
+			dataType:"html",    /*리턴받는 형식 */
+			success:function(data){
+				alert(data);   /* data = sample.jsp */
+				$('#noticeListAjaxTable').html(data);
+			}
+
+		});
+});
+	
+
+
+
 </script>
 <!-- Carousel -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -66,14 +82,9 @@ $(function() {
 </div>
 
 <div id="point" class="row text-center">
-		<div class="col-sm-2 join " id="회원가입">
+		<div class="col-sm-2 join " id="noticeListAjaxTable" style="border: 1px solid black; height: 300px; color :black;">
 		
-	        <form action="Song.html" method="POST" class="fomestyle">
-	            <fieldset>
-	            	<legend class="glyphicon glyphicon-flash">공지사항</legend>
-	                        
-	            </fieldset>
-	        </form>
+	        
 
 
     	</div>

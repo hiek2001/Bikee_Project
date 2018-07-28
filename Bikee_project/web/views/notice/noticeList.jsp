@@ -82,6 +82,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 
 <script>
 	//글쓰기 기능
+	
 	function fn_goNotice() {
 									/* 일단 서블릿을 만든다. BoardFormServlet  글쓰기*/
 		location.href="<%=request.getContextPath()%>/notice/noticeForm";

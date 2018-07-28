@@ -133,4 +133,20 @@ public class NoticeService {
 
 		return result;
 	}
+
+	public List<Notice> selectNoticeListAjax(){
+		Connection conn = getConnection();
+		List<Notice> list = new NoticeDAO().selectNoticeListAjax(conn);
+		close(conn);
+		
+		
+		return list;
+		
+	}
+
+
+
+
+
+
 }

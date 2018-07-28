@@ -304,6 +304,47 @@ public class NoticeDAO {
 		
 		return result;
 	}
+	public List<Notice> selectNoticeListAjax(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("noticeListAjax");
+		
+		Notice n=null;
+		ArrayList<Notice> list = new ArrayList();
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while (rs.next()) {
+				n = new Notice();
+				n.setNoticeNo(rs.getInt("notice_no"));
+				n.setNoticeWriter(rs.getString("notice_writer"));
+				n.setNoticeTitle(rs.getString("notice_title"));
+				n.setNoticeContent(rs.getString("notice_content"));
+				n.setNoticeDate(rs.getDate("notice_date"));
+				n.setNoticeReadcount(rs.getInt("notice_readcount"));
+				n.setNoticeCommentCount(rs.getInt("comment_count"));
+				list.add(n);
+				
+				
+			}
+			
+		}catch (Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+		
+	}
+
+
 
 
 }
