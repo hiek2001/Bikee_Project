@@ -124,7 +124,7 @@ function validate() {
                     <li class="dropdown">
                     	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-lock"> 마이페이지</span></a>
                     	<ul class="dropdown-menu">
-                    		<a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-wrench"> 회원정보수정</span></a>
+                    		<a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-repeat"> 회원정보수정</span></a>
                     		<a onclick="location.href='<%= request.getContextPath() %>/memberPassUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-pencil"> 비밀번호수정</span></a>
                    		</ul>
                     </li>
