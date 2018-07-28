@@ -35,8 +35,7 @@ public class NoticeListAjaxServlet extends HttpServlet {
 		List<Notice> list = new NoticeService().selectNoticeListAjax();
 		System.out.println(list);
 		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("/views/noticeListAjax.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/notice/noticeListAjax.jsp").forward(request, response);
 	}
 
 	/**

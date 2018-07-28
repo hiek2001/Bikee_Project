@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = 'java.util.*'  %>
-   <%@ page import="notice.model.vo.Notice" %>
+    pageEncoding="UTF-8" import = "java.util.*,notice.model.vo.Notice"  %>
 <%@ include file= '/views/common/header.jsp' %>
 <%
    List<Notice> list = (List<Notice>) request.getAttribute("list");  
@@ -96,6 +95,17 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 	     });
 	   });
 	 });
+	$('.noticeViewConnect').on("click",function(){
+		if(session.getAttribute("memberLoggedIn") == null){
+			alert("로그인 후 읽을수 있습니다.");
+			return;
+		
+		}	
+		
+	
+	})
+	
+   
 	
 </script>
 
@@ -128,7 +138,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 		      <tr>																																
 		         <th ><%= n.getNoticeNo() %></th>
 		         <td style="text-align: left;" >
-			         <a href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>'>
+			         <a class="noticeViewConnect" href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>'>
 			         <%= n.getNoticeTitle() %>&nbsp;&nbsp;&nbsp;
 			         <%if(n.getNoticeCommentCount() !=0){ %>
 			         	<span class="badge"><%=n.getNoticeCommentCount() %></span> 

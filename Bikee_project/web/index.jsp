@@ -7,11 +7,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/index.css?ver=2"> <!-- index.css -->
 
 <style>
-.join{
-       
-        
-        color: papayawhip;
-    }
+.join{color: papayawhip;}
 </style>
 
 <!-- 스크립트 -->
@@ -24,10 +20,10 @@ $(function() {
 $(function() {
 		$.ajax({
 			url:"<%=request.getContextPath()%>/notice/noticeListAjax",
-			type:"post",	
+			type:"get",	
 			dataType:"html",    /*리턴받는 형식 */
 			success:function(data){
-				alert(data);   /* data = sample.jsp */
+				 /* data = sample.jsp */
 				$('#noticeListAjaxTable').html(data);
 			}
 
@@ -82,11 +78,8 @@ $(function() {
 </div>
 
 <div id="point" class="row text-center">
-		<div class="col-sm-2 join " id="noticeListAjaxTable" style="border: 1px solid black; height: 300px; color :black;">
+		<div class="col-sm-2  " id="noticeListAjaxTable" style="border: 1px solid black; height: 300px; color :black;">
 		
-	        
-
-
     	</div>
 		
 			

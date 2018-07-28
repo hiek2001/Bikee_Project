@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="notice.model.vo.*,java.util.List;"%>
+    pageEncoding="UTF-8" import="java.util.*,notice.model.vo.Notice"%>
     
 <% List<Notice> list = (List)request.getAttribute("list"); %>
+
 <script>
 
-$(function () {
-	alert("들어옴");
-})
+
+
+
+<%-- href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>' --%>
 
 </script>
-<fieldset>
+
 	        
 <legend class="glyphicon glyphicon-flash">공지사항</legend>	           
 	<div class="notice-container"  >
@@ -25,11 +27,10 @@ $(function () {
 			 <tbody id="myTable">
 				<tr>	
 					<td><%=n.getNoticeNo() %></td>
-					<a href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>'>
+					<td ><a  id="noticeViewConnect" href="" ><%=n.getNoticeTitle() %></a></td>
 				</tr>
 			</tbody>
 		<%}%>
 		  </table>
 	</div>
              
-</fieldset>

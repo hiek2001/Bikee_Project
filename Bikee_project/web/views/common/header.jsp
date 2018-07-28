@@ -64,6 +64,11 @@ function validate() {
 	}
 	return true;
 }
+
+
+
+
+
 </script>
 
 <body>
@@ -91,13 +96,7 @@ function validate() {
 	            <ul class="nav navbar-nav">
 	                <li><a href="<%= request.getContextPath() %>/introduce.jsp">소개</a></li>
 
-	                <li>
-                    <% if(session.getAttribute("memberLoggedIn") != null) { %>
-                  		<a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a>
-               		<% } else { %>
-                  		<a href="#intro">공지사항</a>
-               		<% } %>
-               		</li>
+	                <li><a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a></li>
 
 	                <li><a href="<%= request.getContextPath() %>/views/lent/lentTicket.jsp">이용권 구매</a></li>
 

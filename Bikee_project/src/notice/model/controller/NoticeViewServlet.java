@@ -64,8 +64,7 @@ public class NoticeViewServlet extends HttpServlet {
 			noticeCookie.setMaxAge(-1);//브라우저가 끊어져야 삭제 세션이 끊어져야
 			response.addCookie(noticeCookie);
 		}
-		System.out.println(hasRead);
-		System.out.println(noticeNo);
+		
 		Notice notice= new NoticeService().selectOne(noticeNo,hasRead);
 //		Notice notice= new NoticeService().selectOne(noticeNo);
 //		new NoticeService().insertnoticeCount(noticeNo);

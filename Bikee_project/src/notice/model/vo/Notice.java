@@ -12,9 +12,7 @@ public class Notice {
 	private int noticeCommentCount;
 	@Override
 	public String toString() {
-		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeWriter=" + noticeWriter
-				+ ", noticeContent=" + noticeContent + ", noticeDate=" + noticeDate + ", noticeReadcount="
-				+ noticeReadcount + ", noticeCommentCount=" + noticeCommentCount + "]";
+		return "["+noticeNo +" | "+noticeTitle +" | "+noticeWriter +" | "+noticeContent +" | "+noticeDate +" | "+noticeReadcount +" | "+noticeCommentCount +"]";
 	}
 	public Notice() {
 		super();
