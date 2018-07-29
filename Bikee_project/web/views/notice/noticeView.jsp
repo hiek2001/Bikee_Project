@@ -47,8 +47,7 @@
 				}
 		});
 //		2.
-		$('[name=noticeCommentFrm]').submit(
-			function () {
+		$('[name=noticeCommentFrm]').submit(function (e) {
 				
 				if(<%=memberLoggedIn==null%>){
 					fn_loginAlert();
@@ -60,50 +59,12 @@
 					alert('내용 없음! 내용 입력!');
 					e.preventDefault();
 				}
+				
 		});
+		
+		
 //		3.
-		$('.btn-reply').on('click',function() {
-			if(<%=memberLoggedIn != null%>){
-				/* 세션에 로그인정보 넣어놈// 로그인 성공 */
-			
-				var tr = $("<tr></tr>"); /* <tr>요소를 만듬  [create.element] 댓글을위한 tr 그 밑에 td*/
-				var html = ""; /* colspan = 답글 , 내용 */
-				
-				
-//				 답글에 버튼 
-				html+="<td style='display: none; text-align: left;colspan:2' >";
-				html+="<form action='<%=request.getContextPath()%>/notice/noticeCommentInsert' method='post'>";
-				html+="<input type='hidden' name='noticeRef' value='<%=notice.getNoticeNo() %>'/>";                      /* level2 = 답글O 댓글 X */
-				html+="<input type='hidden' name='noticeCommentWriter' value='<%=memberLoggedIn.getMem_id() %>'/>";
-				html+="<input type='hidden' name='noticeCommentLevel' value='2' />";
-				html+="<input type='hidden' name='noticeCommentRef' value='"+$(this).val()+"'/>";  /* $(this) = 이벤트가 걸린놈 = 버튼   [btn-reply의 value값]*/                    
-				html+="<textarea name='noticeCommentContent' cols='40' rows='3'></textarea>";
-				html+="<button type='submit' class='btn btn-default' style='top:-20px;'>등록</button>";
-				html+="</form>";
-				html+="</td>";
-				
-				
-				tr.html(html);
-				tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);   /* $(this).parent().parent() 뒤에 tr넣는다 = insertAfter */
-				$(this).off('click'); /* 한번만할때 off 안막으면 계속생김*/	/* td = html */
-				tr.find("form").submit(function(e) {
-					if(<%=memberLoggedIn==null%>){
-						fn_loginAlert();
-						e.preventDefault();
-						return;
-					}
-					var len=$(this).children("textarea").val().trim().length;
-					if(len==0){
-						e.preventDefault();
-					}
-					
-				});
-				tr.find("textarea").focus();
-			}else{
-				/* 로그인 실패 */
-				fn_loginAlert();
-			}
-		});
+		
 		
 	});
  	function fn_loginAlert() {
@@ -147,7 +108,7 @@
 					
 			</div>
 			<form id="noticeFrm"class="form-inline" action="<%=request.getContextPath()%>/notice/noticeUpdate" method="post">
-				<%if(memberLoggedIn !=null && !(memberLoggedIn.getMem_id().equals("admin"))) {%>
+				<%if(memberLoggedIn ==null || !(memberLoggedIn.getMem_id().equals("admin"))) {%>
 					<textarea readonly name="updateContent" placeholder="<%=notice.getNoticeContent()%>" value="update_notice"  cols="85"   name="content" style="height:200px" onKeyup="var m=50;var s=this.scrollHeight;if(s>=m)this.style.pixelHeight=s+4"></textarea>
 					<input type="hidden" name="updateNo" value="<%=notice.getNoticeNo() %>"><p></p>
 				<%}else if(memberLoggedIn !=null && memberLoggedIn.getMem_id().equals("admin")){ %>
@@ -163,10 +124,11 @@
 	 		</form>
 		</div>	 
 	</div>
+	<%if(memberLoggedIn !=null){ %>
 	<div id="comment-container">
 		<div class="comment-editor">
 		 <!-- 게시물 버튼 -->
-			<form action="<%=request.getContextPath()%>/notice/noticeCommentInsert" method="post" name="noticeCommentFrm"/>
+			<form  method="post" name="noticeCommentFrm" id="noticeCommentFrm" action="<%=request.getContextPath()%>/notice/noticeCommentInsert"/>
 				<input type="hidden" name="noticeRef" value="<%=notice.getNoticeNo() %>"/>                    <!-- 실제 위 게시판의 번호 -->
 				<input type="hidden" name="noticeCommentWriter" value="<%=memberLoggedIn.getMem_id() %>"/>  <!-- 작성자  = (접속한사람)userId -->
 				<input type="hidden" name="noticeCommentLevel" value="1"/>  								   <!-- 깊이 ? 순서 ? -->
@@ -177,6 +139,7 @@
 			</form>
 		</div>
 	</div>
+	<%} %>
 	<table id="tbl-comment">
 	
 	<%if(commentList !=null) { /* 값이있는지여부 */
@@ -190,11 +153,11 @@
 						<br/><br/>
 						<%= bc.getNoticeCommentContent() %>
 					</td>
-					<%if(memberLoggedIn !=null && memberLoggedIn.getMem_id().equals("admin")) {%>
+					<%-- <%if(memberLoggedIn !=null && memberLoggedIn.getMem_id().equals("admin")) {%>
 					<td>
 						<button class="btn-reply" value="<%=bc.getNoticeCommentNo()%>">답글</button>
 					</td>
-					<% }%>
+					<% }%> --%>
 				</tr>
 			<%}       /* if */ 
 			else{%>

@@ -89,21 +89,16 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 	//글 찾기 기능
     $(document).ready(function(){
 	   $("#myInput").on("keyup", function() {
-	     var value = $(this).val().toLowerCase();
+	     var value = $(this).val();
+	     
 	     $("#myTable tr").filter(function() {
 	       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	     });
 	   });
 	 });
-	$('.noticeViewConnect').on("click",function(){
-		if(session.getAttribute("memberLoggedIn") == null){
-			alert("로그인 후 읽을수 있습니다.");
-			return;
-		
-		}	
-		
+	//메인공지사항
 	
-	})
+	
 	
    
 	

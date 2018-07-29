@@ -3,14 +3,6 @@
     
 <% List<Notice> list = (List)request.getAttribute("list"); %>
 
-<script>
-
-
-
-
-<%-- href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>' --%>
-
-</script>
 
 	        
 <legend class="glyphicon glyphicon-flash">공지사항</legend>	           
@@ -27,7 +19,7 @@
 			 <tbody id="myTable">
 				<tr>	
 					<td><%=n.getNoticeNo() %></td>
-					<td ><a  id="noticeViewConnect" href="" ><%=n.getNoticeTitle() %></a></td>
+					<td ><a  id="noticeViewConnect" href="<%=request.getContextPath()%>/notice/noticeView?no=<%=n.getNoticeNo() %> " ><%=n.getNoticeTitle() %></a></td>
 				</tr>
 			</tbody>
 		<%}%>
