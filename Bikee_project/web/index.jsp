@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/index.css?ver=2"> <!-- index.css -->
 
 <style>
+.join{color: papayawhip;}
 </style>
 
 <!-- 스크립트 -->
@@ -16,6 +17,22 @@ $(function() {
 	    interval : 3000,
 	});
 })
+
+	
+
+$(function() {
+	$.ajax({
+		url:"<%=request.getContextPath()%>/notice/noticeListAjax",
+		type:"get",	
+		dataType:"html",    /*리턴받는 형식 */
+		success:function(data){
+			$('#noticeListAjaxTable').html(data);
+		}
+
+	});
+});
+
+
 </script>
 <!-- Carousel -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -60,8 +77,34 @@ $(function() {
     </a>
 </div>
 
+
 <div id="point" class="row text-center">
-	<div class="col-sm-1">
+		<!-- <div class="col-sm-2  " id="noticeListAjaxTable" style="border: 1px solid black; height: 300px; color :black;"></div> 
+		<div class="col-sm-6">
+			<a href="#"><i class="fa fa-leaf"></i></a>
+			<h1>ECO</h1>
+			<br>
+			<p>바이키는 교통체증, 대기오염, 고유가 문제를 해결하기위해 노력합니다.</p>
+			<p>자전거 교통수단 분담률을 향상시켜 CO2 발생 감소를 실현하고</p>
+			<p>국가 비전인 저탄소 녹색성장을 추구합니다</p>
+		</div>
+		<div class="col-sm-6">
+			<a href="#"><i class="fa fa-bicycle"></i></a>
+			<h1>HEALTH</h1>
+			<br>
+			<p>자전거 이용의 생활화를 통한 시민 건강 증진의 실현과</p>
+			<p>건강한 사회 및 시민들의 삶의 질을 높이고자 마련되었습니다.</p>
+			<p>더 가치있는 서비스로 불편함이 없도록 노력하겠습니다.</p>
+		</div>
+    	-->
+		
+			
+			
+		
+		
+		
+		
+		<div class="col-sm-1">
 	</div>
 	<div class="col-sm-5">
 		<a href="#"><i class="fa fa-leaf"></i></a>
@@ -82,6 +125,7 @@ $(function() {
 	</div>
 	<div class="col-sm-1">
 	</div>
+	
 </div>
 
 <!-- 이미지 포트폴리오

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = 'java.util.*'  %>
-   <%@ page import="notice.model.vo.Notice" %>
+    pageEncoding="UTF-8" import = "java.util.*,notice.model.vo.Notice"  %>
 <%@ include file= '/views/common/header.jsp' %>
 <%
    List<Notice> list = (List<Notice>) request.getAttribute("list");  
@@ -82,6 +81,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 
 <script>
 	//글쓰기 기능
+	
 	function fn_goNotice() {
 									/* 일단 서블릿을 만든다. BoardFormServlet  글쓰기*/
 		location.href="<%=request.getContextPath()%>/notice/noticeForm";
@@ -89,12 +89,18 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 	//글 찾기 기능
     $(document).ready(function(){
 	   $("#myInput").on("keyup", function() {
-	     var value = $(this).val().toLowerCase();
+	     var value = $(this).val();
+	     
 	     $("#myTable tr").filter(function() {
 	       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	     });
 	   });
 	 });
+	//메인공지사항
+	
+	
+	
+   
 	
 </script>
 
@@ -127,7 +133,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 		      <tr>																																
 		         <th ><%= n.getNoticeNo() %></th>
 		         <td style="text-align: left;" >
-			         <a href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>'>
+			         <a class="noticeViewConnect" href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>'>
 			         <%= n.getNoticeTitle() %>&nbsp;&nbsp;&nbsp;
 			         <%if(n.getNoticeCommentCount() !=0){ %>
 			         	<span class="badge"><%=n.getNoticeCommentCount() %></span> 
