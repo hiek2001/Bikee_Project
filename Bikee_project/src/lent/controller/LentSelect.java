@@ -1,7 +1,6 @@
 package lent.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lent.model.service.LentService;
-import lent.model.vo.LentBike;
+import lent.model.vo.Shop;
 
 /**
- * Servlet implementation class LentConfirm
+ * Servlet implementation class LentSelect
  */
-@WebServlet("/lent/lentConfirm")
-public class LentConfirm extends HttpServlet {
+@WebServlet("/lent/lentSelect")
+public class LentSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LentConfirm() {
+    public LentSelect() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +30,16 @@ public class LentConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String merchantUid = request.getParameter("merchantUid");
+		
 		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
-		String bikeId = request.getParameter("bikeId");		
-		String buyDate = request.getParameter("buyDate");
-		String returnDate = request.getParameter("returnDate");
-		String buyerId = request.getParameter("buyerId");
-		String shopId = request.getParameter("shopId");
-		String lentPrice = request.getParameter("lentPrice");
 		
-		LentBike lb = new LentBike(merchantUid,methodNum,bikeId,buyDate,returnDate,buyerId,shopId,lentPrice);
+		request.setAttribute("methodNum", methodNum);
 		
-		int result = new LentService().insertLent(lb);
+		request.getRequestDispatcher("/views/lent/lentPage.jsp").forward(request, response);
+		
+		
+		
+		
 		
 	}
 

@@ -7,6 +7,8 @@
 	String buyDate =  (String) request.getAttribute("buyDate");
 	String returnDate = (String) request.getAttribute("returnDate");
 	String shopId = (String) request.getAttribute("shopId");
+	String lentPrice = (String) request.getAttribute("lentPrice");
+	int lentPrices = (int)request.getAttribute("lentPrices");
 %>
     
 <%@ include file= '/views/common/header.jsp' %>
@@ -22,7 +24,7 @@ IMP.request_pay({
     pay_method : 'card',
     merchant_uid : 'mUid' + new Date().getTime(), // 가맹점에서 생성/관리하는 고유 주문번호
     name : '<%= bikeId %>',
-    amount : 100,
+    amount :  '<%= lentPrices %>',
     buyer_email : '<%= memberLoggedIn.getMem_email() %>',
     buyer_name : '<%= memberLoggedIn.getMem_name() %>',
     buyer_tel : '<%= memberLoggedIn.getMem_phone() %>',

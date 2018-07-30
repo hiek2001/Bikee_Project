@@ -28,7 +28,7 @@ public class LentChoice extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
+		int methodNum = Integer.parseInt(request.getParameter("methodNum"));		
 		String bikeId = request.getParameter("bikeId");
 		String buyDate =  request.getParameter("buyDate");
 		String returnDate = request.getParameter("returnDate");
