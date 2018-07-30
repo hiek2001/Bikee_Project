@@ -50,6 +50,26 @@
    		<div class="row form-group" style="padding-top:40px">
    			<div class="col-lg-3"></div>
    			<div class="col-lg-6">
+   				<label class="control-label col-sm-2">TYPE</label>
+   				<div class="col-sm-10">
+   					 <select class="form-control" name="course">
+   						<option value="코스1">코스1</option>
+   						<option value="코스2">코스2</option>
+   						<option value="코스3">코스3</option>
+   						<option value="코스4">코스4</option>
+   						<option value="코스5">코스5</option>
+   						<option value="코스6">코스6</option>
+   						<option value="코스7">코스7</option>
+   						<option value="코스8">코스8</option>
+   					</select> 
+   				</div>
+   			</div>
+   			<div class="col-lg-3"></div>   			
+   		</div>
+   		
+   		<div class="row form-group" style="padding-top:40px">
+   			<div class="col-lg-3"></div>
+   			<div class="col-lg-6">
    				<label class="control-label col-sm-2">NAME</label>
    				<div class="col-sm-10">
    					<input type="text" class="form-control" name="writer" readonly value="<%=memberLoggedIn.getMem_id()%>"/>
@@ -94,7 +114,7 @@
    			<div class="col-lg-4"></div>
    			<div class="col-lg-4">
    					<div class="col-lg-3">
-   						<button type="submit" class="btn btn-primary" value="등록하기" onclick="return validate();" style="background-color:#1E68CB; height:50px;width:200px " >save</button>
+   						<button type="submit" class="btn btn-primary" value="등록하기" onclick="return fn_formDate();" style="background-color:#1E68CB; height:50px;width:200px " >save</button>
    					</div>
    					<div class="col-lg-3"></div>
    					<div class="col-lg-3">

@@ -7,6 +7,8 @@ import static common.JDBCTemplate.rollback;
 import static common.JDBCTemplate.close;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import center.model.vo.Center;
 import comment.model.dao.CommentDAO;
@@ -26,10 +28,34 @@ public class CommentService {
 		return result;
 	}
 	
-	public Comment selectComment(int no) {
+	public List<Comment> commentList() {
 		Connection conn = getConnection();
-		Comment comment = new CommentDAO().selectComment(conn,no);
+		List<Comment> comment = new CommentDAO().commentList(conn);
 		close(conn);
 		return comment;
+	}
+	
+	public int commentDelete(int commentNo) {
+		Connection conn = getConnection();
+		int result = new CommentDAO().commentDelete(conn,commentNo);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int updateComment(int commentNo, String comment) {
+		Connection conn = getConnection();
+		int result = new CommentDAO().updateComment(conn,commentNo,comment);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 }

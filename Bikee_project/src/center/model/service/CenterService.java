@@ -17,6 +17,7 @@ public class CenterService {
 		List<Center> list = new CenterDAO().centerList(conn,cPage,numPerPage);
 		close(conn);
 		return list;
+		
 	}
 	
 	public int selectCenterCount() {

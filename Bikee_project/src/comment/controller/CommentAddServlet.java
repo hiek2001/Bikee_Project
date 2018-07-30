@@ -1,6 +1,9 @@
 package comment.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +33,7 @@ public class CommentAddServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int refNo = Integer.parseInt(request.getParameter("refNo"));
 		String writer = request.getParameter("writer");
 		String comment = request.getParameter("comment");
@@ -45,12 +49,16 @@ public class CommentAddServlet extends HttpServlet {
 		String loc="/centerList";
 		
 		if(result>0) {
-			msg = "등록이 되었습니다.";
-			Comment total = new CommentService().selectComment(refNo);
-			System.out.println(total);
+			msg="등록되었습니다.";
+			/*List<Comment> total =  new CommentService().commentList();
+			request.setAttribute("total", total);
+			request.getRequestDispatcher("/centerList").forward(request, response);*/
+			
+		
 		}else {
-			msg = "등록이 되지 않았습니다.";
+			msg="등록이 되지 않았습니다.";
 		}
+	
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/centerMsg.jsp").forward(request, response);

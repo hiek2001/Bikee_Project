@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import center.model.dao.CenterDAO;
@@ -41,30 +43,62 @@ public class CommentDAO {
 		return result;
 	}
 	
-	public Comment selectComment(Connection conn, int no) {
+	public List<Comment> commentList(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
 		Comment c = null;
-		String sql = prop.getProperty("selectComment");
+		String sql = prop.getProperty("commentList");
+		ArrayList<Comment> list = new ArrayList();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,no);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				c = new Comment();
 				c.setCommentNo(rs.getInt("center_comment_no"));
 				c.setWriter(rs.getString("center_comment_writer"));
 				c.setComment(rs.getString("center_comment_content"));
 				c.setRefNo(rs.getInt("center_comment_ref"));
 				c.setCommentDate(rs.getDate("center_comment_date"));
+				list.add(c);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		close(rs);
 		close(pstmt);
-		System.out.println(c);
-		return c;
+		return list;
 		
+	}
+	
+	public int commentDelete(Connection conn, int commentNo) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("commentDelete");
+		int result=0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
+		return result;
+	}
+	
+	public int updateComment(Connection conn, int commentNo, String comment) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateComment");
+		int result=0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, comment);
+			pstmt.setInt(2, commentNo);
+			
+			result =pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
+		return result;
 	}
 }

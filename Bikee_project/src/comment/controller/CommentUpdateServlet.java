@@ -1,4 +1,4 @@
-package center.controller;
+package comment.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import center.model.service.CenterService;
 import center.model.vo.Center;
+import comment.model.service.CommentService;
 
 /**
- * Servlet implementation class CenterViewServlet
+ * Servlet implementation class CommentUpdateServlet
  */
-@WebServlet("/centerView")
-public class CenterViewServlet extends HttpServlet {
+@WebServlet("/commentUpdate")
+public class CommentUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CenterViewServlet() {
+    public CommentUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +30,22 @@ public class CenterViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("centerNo_"));
-		String comment= request.getParameter("comment");
-		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
-		System.out.println("commentNo:"+commentNo);
-		
-		Center c = new CenterService().selectCenter(no);
-		
-		if(c!=null) {
-			request.setAttribute("c", c);
-			request.setAttribute("comment", comment);
-			request.setAttribute("commentNo", commentNo);
-			request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "조회된 게시물이 없습니다.");
-			request.setAttribute("loc", "/view/center/centerList.jsp");
+		 int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+		 String comment = request.getParameter("comment1");
+		 
+		 int result = new CommentService().updateComment(commentNo, comment);
+
+			String msg="";
+			String loc="/centerList";
+			if(result>0) {
+				msg="수정 되었습니다.";
+			}else {
+				msg="수정이 되지 않았습니다.";
+			}
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", loc);
 			request.getRequestDispatcher("/views/common/centerMsg.jsp").forward(request, response);
-		}
+		
 	}
 
 	/**

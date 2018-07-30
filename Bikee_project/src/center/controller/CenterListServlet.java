@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import center.model.service.CenterService;
 import center.model.vo.Center;
+import comment.model.service.CommentService;
+import comment.model.vo.Comment;
 
 /**
  * Servlet implementation class CenterListServlet
@@ -31,6 +33,8 @@ public class CenterListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//List<Comment> total = (List<Comment>)request.getAttribute("total");
+		//System.out.println("CenterListServlet total 값:"+total);
 		int numPerPage = 10;
 		int cPage;
 		try {
@@ -40,6 +44,7 @@ public class CenterListServlet extends HttpServlet {
 		}
 		
 		List<Center> list = new CenterService().centerList(cPage,numPerPage);
+		List<Comment> total =  new CommentService().commentList();
 		int totalContent = new CenterService().selectCenterCount();
 		int totalPage = (int)Math.ceil((double)totalContent/numPerPage);
 		int barSize=5;
@@ -69,6 +74,9 @@ public class CenterListServlet extends HttpServlet {
 		}
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);
+		if(total!=null) {
+			request.setAttribute("total", total);
+		}
 		request.getRequestDispatcher("/views/center/centerList.jsp").forward(request, response);
 	}
 
