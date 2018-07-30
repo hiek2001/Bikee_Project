@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="lent.model.vo.LentBike" %>
+<%@ page import="lent.model.vo.LentBike, shop.model.vo.Shop, lent.model.vo.PurchaseTicket" %>
 <% 
-	LentBike selectLb = (LentBike) request.getAttribute("selectLb"); 
+	LentBike selectLb = (LentBike) request.getAttribute("selectLb");
+	PurchaseTicket selectPt = (PurchaseTicket) request.getAttribute("selectPt");
+	Shop selectShop = (Shop) request.getAttribute("selectShop");
 %>
     
 <%@ include file= '/views/common/header.jsp' %>
@@ -40,7 +42,7 @@ td {
 		</tr>
 		<tr>
 			<td class="row">이용권 종류</td>
-			<td><%= selectLb.getMethodNum() %></td>
+			<td><%= selectPt.getPurchaseMethod() %></td>
 		</tr>
 		<tr>
 			<td class="row">이용권 가격</td>
@@ -64,7 +66,7 @@ td {
 		</tr>
 		<tr>
 			<td class="row">대여소</td>
-			<td><%= selectLb.getShopId() %></td>
+			<td><%= selectShop.getShopName() %></td>
 		</tr>
 		<tr>
 			<td colspan="2"><button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button></td>

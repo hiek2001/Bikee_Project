@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import lent.model.service.LentService;
 import lent.model.vo.LentBike;
+import lent.model.vo.PurchaseTicket;
+import shop.model.vo.Shop;
 
 /**
  * Servlet implementation class LentConfirm
@@ -46,11 +48,18 @@ public class LentConfirm extends HttpServlet {
 		// DB저장
 		new LentService().insertLent(lb);
 		
+		// 저장된 데이터를 가져온다. lentConfirmEnd.jsp에 출력용
 		LentBike selectLb = new LentService().selectLentBike(merchantUid);
+		
+		// 이용권 이름, 대여소 이름 불러오기. End.jsp 출력용
+		PurchaseTicket selectPt= new LentService().selectPurchaseTicket(methodNum);
+		Shop selectShop = new LentService().selectShop(shopId);
 		
 		System.out.println("confirm.jsp selectLb = " + selectLb);
 		
 		request.setAttribute("selectLb", selectLb);
+		request.setAttribute("selectPt", selectPt);
+		request.setAttribute("selectShop", selectShop);
 		request.getRequestDispatcher("/views/lent/lentConfirmEnd.jsp").forward(request, response);
 		
 	}

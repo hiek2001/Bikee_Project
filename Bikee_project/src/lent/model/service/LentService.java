@@ -11,11 +11,13 @@ import bike.model.vo.BikePrice;
 import lent.model.dao.LentDAO;
 import lent.model.vo.LentBike;
 import lent.model.vo.PurchaseTicket;
+import shop.model.vo.Shop;
 
 
 
 public class LentService {
 	
+	/* lent_bike db 저장 */
 	public int insertLent(LentBike lb) {
 		Connection conn = getConnection();
 		
@@ -27,25 +29,26 @@ public class LentService {
 		return result;
 	}
 	
-	
+	/* bike_price 테이블에서 자전거 종류별 가격 가져옴 */
 	public BikePrice selectBikePrice(String bikeId) {
 		Connection conn = getConnection();
 		BikePrice b = new LentDAO().selectBikePrice(conn, bikeId);
 		close(conn);
 		return b;
 	}
-
+	
+	/* 이용권이름 검색 */
 	public PurchaseTicket selectPurchaseTicket(int methodNum) {
 		Connection conn = getConnection();
 		
-		PurchaseTicket pt = new LentDAO().selectPurchaseTicket(conn, methodNum);
+		PurchaseTicket selectPt = new LentDAO().selectPurchaseTicket(conn, methodNum);
 		
 		close(conn);
 		
-		return pt;
+		return selectPt;
 	}
 	
-	/* 용석 */
+	/* lentConfirmEnd 출력용 검색 */
 	public LentBike selectLentBike(String merchantUid) {
 		Connection conn = getConnection();
 		
@@ -54,41 +57,15 @@ public class LentService {
 		close(conn);
 		
 		return selectLb;
+	}
+	
+	public Shop selectShop(String shopId) {
+		Connection conn = getConnection();
+		
+		Shop selectShop = new LentDAO().selectShop(conn, shopId);
+		
+		close(conn);
+		
+		return selectShop;
 	}
 }
-
-/*public class LentService {
-	
-	public PurchaseTicket selectPurchaseTicket(int methodNum) {
-		Connection conn = getConnection();
-		
-		PurchaseTicket pt = new LentDAO().selectPurchaseTicket(conn, methodNum);
-		
-		close(conn);
-		
-		return pt;
-	}
-	
-	
-	public int insertLent(LentBike insertLb) {
-		Connection conn = getConnection();
-		
-		int result = new LentDAO().insertLent(conn, insertLb);
-		
-		if(result>0) commit(conn);
-		else rollback(conn);
-		
-		return result;
-	}
-	
-	public LentBike selectLentBike(String merchantUid) {
-		Connection conn = getConnection();
-		
-		LentBike selectLb = new LentDAO().selectLentBike(conn, merchantUid);
-		
-		close(conn);
-		
-		return selectLb;
-	}
-
-}*/
