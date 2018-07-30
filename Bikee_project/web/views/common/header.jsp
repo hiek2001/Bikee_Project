@@ -125,7 +125,9 @@ function validate() {
                     	<ul class="dropdown-menu">
                     		<li><a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-repeat"> 회원정보수정</span></a></li>
                     		<li><a onclick="location.href='<%= request.getContextPath() %>/memberPassUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-pencil"> 비밀번호수정</span></a></li>
+                    		<% if(memberLoggedIn != null && !memberLoggedIn.getMem_id().equals("admin")) { %>
                     		<li><a onclick="location.href='<%= request.getContextPath() %>/memberLentHistory?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-search"> 구매내역확인</span></a></li>
+                    		<% } %>
                    		</ul>
                     </li>
                     <li><a href="<%= request.getContextPath() %>/member/memberLogout"><span class="glyphicon glyphicon-user"> Logout</span></a></li>

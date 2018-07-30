@@ -18,9 +18,6 @@
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/jquery-radiocharm.css?ver=4" type="text/css">
 <!-- <link href="0css/jquery-radiocharm.css" rel="stylesheet" type="text/css"> -->
-
-
-
       <meta name="description" content="" />
       <meta name="keywords" content="" />
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>

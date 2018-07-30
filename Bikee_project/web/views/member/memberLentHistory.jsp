@@ -6,8 +6,13 @@
 %>
 <%@ include file= '/views/common/header.jsp' %>
 <style>
+p {
+	margin-top: 100px;
+	float: right;
+}
+
 table {
-	margin: 50px 0px;
+	margin: 0px 0px 50px 0px;
 }
 
 thead {
@@ -17,33 +22,27 @@ thead {
 	color: white;
 }
 </style>
-
+<script>
+</script>
 
 <div class="container">
+	<p>구매번호를 클릭하면 상세 정보가 나옵니다.</p>
 	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>구매번호</th>
-				<th>이용권 종류</th>
 				<th>이용권 가격</th>
 				<th>바이크 종류</th>
-				<th>구매일</th>
-				<th>반납일</th>
 				<th>구매자</th>
-				<th>대여소</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% for(LentBike lb : list) { %>
 			<tr>
-				<td><%= lb.getMerchantUid() %></td>
-				<td><%= lb.getMethodNum() %></td>
+				<td><a href="<%= request.getContextPath() %>/lent/lentConfirm?merchantUid=<%= lb.getMerchantUid() %>&methodNum=<%=lb.getMethodNum()%>&bikeId=<%=lb.getBikeId()%>&buyDate=<%=lb.getBuyDate()%>&returnDate=<%=lb.getReturnDate()%>&buyerId=<%=lb.getBuyerId()%>&shopId=<%=lb.getShopId()%>&lentPrice=<%=lb.getLentPrice()%>"><%= lb.getMerchantUid() %></a></td>
 				<td><%= lb.getLentPrice() %></td>
 				<td><%= lb.getBikeId() %></td>
-				<td><%= lb.getBuyDate() %></td>
-				<td><%= lb.getReturnDate() %></td>
 				<td><%= lb.getBuyerId() %></td>
-				<td><%= lb.getShopId() %></td>
 			</tr>
 			<% } %>
 		</tbody>

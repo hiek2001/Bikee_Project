@@ -79,32 +79,7 @@ $(function() {
 
 
 <div id="point" class="row text-center">
-	<!-- 	 <div class="col-sm-2  " id="noticeListAjaxTable" style=" height: 200px; color :black; margin-left: 10px; "></div>
-		<div class="col-sm-4">
-			<a href="#"><i class="fa fa-leaf"></i></a>
-			<h1>ECO</h1>
-			<br>
-			<p>바이키는 교통체증, 대기오염, 고유가 문제를 해결하기위해 노력합니다.</p>
-			<p>자전거 교통수단 분담률을 향상시켜 CO2 발생 감소를 실현하고</p>
-			<p>국가 비전인 저탄소 녹색성장을 추구합니다</p>
-		</div>
-		<div class="col-sm-4">
-			<a href="#"><i class="fa fa-bicycle"></i></a>
-			<h1>HEALTH</h1>
-			<br>
-			<p>자전거 이용의 생활화를 통한 시민 건강 증진의 실현과</p>
-			<p>건강한 사회 및 시민들의 삶의 질을 높이고자 마련되었습니다.</p>
-			<p>더 가치있는 서비스로 불편함이 없도록 노력하겠습니다.</p>
-		</div>
-</div> -->
-		
-			
-			
-		
-		
-		
-		
-		<div class="col-sm-1">
+	<div class="col-sm-1">
 	</div>
 	<div class="col-sm-5">
 		<a href="#"><i class="fa fa-leaf"></i></a>
@@ -128,80 +103,4 @@ $(function() {
 	
 </div>
 
-<!-- 이미지 포트폴리오
-<div id="port" class="container-fluid text-center">
-	<div class="container">
-	    <h2>자전거</h2>
-	    <h4>누구나 자유롭게 이용할 수 있는 대여 시설</h4>
-	    <div class="row text-center">
-	        <div class="col-sm-4">
-	            <div class="thumnail">
-	                <img src="<%=request.getContextPath() %>/images/index/pic01.jpg" alt="test">
-	                <p><strong>자전거</strong></p>
-	                <p>테스트입니다.</p>
-	                <button type="button" class="btn btn-primary">자세히 알아보기</button>
-	            </div>
-	        </div>
-	        <div class="col-sm-4">
-	            <div class="thumnail">
-	                <img src="<%=request.getContextPath() %>/images/index/pic02.jpg" alt="test">
-	                <p><strong>자전거</strong></p>
-	                <p>테스트입니다.</p>
-	                <button type="button" class="btn btn-primary">자세히 알아보기</button>
-	            </div>
-	        </div>
-	        <div class="col-sm-4">
-	            <div class="thumnail">
-	                <img src="<%=request.getContextPath() %>/images/index/pic03.jpg" alt="test">
-	                <p><strong>자전거</strong></p>
-	                <p>테스트입니다.</p>
-	                <button type="button" class="btn btn-primary">자세히 알아보기</button>
-	            </div>
-	        </div>
-	    </div>
-    </div>
-</div>
--->
-
-<!-- 서비스 
-<div id="service" class="container-fluid text-center">
-    <h1>SERVICE</h1>
-    <h4>What we offer</h4>
-    <br>
-    <div class="row">
-        <div class="col-sm-4">
-            <a href="#"><i class="fa fa-bicycle"></i></a>
-            <h4>BIKE</h4>
-            <p>다양한 종류의 자전거를 빌릴 수 있습니다.</p>
-        </div>
-        <div class="col-sm-4">
-            <a href="#"><i class="fa fa-leaf"></i></a>
-            <h4>GREEN</h4>
-            <p>친환경적인 이동 수단입니다.</p>
-        </div>
-        <div class="col-sm-4">
-            <a href="#"><i class="fa fa-wrench"></i></a>
-            <h4>REPAIR</h4>
-            <p>고장 시 수리 지원이 가능합니다.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <a href="#"><i class="fa fa-chart-bar"></i></a>
-            <h4>GREEN</h4>
-            <p>자전거를 타면 자연이..!!</p>
-        </div>
-        <div class="col-sm-4">
-            <a href="#"><i class="fa fa-home"></i></a>
-            <h4>SEARCH</h4>
-            <p>자전거를 타면 실력이..!!</p>
-        </div>
-        <div class="col-sm-4">
-            <a href="#"><i class="fa fa-road"></i></a>
-            <h4>WRENCH</h4>
-            <p>자전거를 타면 연장이..!!</p>
-        </div>
-    </div>
-</div>
--->
 <%@ include file= 'views/common/footer.jsp' %>
