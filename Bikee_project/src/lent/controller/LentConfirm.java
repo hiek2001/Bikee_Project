@@ -43,26 +43,16 @@ public class LentConfirm extends HttpServlet {
 		
 		LentBike lb = new LentBike(merchantUid,methodNum,bikeId,buyDate,returnDate,buyerId,shopId,lentPrice);
 		
-		int result = new LentService().insertLent(lb);
-		
-		/*String merchantUid = request.getParameter("merchantUid");
-		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
-		String bikeId = request.getParameter("bikeId");
-		String buyDate =  request.getParameter("buyDate"); // 자바는 date(java.util.date), db는 timestamp 
-		String returnDate = request.getParameter("returnDate");
-		String buyerId = request.getParameter("buyerId");
-		String shopId = request.getParameter("shopId");
-		int amount = Integer.parseInt(request.getParameter("amount"));
-
-		LentBike insertLb = new LentBike(merchantUid, methodNum, bikeId, null, null, buyerId, shopId);
-		new LentService().insertLent(insertLb);
+		// DB저장
+		new LentService().insertLent(lb);
 		
 		LentBike selectLb = new LentService().selectLentBike(merchantUid);
 		
-		request.setAttribute("selectLb", selectLb);
-		request.setAttribute("amount", amount);
+		System.out.println("confirm.jsp selectLb = " + selectLb);
 		
-		request.getRequestDispatcher("/views/lent/lentConfirmEnd.jsp").forward(request, response);*/
+		request.setAttribute("selectLb", selectLb);
+		request.getRequestDispatcher("/views/lent/lentConfirmEnd.jsp").forward(request, response);
+		
 	}
 
 	/**

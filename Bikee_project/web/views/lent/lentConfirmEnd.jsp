@@ -2,24 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="lent.model.vo.LentBike" %>
 <% 
-	LentBike lb = (LentBike) request.getAttribute("selectLb"); 
-	int amount = (int) request.getAttribute("amount");
+	LentBike selectLb = (LentBike) request.getAttribute("selectLb"); 
 %>
     
 <%@ include file= '/views/common/header.jsp' %>
-
-<!-- 
-<div class="text-center">
-	<p>주문번호 : <%= lb.getMerchantUid() %></p>
-	<p>이용권 종류 : <%= lb.getMethodNum() %></p>
-	<p>자전거 이름 : <%= lb.getBikeId() %></p>
-	<p>대여일 : <%= lb.getBuyDate() %></p>
-	<p>반납일 : <%= lb.getReturnDate() %></p>
-	<p>구매자 이름 : <%= lb.getMerchantUid() %></p>
-	<p>대여소 이름 : <%= lb.getShopId() %></p>
-	<p>가격 : <%= amount %></p>
-</div>
--->
 
 <style>
 h1 {
@@ -50,31 +36,35 @@ td {
 	<table class="table table-hover table-responsive">
 		<tr>
 			<td class="row">구매 번호</td>
-			<td>하하하하하하하하하하</td>
+			<td><%= selectLb.getMerchantUid() %></td>
 		</tr>
 		<tr>
 			<td class="row">이용권 종류</td>
-			<td>하하하하하하하하하하</td>
+			<td><%= selectLb.getMethodNum() %></td>
+		</tr>
+		<tr>
+			<td class="row">이용권 가격</td>
+			<td><%= selectLb.getLentPrice() %></td>
 		</tr>
 		<tr>
 			<td class="row">바이크 종류</td>
-			<td>하하하하하하하하하하</td>
+			<td><%= selectLb.getBikeId() %></td>
 		</tr>
 		<tr class="success">
 			<td class="row">구매일</td>
-			<td>하하하하하하하하하하</td>
+			<td><%= selectLb.getBuyDate() %></td>
 		</tr>
 		<tr class="danger">
 			<td class="row">반납일</td>
-			<td>하하하하하하하하하하</td>
+			<td><%= selectLb.getReturnDate() %></td>
 		</tr>
 		<tr>
 			<td class="row">구매자</td>
-			<td>하하하하하하하하하하</td>
+			<td><%= selectLb.getBuyerId() %></td>
 		</tr>
 		<tr>
 			<td class="row">대여소</td>
-			<td>하하하하하하하하하하</td>
+			<td><%= selectLb.getShopId() %></td>
 		</tr>
 		<tr>
 			<td colspan="2"><button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button></td>
