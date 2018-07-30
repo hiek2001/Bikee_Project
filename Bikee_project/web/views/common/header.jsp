@@ -94,9 +94,14 @@ function validate() {
 	        </div>
 	        <div class="collapse navbar-collapse" id="myNavbar">
 	            <ul class="nav navbar-nav">
-	                <li><a href="<%= request.getContextPath() %>/introduce.jsp">소개</a></li>
-
-	                <li><a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a></li>
+	                <li class="dropdown">
+                    	<a class="dropdown-toggle" data-toggle="dropdown" href="#" >소개<span class="caret"></span></a>
+			                <ul class="dropdown-menu">
+			                <li><a href="<%=request.getContextPath()%>/views/introduction/introduce.jsp">사업소개</a></li>
+							<li><a href="<%=request.getContextPath()%>/views/introduction/bikeIntroduction.jsp">자전거종류</a></li>
+							</ul>
+	                	
+					<li><a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a></li>
 
 	                <li><a href="<%= request.getContextPath() %>/views/lent/lentTicket.jsp">이용권 구매</a></li>
 	                <li><a href="<%= request.getContextPath() %>/views/course/allCourseView.jsp">대여소 조회</a></li>
@@ -126,6 +131,16 @@ function validate() {
                		<li><a href="#" data-toggle="modal" data-target="#loginModal" data-backdroup="static"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     <li><a href="<%= request.getContextPath() %>/views/member/joinTerms.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <% } %>
+                <% if(memberLoggedIn!=null && memberLoggedIn.getMem_id().equals("admin")) { %>
+				<li id='dropdown admin-member'>
+				<a href='#' class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 관리자<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+		                <li><a href="<%=request.getContextPath() %>/memberView">회원관리</a></li>
+						<li><a href="#">자전거관리</a></li>
+						<li><a href="#">결제관리</a></li>
+					</ul>
+				</li>
+				<%} %>
                </ul>
 	        </div>
 	    </div>
