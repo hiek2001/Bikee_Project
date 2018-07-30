@@ -99,8 +99,6 @@ function validate() {
 	                <li><a href="<%= request.getContextPath() %>/notice/noticeList">공지사항</a></li>
 
 	                <li><a href="<%= request.getContextPath() %>/views/lent/lentTicket.jsp">이용권 구매</a></li>
-
-
 	                <li><a href="<%= request.getContextPath() %>/views/course/allCourseView.jsp">대여소 조회</a></li>
                     <!-- href="<%=request.getContextPath()%>/community/communityList" -->
                     <li class="dropdown">
@@ -111,11 +109,7 @@ function validate() {
                    		</ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/centerList">고객센터</a></li>
-
 	            </ul>
-	            
-	           
-	            
 	            
 	            <ul class="nav navbar-nav navbar-right">
                 <% if(memberLoggedIn != null) { %>
