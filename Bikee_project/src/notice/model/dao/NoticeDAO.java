@@ -36,7 +36,7 @@ public class NoticeDAO {
 	
 	
 	public List<Notice> selectNoticeList(Connection conn,int cPage,int numPerPage ){
-		
+		System.out.println("deleteNoticeComment - DAO");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectNoticeList");
@@ -289,7 +289,7 @@ public class NoticeDAO {
 	public int commentCountAdd(Connection conn, int noticeRef) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("commentCount");
+		String sql = prop.getProperty("commentCountAdd");
 		try {
 			System.out.println(sql);
 			pstmt=conn.prepareStatement(sql);
@@ -344,7 +344,43 @@ public class NoticeDAO {
 		
 	}
 
-
-
+	public int deleteNoticeComment(Connection conn, int commentNo) {
+		PreparedStatement pstmt=null;
+		int result =0;
+		String sql = prop.getProperty("deleteNoticeComment");
+		System.out.println(sql);
+		System.out.println(commentNo);
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+			System.out.println("123");
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
+		return result;
+	}
+	public int commentCountMinus(Connection conn,int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("commentCountMinus");
+		try {
+			System.out.println(sql);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		close(pstmt);
+		
+		return result;
+	}
 
 }
