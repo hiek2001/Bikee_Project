@@ -132,7 +132,7 @@ function validate() {
                     <li><a href="<%= request.getContextPath() %>/views/member/joinTerms.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <% } %>
                 <% if(memberLoggedIn!=null && memberLoggedIn.getMem_id().equals("admin")) { %>
-				<li id='dropdown admin-member'>
+				<li class='dropdown admin-member'>
 				<a href='#' class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 관리자<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 		                <li><a href="<%=request.getContextPath() %>/memberView">회원관리</a></li>

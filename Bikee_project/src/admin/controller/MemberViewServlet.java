@@ -41,7 +41,7 @@ public class MemberViewServlet extends HttpServlet {
 		}
 		
 		int cPage;
-		int numPerPage=10;
+		int numPerPage;
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}
@@ -57,11 +57,12 @@ public class MemberViewServlet extends HttpServlet {
 			numPerPage=10;
 		}
 		List<Member> list=new AdminService().selectMemberList(cPage,numPerPage);
-		int totalContent=new AdminService().selectMemberCount();
 		
+		//String pageBar=PageBar.getPageBar(request, cPage, numPerPage);
+		int totalContent=new AdminService().selectMemberCount();
+		String pageBar="";
 		int totalPage=(int)Math.ceil((double)totalContent/numPerPage);
 		int barSize=5;
-		String pageBar="";
 		int pageNo=((cPage-1)/barSize)*barSize+1;
 		int pageEnd=pageNo*barSize-1;
 		
@@ -74,7 +75,7 @@ public class MemberViewServlet extends HttpServlet {
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
-				pageBar+="<li><a>"+pageNo+"</a></li>";
+				pageBar+="<li class='cPage'><a>"+pageNo+"</a></li>";
 			}
 			else {
 				pageBar+="<li><a href='"+request.getContextPath()+"/memberView?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
@@ -83,11 +84,12 @@ public class MemberViewServlet extends HttpServlet {
 		}
 		
 		if(pageNo>totalPage) {
-			pageBar+="<li><a>>></a></li>";
+			pageBar+="<li class='cPage'>"+pageNo+"</a></li>";
 		}
 		else {
 			pageBar+="<li><a href='"+request.getContextPath()+"/memberView?cPage="+pageNo+"&numPerPage="+numPerPage+"'>>></a></li>";
 		}
+		
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/admin/memberList.jsp").forward(request, response);
