@@ -15,7 +15,7 @@
 	</div>
 	<div id="conPanel" class="row">
 		<!-- 정기권 -->
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
 					<h1>정기권_테스트</h1>
@@ -40,7 +40,7 @@
 		</div>
 		
 		<!-- 일일권 -->
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
 					<h1>일일권</h1>
@@ -55,32 +55,8 @@
 						<li>예시) 기본 초과 1분 ~ 5분 : 200원, 6분 ~ 10분 : 400원</li>
 						<li>추가요금은 이용권 결제수단으로 자동결제됩니다.</li>
 					</ul>
-					<form action="<%= request.getContextPath() %>/lent/lentTicket" method="post">
+					<form action="<%= request.getContextPath() %>/lent/lentSelect" method="post">
 						<input type="hidden" name="methodNum" value="2">
-						<input type="submit" value="구매하기" class="btn btn-lg">
-					</form>
-				</div>
-			</div>
-		</div>
-		
-		<!-- 선물하기 -->
-		<div class="col-sm-4">
-			<div class="panel panel-default text-center">
-				<div class="panel-heading">
-					<h1>선물하기</h1>
-				</div>
-				<div class="panel-body">
-				</div>
-				<div class="panel-footer">
-					<ul>
-						<li>1회 1매씩 구매가 가능합니다.</li>
-						<li>기본대여시간은 1시간권(60분)입니다.</li>
-						<li>초과시 5분마다 추가요금(200원)과금됩니다.</li>
-						<li>예시) 기본 초과 1분 ~ 5분 : 200원, 6분 ~ 10분 : 400원</li>
-						<li>추가요금은 이용권 결제수단으로 자동결제됩니다.</li>
-					</ul>
-					<form action="<%= request.getContextPath() %>/lent/lentTicket" method="post">
-						<input type="hidden" name="methodNum" value="3">
 						<input type="submit" value="구매하기" class="btn btn-lg">
 					</form>
 				</div>

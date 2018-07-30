@@ -44,6 +44,17 @@ public class LentService {
 		
 		return pt;
 	}
+	
+	/* 용석 */
+	public LentBike selectLentBike(String merchantUid) {
+		Connection conn = getConnection();
+		
+		LentBike selectLb = new LentDAO().selectLentBike(conn, merchantUid);
+		
+		close(conn);
+		
+		return selectLb;
+	}
 }
 
 /*public class LentService {

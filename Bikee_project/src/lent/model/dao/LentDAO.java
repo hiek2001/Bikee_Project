@@ -89,10 +89,6 @@ public class LentDAO {
 		}
 		
 		
-		
-		
-		
-		
 		public PurchaseTicket selectPurchaseTicket(Connection conn, int methodNum) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -119,19 +115,41 @@ public class LentDAO {
 			
 			return pt;
 		}
-
-	}
-	/*public LentDAO() {
-		prop = new Properties();
 		
-		try {
-			String file = LentDAO.class.getResource("/sql/lent/lent-sql.properties").getPath();
-			prop.load(new FileReader(file));
-		} catch(IOException e) {
-			e.printStackTrace();
+		public LentBike selectLentBike(Connection conn, String merchantUid) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = prop.getProperty("selectLentBike");
+			LentBike selectLb = null;
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, merchantUid);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					selectLb = new LentBike();
+					
+					selectLb.setMerchantUid(rs.getString("merchant_uid"));
+					selectLb.setMethodNum(rs.getInt("method_num"));
+					selectLb.setBikeId(rs.getString("bike_id"));
+					selectLb.setBuyDate(rs.getString("buy_date"));
+					selectLb.setReturnDate(rs.getString("return_date"));
+					selectLb.setBuyerId(rs.getString("buyer_id"));
+					selectLb.setShopId(rs.getString("shop_id"));
+					selectLb.setLentPrice(rs.getInt("lent_price"));
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return selectLb;
 		}
 	}
-	
+	/*
 	public PurchaseTicket selectPurchaseTicket(Connection conn, int methodNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
