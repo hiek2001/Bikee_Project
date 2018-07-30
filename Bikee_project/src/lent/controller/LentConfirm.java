@@ -30,7 +30,22 @@ public class LentConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//은별추가
 		String merchantUid = request.getParameter("merchantUid");
+		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
+		String bikeId = request.getParameter("bikeId");		
+		String buyDate = request.getParameter("buyDate");
+		String returnDate = request.getParameter("returnDate");
+		String buyerId = request.getParameter("buyerId");
+		String shopId = request.getParameter("shopId");
+		int lentPrice = Integer.parseInt(request.getParameter("lentPrice"));
+		
+		LentBike lb = new LentBike(merchantUid,methodNum,bikeId,buyDate,returnDate,buyerId,shopId,lentPrice);
+		
+		int result = new LentService().insertLent(lb);
+		
+		/*String merchantUid = request.getParameter("merchantUid");
 		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
 		String bikeId = request.getParameter("bikeId");
 		String buyDate =  request.getParameter("buyDate"); // 자바는 date(java.util.date), db는 timestamp 
@@ -47,7 +62,7 @@ public class LentConfirm extends HttpServlet {
 		request.setAttribute("selectLb", selectLb);
 		request.setAttribute("amount", amount);
 		
-		request.getRequestDispatcher("/views/lent/lentConfirmEnd.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/lent/lentConfirmEnd.jsp").forward(request, response);*/
 	}
 
 	/**

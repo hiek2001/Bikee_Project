@@ -18,7 +18,7 @@
 		<div class="col-sm-4">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
-					<h1>정기권</h1>
+					<h1>정기권_테스트</h1>
 				</div>
 				<div class="panel-body">
 					
@@ -31,7 +31,7 @@
 						<li>예시) 기본 초과 1분 ~ 5분 : 200원, 6분 ~ 10분 : 400원</li>
 						<li>추가요금은 이용권 결제수단으로 자동결제됩니다.</li>
 					</ul>
-					<form action="<%= request.getContextPath() %>/lent/lentTicket" method="post">
+					<form action="<%= request.getContextPath() %>/lent/lentSelect" method="post">
 						<input type="hidden" name="methodNum" value="1">
 						<input type="submit" value="구매하기" class="btn btn-lg">
 					</form>

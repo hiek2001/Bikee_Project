@@ -1,22 +1,24 @@
 package lent.model.vo;
 
-import java.util.Date;
+
 
 public class LentBike {
 	private String merchantUid;
 	private int methodNum;
 	private String bikeId;
-	private Date buyDate;
-	private Date returnDate;
+	private String buyDate;
+	private String returnDate;
 	private String buyerId;
 	private String shopId;
+	private int lentPrice;
 	
 	public LentBike() {
 		
 	}
 
-	public LentBike(String merchantUid, int methodNum, String bikeId, Date buyDate, Date returnDate, String buyerId,
-			String shopId) {
+	public LentBike(String merchantUid, int methodNum, String bikeId, String buyDate, String returnDate, String buyerId,
+			String shopId, int lentPrice) {
+		super();
 		this.merchantUid = merchantUid;
 		this.methodNum = methodNum;
 		this.bikeId = bikeId;
@@ -24,6 +26,7 @@ public class LentBike {
 		this.returnDate = returnDate;
 		this.buyerId = buyerId;
 		this.shopId = shopId;
+		this.lentPrice = lentPrice;
 	}
 
 	public String getMerchantUid() {
@@ -50,19 +53,19 @@ public class LentBike {
 		this.bikeId = bikeId;
 	}
 
-	public Date getBuyDate() {
+	public String getBuyDate() {
 		return buyDate;
 	}
 
-	public void setBuyDate(Date buyDate) {
+	public void setBuyDate(String buyDate) {
 		this.buyDate = buyDate;
 	}
 
-	public Date getReturnDate() {
+	public String getReturnDate() {
 		return returnDate;
 	}
 
-	public void setReturnDate(Date returnDate) {
+	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
 	}
 
@@ -82,10 +85,22 @@ public class LentBike {
 		this.shopId = shopId;
 	}
 
+	public int getLentPrice() {
+		return lentPrice;
+	}
+
+	public void setLentPrice(int lentPrice) {
+		this.lentPrice = lentPrice;
+	}
+
 	@Override
 	public String toString() {
-		return "LentBike [merchantUid=" + merchantUid + ", method_num=" + methodNum + ", bikeId=" + bikeId
-				+ ", buyDate=" + buyDate + ", returnDate=" + returnDate + ", buyerId=" + buyerId + ", shopId=" + shopId
-				+ "]";
+		return "LentBike [merchantUid=" + merchantUid + ", methodNum=" + methodNum + ", bikeId=" + bikeId + ", buyDate="
+				+ buyDate + ", returnDate=" + returnDate + ", buyerId=" + buyerId + ", shopId=" + shopId
+				+ ", lentPrice=" + lentPrice + "]";
 	}
+
+	
+	
+
 }
