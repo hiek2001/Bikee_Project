@@ -55,8 +55,6 @@ public class LentConfirm extends HttpServlet {
 		PurchaseTicket selectPt= new LentService().selectPurchaseTicket(methodNum);
 		Shop selectShop = new LentService().selectShop(shopId);
 		
-		System.out.println("confirm.jsp selectLb = " + selectLb);
-		
 		request.setAttribute("selectLb", selectLb);
 		request.setAttribute("selectPt", selectPt);
 		request.setAttribute("selectShop", selectShop);

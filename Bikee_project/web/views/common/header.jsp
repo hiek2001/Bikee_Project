@@ -119,11 +119,13 @@ function validate() {
 	            <ul class="nav navbar-nav navbar-right">
                 <% if(memberLoggedIn != null) { %>
                     
-                    <li class="dropdown">													
+                    <li class="dropdown">
+
                     	<a class="dropdown-toggle" data-toggle="dropdown" ><span class="glyphicon glyphicon-lock " style="width: 170px;"> 마이페이지<span class="caret"></span></span></a>
                     	<ul class="dropdown-menu">
-                    		<a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-repeat"> 회원정보수정</span></a>
-                    		<a onclick="location.href='<%= request.getContextPath() %>/memberPassUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-pencil"> 비밀번호수정</span></a>
+                    		<li><a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-repeat"> 회원정보수정</span></a></li>
+                    		<li><a onclick="location.href='<%= request.getContextPath() %>/memberPassUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-pencil"> 비밀번호수정</span></a></li>
+                    		<li><a onclick="location.href='<%= request.getContextPath() %>/memberLentHistory?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-search"> 구매내역확인</span></a></li>
                    		</ul>
                     </li>
                     <li><a href="<%= request.getContextPath() %>/member/memberLogout"><span class="glyphicon glyphicon-user"> Logout</span></a></li>

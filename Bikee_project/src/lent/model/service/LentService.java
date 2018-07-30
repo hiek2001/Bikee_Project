@@ -6,6 +6,7 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import bike.model.vo.BikePrice;
 import lent.model.dao.LentDAO;
@@ -46,7 +47,7 @@ public class LentService {
 		close(conn);
 		
 		return selectPt;
-	}
+	} 
 	
 	/* lentConfirmEnd 출력용 검색 */
 	public LentBike selectLentBike(String merchantUid) {
@@ -67,5 +68,17 @@ public class LentService {
 		close(conn);
 		
 		return selectShop;
+	}
+	
+	/* mypage -> /memberLentHistory에서 전체 리스트 검색 */
+	
+	public List<LentBike> selectLentBikeList(String memId) {
+		Connection conn = getConnection();
+		
+		List<LentBike> list = new LentDAO().selectLentBikeList(conn, memId);
+		
+		close(conn);
+		
+		return list;
 	}
 }
