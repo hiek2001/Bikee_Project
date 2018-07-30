@@ -5,8 +5,10 @@
 <%@ include file='/views/common/header.jsp' %>
 <%
 	List<Center> list = (List<Center>)request.getAttribute("list");
+	System.out.println(list);
 	String pageBar =(String)request.getAttribute("pageBar");
     List<Comment> comment = (List<Comment>)request.getAttribute("total");
+    System.out.println(comment);
 %>
 <style>
 	div.container-fluid{padding-top:10px; padding-bottom:10px}
@@ -46,7 +48,7 @@
    $(function (){
 	   $(".checkA").click(function(){
 		   $('#checkPwd').val("");
-		   var commentNoA=$("[name=commentNoA]").val();
+		    var commentNoA=$("[name=commentNoA]").val(); 
 		   var id = $('.checkId').attr('id');
 		    var no = $(this).attr('id');
 		    var pwd = $(this).attr('name'); //db에 있는 password 값
@@ -58,7 +60,7 @@
 		    	$("#centerNo_").val(no);
 				$("#centerPw").val(pwd);
 				$("#sub").val("first");
-				$("#commentNo2").val(commentNoA);
+				 $("#commentNo2").val(commentNoA); 
 		    }	
 	   });
    });
@@ -102,7 +104,6 @@
    function fn_checkPwd() {
 	   var pwd = $("[name=centerPw]").val();
 	   var sub = $("[name=sub]").val();
-	;
 	   var centerNo_ = $("[name=centerNo_]").val();
 		if($('#checkPwd').val().trim().length == 0) { // val() => 값. trim() => 공백 제거. 
 			alert("비밀번호를 입력하세요");
@@ -171,19 +172,15 @@
 							<%if(session.getAttribute("memberLoggedIn")!=null) {%>
 							<input type="hidden" class="checkId"id="<%=memberLoggedIn.getMem_id()%>"/>
 							<%} %>
-						
-						
 							
-							<%for(Center c :list) {%>
-							<%for(Comment m:comment){ %>
-							<tr>
+						<%for(Center c :list) 
+						{%>
+							
+							  <tr>
 								<td><%=c.getCenterNo() %></td>
-							
-								<%-- <td><a href='<%=request.getContextPath()%>/centerView?no=<%=c.getCenterNo()%>'><%=c.getCenterTitle() %></a></td> --%>
 								<td>
 									<i class="material-icons">lock_outline</i>
 									<a href='#' id="<%=c.getCenterNo() %>" name="<%=c.getCenterPwd() %>" class="checkA" data-toggle="modal" data-target="#checkPwdmodal" data-backdroup="static"><%=c.getCenterTitle() %>
-										<input type="hidden" name="commentNoA" value="<%=m.getCommentNo()%>"/>
 									</a>
 									<div class="modal fade modal_left" id="checkPwdmodal" role="dialog" data-backdrop="false" tabindex="-1">
 					                <div class="modal-dialog modal-80size">
@@ -218,19 +215,30 @@
 								<img src='<%=request.getContextPath()%>/images/file1.PNG' width='16px'/>
 								<%} %>
 								</td>
-								<%if(c.getCenterNo()==m.getRefNo()){ %>
-								<td style="color:red">답변완료</td>
-								<%} else{%>
-								<td>답변대기</td>
-								<%} %>
+								<%
+								int flag=0;
+								 for(int i=0;i<comment.size();i++)
+								{
+									 if(c.getCenterNo()==(comment.get(i)).getRefNo()){ %>
+									 <td style="color:red">답변완료</td>
+									<% flag++;
+									 break;
+								 	}
+								}  %>
+								<%if(flag==0){ %>
+									<td>답변대기</td>
+								<% }%>
 							</tr>
-							
+						  <%for(Comment m:comment)
+						  { %>
+							  							
 							<%if(c.getCenterNo()==m.getRefNo()){ %>
 							<tr>
 								<td></td>
 								<td colspan="6">					
 									<a href="#"class="checkB" id="<%=m.getCommentNo()%>" name="<%=c.getCenterPwd() %>">&nbsp;&nbsp;┗&nbsp;<%=c.getCenterWriter()%> 고객님 답변드려요^^
-										<input type="hidden" class="reviewNo" id="<%=m.getComment()%>"/>
+										<input type="hidden" name="commentNoA" value="<%=m.getCommentNo()%>"/> <!-- 관리자 모드에서 답글에 대한 정보를 수정할 때의 해당 번호 값 -->
+										<input type="hidden" class="reviewNo" id="<%=m.getComment()%>"/>  
 										<input type="hidden" class="count" id="count" name="count" value="0"/>
 									</a>
 									
@@ -268,8 +276,9 @@
 								</td>
 							</tr>
 							
-						<%} %>
-						
+						<%} 
+						if(m.getRefNo()==c.getCenterNo()) break;
+						%>
 					<%} %>
 				<%} %>
 				

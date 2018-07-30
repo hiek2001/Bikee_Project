@@ -57,7 +57,7 @@ public class CommunityListServlet extends HttpServlet {
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
-				pageBar+="<li><a>"+pageNo+"</a></li>";
+				pageBar+="<li class='cPage'><a>"+pageNo+"</a></li>";
 			}else {
 				pageBar+="<li><a href='"+request.getContextPath()+"/community/communityList?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 			}
@@ -65,11 +65,12 @@ public class CommunityListServlet extends HttpServlet {
 		}
 		
 		if(pageNo>totalPage) {
-			pageBar+="<li><a>>></a></li>";
+			pageBar+="<li class='cPage'><a>>></a></li>";
 		}else {
 			pageBar+="<li><a href='"+request.getContextPath()+"/community/communityList?cPage="+pageNo+"&numPerPage="+numPerPage+"'>>></a></li>";
 		}
 		request.setAttribute("list", list);
+		System.out.println(pageBar);
 		request.setAttribute("pageBar", pageBar);
 		request.getRequestDispatcher("/views/community/communityList.jsp").forward(request, response);
 	}
