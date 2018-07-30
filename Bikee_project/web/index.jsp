@@ -79,8 +79,8 @@ $(function() {
 
 
 <div id="point" class="row text-center">
-		<!-- <div class="col-sm-2  " id="noticeListAjaxTable" style="border: 1px solid black; height: 300px; color :black;"></div> 
-		<div class="col-sm-6">
+	<!-- 	 <div class="col-sm-2  " id="noticeListAjaxTable" style=" height: 200px; color :black; margin-left: 10px; "></div>
+		<div class="col-sm-4">
 			<a href="#"><i class="fa fa-leaf"></i></a>
 			<h1>ECO</h1>
 			<br>
@@ -88,7 +88,7 @@ $(function() {
 			<p>자전거 교통수단 분담률을 향상시켜 CO2 발생 감소를 실현하고</p>
 			<p>국가 비전인 저탄소 녹색성장을 추구합니다</p>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-4">
 			<a href="#"><i class="fa fa-bicycle"></i></a>
 			<h1>HEALTH</h1>
 			<br>
@@ -96,7 +96,7 @@ $(function() {
 			<p>건강한 사회 및 시민들의 삶의 질을 높이고자 마련되었습니다.</p>
 			<p>더 가치있는 서비스로 불편함이 없도록 노력하겠습니다.</p>
 		</div>
-    	-->
+</div> -->
 		
 			
 			
@@ -124,7 +124,7 @@ $(function() {
 		<p>더 가치있는 서비스로 불편함이 없도록 노력하겠습니다.</p>
 	</div>
 	<div class="col-sm-1">
-	</div>
+	</div> 
 	
 </div>
 

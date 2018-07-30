@@ -1,4 +1,4 @@
-package center.controller;
+package notice.model.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import center.model.service.CenterService;
-import center.model.vo.Center;
+import notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class CenterViewServlet
+ * Servlet implementation class NoticeCommentDeleteServlet
  */
-@WebServlet("/centerView")
-public class CenterViewServlet extends HttpServlet {
+@WebServlet("/notice/noticeCommentDelete")
+public class NoticeCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CenterViewServlet() {
+    public NoticeCommentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +28,32 @@ public class CenterViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("centerNo_"));
-		String comment= request.getParameter("comment");
-		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+		int noticeNo = Integer.parseInt(request.getParameter("h_noticeNo"));
+		System.out.println(noticeNo);
+		int commentNo = Integer.parseInt(request.getParameter("h_CommentNo"));
+		System.out.println(commentNo);
 		
 		
-		Center c = new CenterService().selectCenter(no);
+		int result = new NoticeService().deleteNoticeComment(commentNo);
 		
-		if(c!=null) {
-			request.setAttribute("c", c);
-			request.setAttribute("comment", comment);
-			request.setAttribute("commentNo", commentNo);
-			request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
+		String msg = "";
+		String loc="/notice/noticeList";
+	
+		
+		if(result >0) {
+			msg="공지사항 삭제 완료!!";
+			new NoticeService().commentCountMinus(noticeNo);
+			
 		}else {
-			request.setAttribute("msg", "조회된 게시물이 없습니다.");
-			request.setAttribute("loc", "/view/center/centerList.jsp");
-			request.getRequestDispatcher("/views/common/centerMsg.jsp").forward(request, response);
+			msg="공지사항 삭제 실패!!";
+			
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc); 
+		
+		request.getRequestDispatcher("/views/common/communityMsg.jsp").forward(request,response);
+		
+	
 	}
 
 	/**

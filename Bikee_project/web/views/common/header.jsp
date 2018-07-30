@@ -120,6 +120,7 @@ function validate() {
                 <% if(memberLoggedIn != null) { %>
                     
                     <li class="dropdown">
+
                     	<a class="dropdown-toggle" data-toggle="dropdown" ><span class="glyphicon glyphicon-lock " style="width: 170px;"> 마이페이지<span class="caret"></span></span></a>
                     	<ul class="dropdown-menu">
                     		<li><a onclick="location.href='<%= request.getContextPath() %>/memberUpdate?memId=<%= memberLoggedIn.getMem_id() %>'"><span class="glyphicon glyphicon-repeat"> 회원정보수정</span></a></li>
