@@ -70,19 +70,13 @@ $(function() {
 		<form  role="form" method="post" class="updateForm" action="<%= request.getContextPath() %>/member/memberPassUpdateEnd">
 			<legend><h2 style="text-align: center;" >비밀번호변경</h2></legend>
 			
-			<h5 style="text-align: center; ">
-				<br>
-				<p >안전한 비밀번호로 내정보를 보호하세요.</p>
-				<p style="font: 20px bold;">다른 아이디/사이트에서 사용한 적 없는 비밀번호</p>
-				<p >이전에 사용한 적 없는 비밀번호가 안전합니다.</p>
-				<br>
-			</h5>
+			
 			
 			<hr class="colorgraph">
 			<div class="row ">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					
-					<div class="form-group">
+					<div class="form-group ">
 						<label>현재 비밀번호</label>
 						<input type="password"  name="nowPw" id="nowPw"  class="form-control input-lg" placeholder="현재 비밀번호" tabindex="1" required >
 					</div><br>
@@ -99,10 +93,17 @@ $(function() {
 					<input type="hidden" name="userId" id="userId" value="<%=m.getMem_id() %>">
 					<input type="hidden" name="hiddenPw" id="hiddenPw" value="<%=m.getMem_pw()%>">
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="col-xs-12 col-sm-6 col-md-6" style="padding: 0px; text-align: left; ">
 					
 					<div class="form-group">
-					<img src="images/testImage/test1.jpg" style="height: 300px;width: 200px;border-radius: 3px 5px 8px 10px;"></img>
+					<br><br><br>
+					<p >안전한 비밀번호로 내정보를 보호하세요.</p>
+						<br>		
+						
+						<br>
+						<p>이전에 사용한 적 없는 비밀번호가</p>
+						<p> 안전합니다.</p>
+					
 					
 					</div>
 					

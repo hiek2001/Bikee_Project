@@ -64,6 +64,48 @@
 		
 		
 //		3.
+		$('.btn-reply').on('click',function() {
+			if(<%=memberLoggedIn != null%>){
+				/* 세션에 로그인정보 넣어놈// 로그인 성공 */
+			
+				var tr = $("<tr></tr>"); /* <tr>요소를 만듬  [create.element] 댓글을위한 tr 그 밑에 td*/
+				var html = ""; /* colspan = 답글 , 내용 */
+				
+				
+//				 답글에 버튼 
+				html+="<td style='display: none; text-align: left;colspan:2' >";
+				html+="<form action='<%=request.getContextPath()%>/notice/noticeCommentInsert' method='post'>";
+				html+="<input type='hidden' name='noticeRef' value='<%=notice.getNoticeNo() %>'/>";                      /* level2 = 답글O 댓글 X */
+				html+="<input type='hidden' name='noticeCommentWriter' value='<%=memberLoggedIn.getMem_id() %>'/>";
+				html+="<input type='hidden' name='noticeCommentLevel' value='2' />";
+				html+="<input type='hidden' name='noticeCommentRef' value='"+$(this).val()+"'/>";  /* $(this) = 이벤트가 걸린놈 = 버튼   [btn-reply의 value값]*/                    
+				html+="<textarea name='noticeCommentContent' cols='40' rows='3'></textarea>";
+				html+="<button type='submit' class='btn btn-default' style='top:-20px;'>등록</button>";
+				html+="</form>";
+				html+="</td>";
+				
+				
+				tr.html(html);
+				tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);   /* $(this).parent().parent() 뒤에 tr넣는다 = insertAfter */
+				$(this).off('click'); /* 한번만할때 off 안막으면 계속생김*/	/* td = html */
+				tr.find("form").submit(function(e) {
+					if(<%=memberLoggedIn==null%>){
+						fn_loginAlert();
+						e.preventDefault();
+						return;
+					}
+					var len=$(this).children("textarea").val().trim().length;
+					if(len==0){
+						e.preventDefault();
+					}
+					
+				});
+				tr.find("textarea").focus();
+			}else{
+				/* 로그인 실패 */
+				fn_loginAlert();
+			}
+		});
 		
 		
 	});
@@ -72,6 +114,11 @@
 		$('#userId').focus();
 	}
  	
+ 	
+ 	
+
+	
+	
  function deleteNotice() {
  		
  		var frm = $('#noticeFrm');
@@ -85,11 +132,18 @@
 		var frm = $('#noticeFrm');
 		var url = "<%= request.getContextPath() %>/notice/noticeUpdate";
 		frm.attr("action", url);
-		alert("sub");
 		frm.submit();
 	}
  function returnList() {
 	 location.href="<%=request.getContextPath()%>/notice/noticeList";
+}
+ 
+ function fn_delete() {
+	 alert("12");
+	var frm = $('#commentFrm1');
+	var url = "<%=request.getContextPath()%>/notice/noticeCommentDelete";
+	frm.attr("action",url);
+	frm.submit();
 }
 
 
@@ -146,19 +200,30 @@
 		
 		for(NoticeComment bc:commentList){ /* bc에 list담아서 포문 */
 			if(bc.getNoticeCommentLevel()==1){%> <!-- bc가 가져왔으면  -->
+			<form name="commentFrm1"  id="commentFrm1">
 				<tr class='level1'>
 					<td>
+						
 						<sub class = 'comment-writer'><%=bc.getNoticeCommentWrite()%></sub>
 						<sub class = 'comment-date'><%=bc.getNoticeCommentDate() %></sub>
 						<br/><br/>
 						<%= bc.getNoticeCommentContent() %>
 					</td>
-					<%-- <%if(memberLoggedIn !=null && memberLoggedIn.getMem_id().equals("admin")) {%>
-					<td>
-						<button class="btn-reply" value="<%=bc.getNoticeCommentNo()%>">답글</button>
-					</td>
-					<% }%> --%>
+					<%if(memberLoggedIn !=null ) {%>
+						<%if(memberLoggedIn.getMem_id().equals(bc.getNoticeCommentWrite()) || memberLoggedIn.getMem_id().equals("admin")) {%>
+						<td>	
+								<button onclick="fn_delete()" >삭제</button>
+								<input type="hidden" name="h_CommentNo" value="<%=bc.getNoticeCommentNo() %>" >
+								<input type="hidden" name="h_noticeNo" value="<%=notice.getNoticeNo() %>">
+								
+						<%} %>
+						<%if(memberLoggedIn.getMem_id().equals("admin")) {%>
+								<button class="btn-reply" value="<%=bc.getNoticeCommentNo()%>">답글</button>
+						<%} %>
+						</td>
+						<% }%>
 				</tr>
+			</form>
 			<%}       /* if */ 
 			else{%>
 				<tr class='level2'>
