@@ -58,7 +58,7 @@ function validate() {
 	
 	// 비밀번호 적었는지 체크
 	if($('#memPw').val().trim().length == 0) {
-		alert("비밀번호를 입력하세요!!");
+		alert("비밀번호를 입력하세요!");
 		$('#memPw').focus();
 		return false;
 	}
