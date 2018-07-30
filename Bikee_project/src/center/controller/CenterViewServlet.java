@@ -32,7 +32,7 @@ public class CenterViewServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("centerNo_"));
 		String comment= request.getParameter("comment");
 		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
-		System.out.println("commentNo:"+commentNo);
+		
 		
 		Center c = new CenterService().selectCenter(no);
 		

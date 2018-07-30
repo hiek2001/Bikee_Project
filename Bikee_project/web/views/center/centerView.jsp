@@ -4,7 +4,7 @@
 <%
 	Center c = (Center)request.getAttribute("c");
 	String comment = request.getParameter("comment");
-	int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+	 int commentNo = Integer.parseInt(request.getParameter("commentNo"));
 %>
 <style>
 	div.container-fluid{padding-top:10px; padding-bottom:10px}
@@ -144,7 +144,7 @@ function fn_update(){
 				   				<div class="col-lg-3"></div>
 				   				<div class="col-lg-6">
 		   							<input type="hidden" name="writer" value="<%=memberLoggedIn.getMem_id()%>"/>
-		   							<input type="hidden" name="commentNo" value="<%=commentNo%>"/>
+		   							 <input type="hidden" name="commentNo" value="<%=commentNo%>"/>  
 		   							<div class="col-lg-3">
 					   					<button type="submit" class="btn btn-primary" value="등록하기" onclick="return changeDate();" id="btn1"style="background-color:#1E68CB; margin-left:60px" >save</button>
 					   				</div>
