@@ -1585,7 +1585,7 @@ $('#seat').click(function() {
 
 		
 		<input type="hidden" name="methodNum" value="2">
-		<input type='hidden' name ='merchantUid' value='uid0030'>
+		<!-- <input type='hidden' name ='merchantUid' value='uid0030'> -->
 		<!--DB삽입되는지 알기위해서 임의로 넣었는데 이제 삽입과정 없어졌으니 삭제해도 무방
 		 <input type='hidden' name ="buyerId" value ='eunbyul'>
 		<input type='hidden' name ='lentPrice' value='10000'> -->
