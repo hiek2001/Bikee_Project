@@ -27,10 +27,11 @@
     /* 네비 상단 고정 */
     position: sticky;
     top: 0;
+    
 }
 
 .navbar li a, .navbar .navbar-brand {
-	font-size: 1.25em;
+	font-size: 0.5em;
 	font-weight: 100;
     color: #fff !important;
 }
