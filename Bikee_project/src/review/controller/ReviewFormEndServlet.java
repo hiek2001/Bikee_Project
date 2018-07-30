@@ -36,6 +36,7 @@ public class ReviewFormEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			request.setAttribute("msg", "게시판 작성 오류![form:enctype관리자에게 문의하세요.]");
 			request.setAttribute("loc", "/"); // "/"메인페이지로 가라는 소리
@@ -51,10 +52,10 @@ public class ReviewFormEndServlet extends HttpServlet {
 		
 		String title = mpreq.getParameter("title");
 		String writer = mpreq.getParameter("writer");
-		request.setCharacterEncoding("utf-8");
 		String content =mpreq.getParameter("content");
 		String origin = mpreq.getOriginalFileName("file");
 		String rename = mpreq.getFilesystemName("file");
+		String course = mpreq.getParameter("course");
 		
 		Review r = new Review();
 		r.setReviewWriter(writer);

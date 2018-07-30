@@ -116,8 +116,8 @@ public class CenterDAO {
 			pstmt.setString(2,  c.getCenterTitle());
 			pstmt.setString(3, c.getCenterWriter());
 			pstmt.setString(4, c.getCenterContent());
-			pstmt.setString(5, null);
-			pstmt.setString(6, null);
+			pstmt.setString(5, c.getOriginalFileName());
+			pstmt.setString(6, c.getRenameFileName());
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

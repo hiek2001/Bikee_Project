@@ -26,7 +26,7 @@
     		else if(content.trim().length==0){
     			alert("내용을 입력하세요");
     			return false;
-    		}else if(password.length<3||password.length>5){
+    		}else if(password.trim().length<4||password.trim().length>4){
     			alert("비밀번호는 4자리로 입력해주세요.");
     			return false;
     		}
@@ -34,7 +34,7 @@
     	}
     	
     	function fn_cancel(){
-    		location.href="<%=request.getContextPath()%>/center/centerList";
+    		location.href="<%=request.getContextPath()%>/centerList";
     	}
     </script>
 <section>

@@ -40,7 +40,7 @@
 </style>
 <script>
 
-   function fn_write(login)
+   function fn_write()
    {	
 	   	location.href="<%=request.getContextPath()%>/community/communityForm";		
    }
