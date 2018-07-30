@@ -31,24 +31,23 @@ public class FindIdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String findName=(String)request.getParameter("findName");
-		String findPhone=(String)request.getParameter("findPhone");
+		String findEmail=(String)request.getParameter("findEmail");
 		
-		Member m=new MemberService().findId(findPhone);
+		Member m=new MemberService().findId(findEmail);
 		
 		String msg="";
 		String loc="/";
-		//String view="/views/common/msg1.jsp";
-		if(m == null) //입력한 휴대폰번호와 DB에 있는 휴대폰번호가 같다면
+		String view="/views/common/memberListMsg.jsp";
+		if(m == null) 
 		{
 			//폰번호 확인하라는 알람 뜨기
-			msg="휴대폰번호를 다시 확인해주세요"; //보류
+			msg="이메일을 다시 확인해주세요"; 
 			loc="/views/member/findId.jsp";
 			
 			
 		}
-		else if (m.getMem_phone().equals(findPhone))
+		else if (m.getMem_email().equals(findEmail))
 		{
-			
 			//아이디 보여주기
 			String showId=m.getMem_id();
 			loc="/views/member/showId.jsp?showId="+showId;

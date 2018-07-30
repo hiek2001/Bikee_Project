@@ -141,7 +141,7 @@ public class MemberDAO {
 		return result;
 	}
 
-	public Member findId(Connection conn, String findPhone)
+	public Member findId(Connection conn, String findEmail)
 	{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -150,7 +150,7 @@ public class MemberDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, findPhone);
+			pstmt.setString(1, findEmail);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -287,7 +287,6 @@ public class MemberDAO {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println(list);
 		return list;
 	}
 

@@ -1,7 +1,7 @@
 package admin.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.model.service.AdminService;
-import common.PageBar;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberListServlet
+ * Servlet implementation class AdminMemberFinderServlet
  */
-@WebServlet("/memberView")
-public class MemberViewServlet extends HttpServlet {
+@WebServlet("/admin/memberFinder")
+public class AdminMemberFinderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberViewServlet() {
+    public AdminMemberFinderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,34 +31,36 @@ public class MemberViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		Member m=(Member)request.getSession().getAttribute("memberLoggedIn");
-
+		
 		if(m==null||!m.getMem_id().equals("admin")) {
 			request.setAttribute("msg", "잘못된 경로로 접근하였습니다.");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			return;
 		}
-		
-		int cPage;
+		ArrayList<Member> list=new ArrayList<>();
+		String searchKey=(String)request.getParameter("searchKey");
+		String searchValue=(String)request.getParameter("searchValue");
 		int numPerPage=10;
+		int cPage;
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
-		}
-		catch(NumberFormatException e)
+		}catch(NumberFormatException e)
 		{
 			cPage=1;
 		}
-		try {
-			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
-		}
-		catch(NumberFormatException e)
+		String msg="";
+		System.out.println("Servlet::"+searchKey);
+		System.out.println("Servlet::"+searchValue);
+		switch(searchKey)
 		{
-			numPerPage=10;
+			case "memName" : list=new AdminService().searchMemberName(searchValue);break; 
+			case "memId" :  list=new AdminService().searchMemberId(searchValue);break;
 		}
-		List<Member> list=new AdminService().selectMemberList(cPage,numPerPage);
-		int totalContent=new AdminService().selectMemberCount();
 		
+		int totalContent=new AdminService().selectMemberCount();
 		int totalPage=(int)Math.ceil((double)totalContent/numPerPage);
 		int barSize=5;
 		String pageBar="";
@@ -70,7 +71,7 @@ public class MemberViewServlet extends HttpServlet {
 			pageBar+="<li><a><<</a></li>";
 		}
 		else {
-			pageBar+="<li><a href='"+request.getContextPath()+"/memberView?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'><<</a></li>";
+			pageBar+="<li><a href='"+request.getContextPath()+"/admin/memberList?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'><<</a></li>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -78,7 +79,7 @@ public class MemberViewServlet extends HttpServlet {
 				pageBar+="<li><a>"+pageNo+"</a></li>";
 			}
 			else {
-				pageBar+="<li><a href='"+request.getContextPath()+"/memberView?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
+				pageBar+="<li><a href='"+request.getContextPath()+"/admin/memberList?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -87,7 +88,7 @@ public class MemberViewServlet extends HttpServlet {
 			pageBar+="<li><a>>></a></li>";
 		}
 		else {
-			pageBar+="<li><a href='"+request.getContextPath()+"/memberView?cPage="+pageNo+"&numPerPage="+numPerPage+"'>>></a></li>";
+			pageBar+="<li><a href='"+request.getContextPath()+"/admin/memberList?cPage="+pageNo+"&numPerPage="+numPerPage+"'>>></a></li>";
 		}
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("list", list);

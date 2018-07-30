@@ -4,90 +4,59 @@
 <%@ page import="java.util.*, member.model.vo.Member"%>
 <%
 	ArrayList<Member> list=(ArrayList)request.getAttribute("list");
-	/* String searchType="";
-	String searchKeyword="";
-	if(request.getAttribute("searchType")!=null)
-		searchType=(String)request.getAttribute("searchType");
-	if(request.getAttribute("searchKeyword")!=null)
-		searchKeyword=(String)request.getAttribute("searchKeyword");
-	
-	//페이징처리 변수들
-	int cPage=(int)request.getAttribute("cPage");
-	int numPerPage=(int)request.getAttribute("numPerPage"); */
+	String pageBar=(String)request.getAttribute("pageBar");
 %>
+<script>
+/* $(document).ready(function(){
+	$('#admin-table').DataTable();
+	
+});  */
+function fn_search(){
+	var content=$("[name=content]").val();
+	
+	if(content.trim().length==0) {
+		alert("검색할 내용이 없습니다.");
+		return false;
+	}
+	return true;
+}
+</script>
 <style>
-	section#memberList-container {margin-left:260px;width:70%;}
+	table#admin-table {margin-left:260px;width:70%;}
+	div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_812426 sans-serif;background-color:#2478FF;color:white;height:100px;
+	    padding-top:10px;margin-left:230px;margin-top:5px;width:75%;}
 </style>
-<section id="memberList-container">
-		<h2>회원관리</h2>
-		<!-- 검색창 만들기 -->
-		<%-- <div id="search-container">
-		검색 타입 : 
-			<select id="searchType">
-				<option value="mem_id">아이디</option>
-				<option value="mem_name">회원명</option>
-			</select>
-			<div id="search-userId">
-				<form action="<%=request.getContextPath()%>/memberFinder">
-					<input type="hidden" name="searchType" value="userId">
-					<input type="text" name="searchKeyword" size='25' placeholder="검색할 아이디 입력"/>
-					<input type="hidden" name="cPage" value="<%=cPage %>"/> 
-					<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
-					<button type="submit">검색</button>
-				</form>
-			</div>
-			<div id="search-userName">
-				<form action="<%=request.getContextPath()%>/memberFinder">
-					<input type="hidden" name="searchType" value="userName">
-					<input type="text" name="searchKeyword" size='25' placeholder="검색할 회원명 입력"/>
-					<input type="hidden" name="cPage" value="<%=cPage %>"/>
-					<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
-					<button type="submit">검색</button>
-				</form>
-			</div>
-			<div id="search-gender">
-				<form action="<%=request.getContextPath()%>/memberFinder">
-					<input type="hidden" name="searchType" value="gender">
-					<input type="radio" name="searchKeyword" value="M" checked>남
-					<input type="radio" name="searchKeyword" value="F">여
-					<input type="hidden" name="cPage" value="<%=cPage %>"/>
-					<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
-					<button type="submit">검색</button>
-				</form>
-			</div>
-		</div>
-		<div id='numPerPage-container'>
-         페이지당 회원수:
-         <form name="numPerPageFrm" id="numPerPageFrm" action="<%=request.getContextPath()%>/admin/memberList">
-            <input type="hidden" name="cPage" value="<%=cPage %>"/>
-            <select name="numPerPage" id="numPerPage">
-               <option value="10" <%=numPerPage==10?"selected":"" %>>10</option>
-               <option value="5" <%=numPerPage==5?"selected":"" %>>5</option>
-               <option value="3"  <%=numPerPage==3?"selected":"" %>>3</option>
-            </select>
-         </form>
-      </div>  --%>
-     <table id="admin-table" class="table" width="80%">
+<div class="col-lg-8 main_title text-center">
+	MEMBERLIST
+</div>
+<div id="memberList-container">	
+	<!-- <h4>회원 관리</h4> -->
+     <table id="admin-table" class="table table-condensed" cellspacing="0" width="80%">
+       <thead>
          <tr>
-            <th scope="col">아이디</th>
-            <th scope="col">이름</th>
-            <th scope="col">생년월일</th>
-            <th scope="col">전화번호</th>
-            <th scope="col">이메일</th>
-            <th scope="col">주소</th>
+            <th class="th-sm">아이디</th>
+            <th class="th-sm">이름</th>
+            <th class="th-sm">생년월일</th>
+            <th class="th-sm">전화번호</th>
+            <th class="th-sm">이메일</th>
+            <th class="th-sm">주소</th>
          </tr>
+       </thead>
       <!-- 보내준 데이터를 출력하는 로직 -->
       <%if(list==null){ %>
-      <tr>
-         <td colspan=6>검색결과가 없습니다.</td>
-      </tr>
+      <tbody>
+        <tr>
+           <td colspan=6>검색결과가 없습니다.</td>
+        </tr>
+      </tbody>
       <%}
       else
       {
          for(Member m:list)
          {
-      %>   <tr>
-            <td scope="row"><a href="<%=request.getContextPath()%>/memberView?userId=<%=m.getMem_id()%>">
+      %>   <tbody>
+      		<tr>
+            <td scope="row"><a href="<%=request.getContextPath()%>/memberView?memId=<%=m.getMem_id()%>">
             <%=m.getMem_id()%>
             </a>
             </td>
@@ -97,11 +66,34 @@
             <td><%=m.getMem_phone()%></td>
             <td><%=m.getMem_addr()%></td>
          </tr>
+         </tbody>
          <%}
       }%>
       </table>
-      <%-- <div id='pageBar'>
-      	<%=request.getAttribute("pageBar") %>
-      </div>--%>
-   </session> 
+     </div>
+     <div class="pagebar text-center">
+	    <ul class="pagination pagination-member">
+	    	<%=pageBar %>
+	     </ul>  
+	 
+
+	 <div style="margin-bottom:50px;">
+	 <div class="col-lg-4"></div>
+	 	 <form id="search" action="<%=request.getContextPath()%>/admin/memberFinder" method="post">
+		    <select class="col-lg-2 form-control" style="width:100px;" id="searchKey" name="searchKey"> 
+		      <option value="memName">이름</option> 
+		      <option value="memId">아이디</option> 
+		    </select>
+		  <div class="col-lg-2">
+		    <input type="text" name="searchValue" style="width:300px; height:30px;"/>
+		  </div>
+		  <div class="col-lg-2">
+		    <button type="submit" class="btn btn-default" value="search" onclick="return fn_search();" style="height:35px;width:90px;margin-right:200px;" >search</button>
+		  </div>
+		<div class="col-lg-2"></div>
+	  </form>
+	 </div>
+	</div>
+  
+
 <%@ include file='/views/common/footer.jsp' %>
