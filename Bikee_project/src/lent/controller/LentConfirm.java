@@ -33,7 +33,6 @@ public class LentConfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//은별추가
 		String merchantUid = request.getParameter("merchantUid");
 		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
 		String bikeId = request.getParameter("bikeId");		
@@ -44,6 +43,7 @@ public class LentConfirm extends HttpServlet {
 		int lentPrice = Integer.parseInt(request.getParameter("lentPrice"));
 		
 		LentBike lb = new LentBike(merchantUid,methodNum,bikeId,buyDate,returnDate,buyerId,shopId,lentPrice);
+		
 		
 		// DB저장
 		new LentService().insertLent(lb);
