@@ -100,7 +100,7 @@
 					   			<div class="col-lg-3"></div>
 					   			<div class="col-lg-6">
 					   				<div class="col-lg-3"></div>
-					   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
+					   				<div class="col-lg-3"><button type="submit" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
 					   				<div class="col-lg-3"></div>
 					   				<div class="col-lg-3"></div>
 					   			</div>
