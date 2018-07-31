@@ -43,6 +43,7 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 		if(result >0) {
 			msg="공지사항 삭제 완료!!";
 			new NoticeService().commentCountMinus(noticeNo);
+			new NoticeService().commentCountMinus(noticeNo);
 			
 		}else {
 			msg="공지사항 삭제 실패!!";

@@ -69,7 +69,12 @@
 	  background-image: linear-gradient(to right,#A2D1DF,#B3C9E6 50%);
 	}
 	.commentlistAdd{ background-color: rgba(130,130,130,0.1) ;border-radius :25px 35px 25px 35px;}
-    
+    .abc{display:inline; width: 70px; height:20px; background-color: white;border: 1px solid white;}
+    .abc:hover{display:inline; width: 70px; color:skyblue;font-size:14px;
+     text-shadow:1px 1px 1px  blue,10px 10px 20px  palegoldenrod;
+     top:-20px; background-color: white;border: 1px solid white;
+     }  
+     
 </style>
 
 <script>
@@ -116,13 +121,13 @@
 				
 //				 답글에 버튼 
 				html+="<td style='display: none; text-align: left;colspan:2' >";
-				html+="<form action='<%=request.getContextPath()%>/notice/noticeCommentInsert' method='post'>";
+				html+="<form action='<%=request.getContextPath()%>/notice/noticeCommentInsert' method='post' style='width:400px;'>";
 				html+="<input type='hidden' name='noticeRef' value='<%=notice.getNoticeNo() %>'/>";                      /* level2 = 답글O 댓글 X */
 				html+="<input type='hidden' name='noticeCommentWriter' value='<%=memberLoggedIn.getMem_id() %>'/>";
 				html+="<input type='hidden' name='noticeCommentLevel' value='2' />";
 				html+="<input type='hidden' name='noticeCommentRef' value='"+$(this).val()+"'/>";  /* $(this) = 이벤트가 걸린놈 = 버튼   [btn-reply의 value값]*/                    
-				html+="<textarea name='noticeCommentContent' cols='40' rows='3'></textarea>";
-				html+="<button type='submit' class='btn btn-default' style='top:-20px;background-color: white;border: 1px solid white;'>등록</button>";
+				html+="<textarea name='noticeCommentContent' cols='40' rows='3'></textarea>&nbsp&nbsp";
+				html+="<button type='submit' class='abc fa fa-cloud' >등록</button>";
 				html+="</form>";
 				html+="</td>";
 				
@@ -197,12 +202,13 @@
 		 <div id="board-container"><br>
 			<div class="container" style="width: 600px;">
 				
-				<legend style="height: 35px;">
+			
 					<p class="pull-left" style="font-size: 25px;"><%=notice.getNoticeTitle()%></p>
 					<p class="pull-right" style="font-size: 15px;"><%=notice.getNoticeDate()%></p>
-				</legend>
+				
 					
 			</div>
+			<hr class="colorgraph">
 			<form id="noticeFrm"class="form-inline" action="<%=request.getContextPath()%>/notice/noticeUpdate" method="post">
 				<%if(memberLoggedIn ==null || !(memberLoggedIn.getMem_id().equals("admin"))) {%>
 					<textarea readonly name="updateContent" placeholder="<%=notice.getNoticeContent()%>" value="update_notice"  cols="85"   name="content" style="height:200px" onKeyup="var m=50;var s=this.scrollHeight;if(s>=m)this.style.pixelHeight=s+4"></textarea>
@@ -215,7 +221,7 @@
 			 		
 	 			<%} %>
 	 			<input type="button" value="뒤로가기" onclick="returnList()" class="btn btn-default">
-	 			<hr>
+	 			<b><hr></b>
 
 	 		</form>
 		</div>	 
@@ -239,14 +245,14 @@
 						<sub class = 'comment-date'><%=bc.getNoticeCommentDate() %></sub><p></p>
 						<%if(memberLoggedIn.getMem_id().equals(bc.getNoticeCommentWrite()) || memberLoggedIn.getMem_id().equals("admin")) {%>
 						<form name="commentFrm1"  id="commentFrm1">
-								<input type="hidden" name="h_CommentNo" value="<%=bc.getNoticeCommentNo() %>" >
+								<input type="hidden" name="h_CommentNo" value="<%=bc.getNoticeCommentNo() %>">
 								<input type="hidden" name="h_noticeNo" value="<%=notice.getNoticeNo() %>">
 								<button onclick="fn_delete()" class=' glyphicon glyphicon-remove comment-delete' >삭제</button>
 						</form>
 						<%} %>
-						<%if(memberLoggedIn.getMem_id().equals("admin")) {%>
+						
 								<button class="btn-reply fa fa-cloud" value="<%=bc.getNoticeCommentNo()%>">답글</button>
-						<%} %>
+						
 					
 						</td>
 						<% }%>
@@ -263,12 +269,12 @@
 						<br/>
 						<%= bc.getNoticeCommentContent() %>
 					</td>
-					<%if(memberLoggedIn !=null && memberLoggedIn.getMem_id().equals("admin")) {%>
+					
 					<td>
 						
 						<button class="btn-reply fa fa-cloud" value="<%=bc.getNoticeCommentNo()%>" style="font-size: 14px;">답글</button>
 					</td>
-					<% }%>
+					
 				</tr>
 		 	
 			<%} /* else */
@@ -279,7 +285,8 @@
 	
 	
 	
-	</table>
+	</table><br><br>
+	<hr class="colorgraph">
 	<%if(memberLoggedIn !=null){ %>
 	<div id="comment-container">
 		<div class="comment-editor">
