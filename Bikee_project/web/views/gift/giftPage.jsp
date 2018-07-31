@@ -5,6 +5,7 @@
  
 <%
 	int methodNum = (int) request.getAttribute("methodNum");
+	String selectPhoneMem = (String)request.getAttribute("m.getMem_name()");
  %>
 <!doctype html>
 <html>
@@ -64,53 +65,24 @@
 
 
 <!-- 서블릿  호출 -->
-<script>
+<%-- <script>
 	function fn_callingJsp() {
 		location.href="<%= request.getContextPath() %>/lent/lentSelect2"
 	}
-</script>
+</script> --%>
 
 <!-- 받을회원 휴대폰번호 검색 -->
 <script>
 	function fn_selectMem(){
+		<%-- var b =$('#giftSelectPhone').val();
+		$('.test111').attr("action"."");
+		
+		location.href="<%=request.getContextPath()%>/gift/giftSelectMemPhone?b="+b; --%>
 		location.href="<%=request.getContextPath()%>/gift/giftSelectMemPhone"
 	}
 
 </script>
 <script type='text/javascript'>
-
-$("#selectPhone").keyup(function() {
-	alert("낭녕");
-	/* var 
-	function autoHypenPhone(str){
-		  str = str.replace(/[^0-9]/g, '');
-		  var tmp = '';
-		  if( str.length < 4){
-		    return str;
-		  }else if(str.length < 7){
-		    tmp += str.substr(0, 3);
-		    tmp += '-';
-		    tmp += str.substr(3);
-		    return tmp;
-		  }else if(str.length < 11){
-		    tmp += str.substr(0, 3);
-		    tmp += '-';
-		    tmp += str.substr(3, 3);
-		    tmp += '-';
-		    tmp += str.substr(6);
-		    return tmp;
-		  }else{        
-		    tmp += str.substr(0, 3);
-		    tmp += '-';
-		    tmp += str.substr(3, 4);
-		    tmp += '-';
-		    tmp += str.substr(7);
-		    return tmp;
-		  }
-		  return str;
-		} */
-	});
-
 
 
 </script>
@@ -124,23 +96,33 @@ td{ width:110px;
 
 <body>
 
-<form name='lentBikeeFrm' action="<%=request.getContextPath()%>/lent/lentSelect2" method='post'>
-    <div class="container-fluid">
-	<div class="1">
-		<div class="col-md-12">
-			<div class="jumbotron">
+
+<div class="jumbotron">
 				<h2>선물하기</h2>
 				<p>가까운 사람에게 바이키 이용권을  선물해보세요.</p>
 			</div>
-			<br>
-			<br>
-			
+
+
+			<!-- <div class='container'>
+			<h3>회원 검색</h3>
+			<p>전화번호로 간단하게 선물할 회원의 가입여부를 확인할 수 있습니다.</p>
+			<input type='text' id = 'giftSelectPhone' name= 'giftSelectPhone' placeholder="핸드폰 번호 입력" maxlength="13" required>
+			<input type='hidden' id ='hehe' name='hehe' value='2'>
+			<input type='submit' value='검색'>
+			</div> -->
+<form class ='test111' name='lentBikeeFrm' action="<%=request.getContextPath()%>/gift/giftSelectMemPhone" method='post'>
+    <div class="container-fluid">
+	<div class="1">
+		<div class="col-md-12">
 			<div class='container'>
 			<h3>회원 검색</h3>
 			<p>전화번호로 간단하게 선물할 회원의 가입여부를 확인할 수 있습니다.</p>
-			<input type='text' id = 'giftSelectPhone' name= 'giftSelectPhone' placeholder="핸드폰 번호 입력" maxlength="13">
-			<input type="submit" value="검색"  onclick="fn_selectMem()">
+			<input type='text' id = 'giftSelectPhone' name= 'giftSelectPhone' placeholder="핸드폰 번호 입력" maxlength="13" required>
+			<input type='hidden' id ='hehe' name='hehe' value='2'>
+			<input type='submit' value='검색'>
 			</div>
+			<br>
+			<br>
 			
 			
 			

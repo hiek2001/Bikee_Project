@@ -3,9 +3,6 @@ package gift.model.service;
 import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-
-
 import java.sql.Connection;
 
 import gift.model.dao.GiftDAO;

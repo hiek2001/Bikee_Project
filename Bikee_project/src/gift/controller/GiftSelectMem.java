@@ -30,10 +30,22 @@ public class GiftSelectMem extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String giftSelectPhone = request.getParameter("giftSelectPhone");
+		
+		String giftSelectPhone = (String)request.getParameter("giftSelectPhone");
+		System.out.println(giftSelectPhone);
 		
 		//휴대폰번호를 받아서 입력한 휴대폰번호와 일치하는 회원의 이름, ID를 찾아옴 = bikeId의 가격
-//				Member m = new GiftService().selectMemPhone(giftSelectPhone);
+		Member m = new GiftService().selectMemPhone(giftSelectPhone);
+		System.out.println(m);
+		
+		System.out.println(m.getMem_id());
+		System.out.println(m.getMem_name());
+		System.out.println(m.getMem_email());
+		
+		request.setAttribute("m.getMem_name()",m.getMem_name());
+
+		request.getRequestDispatcher("/views/gift/giftPage.jsp").forward(request, response);
+		
 	}
 
 	/**
