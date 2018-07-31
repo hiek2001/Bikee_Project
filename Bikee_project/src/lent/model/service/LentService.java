@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import bike.model.vo.BikePrice;
+import community.model.dao.CommunityDAO;
 import lent.model.dao.LentDAO;
 import lent.model.vo.LentBike;
 import lent.model.vo.PurchaseTicket;
@@ -80,5 +81,19 @@ public class LentService {
 		close(conn);
 		
 		return list;
+	}
+	
+	public List<LentBike> memberPayList(int cPage, int numPerPage){
+		Connection conn = getConnection();
+		List<LentBike> list = new LentDAO().memberPayList(conn,cPage,numPerPage);
+		close(conn);
+		return list;
+	}
+	
+	public int payListCount() {
+		Connection conn = getConnection();
+		int result = new LentDAO().payListCount(conn);
+		close(conn);
+		return result;
 	}
 }

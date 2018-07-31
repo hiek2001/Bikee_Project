@@ -37,6 +37,7 @@ public class CommentAddServlet extends HttpServlet {
 		int refNo = Integer.parseInt(request.getParameter("refNo"));
 		String writer = request.getParameter("writer");
 		String comment = request.getParameter("comment");
+		System.out.println(comment);
 		
 		Comment c = new Comment();
 		c.setComment(comment);

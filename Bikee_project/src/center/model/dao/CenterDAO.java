@@ -102,7 +102,6 @@ public class CenterDAO {
 		}
 		close(rs);
 		close(pstmt);
-		System.out.println(c);
 		return c;
 	}
 	

@@ -11,11 +11,12 @@ public class Review {
 	private String renameFileName;
 	private Date reviewDate;
 	private int reviewReadCount;
+	private String courseType;
 	
 	public Review() {}
 
 	public Review(int reviewNo, String reviewTitle, String reviewWriter, String reviewContent, String originalFileName,
-			String renameFileName, Date reviewDate, int reviewReadCount) {
+			String renameFileName, Date reviewDate, int reviewReadCount, String courseType) {
 		super();
 		this.reviewNo = reviewNo;
 		this.reviewTitle = reviewTitle;
@@ -25,6 +26,7 @@ public class Review {
 		this.renameFileName = renameFileName;
 		this.reviewDate = reviewDate;
 		this.reviewReadCount = reviewReadCount;
+		this.courseType = courseType;
 	}
 
 	public int getReviewNo() {
@@ -91,11 +93,20 @@ public class Review {
 		this.reviewReadCount = reviewReadCount;
 	}
 
+	public String getCourseType() {
+		return courseType;
+	}
+
+	public void setCourseType(String courseType) {
+		this.courseType = courseType;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", reviewTitle=" + reviewTitle + ", reviewWriter=" + reviewWriter
 				+ ", reviewContent=" + reviewContent + ", originalFileName=" + originalFileName + ", renameFileName="
-				+ renameFileName + ", reviewDate=" + reviewDate + ", reviewReadCount=" + reviewReadCount + "]";
+				+ renameFileName + ", reviewDate=" + reviewDate + ", reviewReadCount=" + reviewReadCount
+				+ ", courseType=" + courseType + "]";
 	}
 	
 }
