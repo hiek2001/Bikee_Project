@@ -1,27 +1,25 @@
-package lent.controller;
+package notice.model.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lent.model.service.LentService;
-
+import notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class LentSelect
+ * Servlet implementation class NoticeCommentDeleteServlet
  */
-@WebServlet("/lent/lentSelect")
-public class LentSelect extends HttpServlet {
+@WebServlet("/notice/noticeCommentDelete")
+public class NoticeCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LentSelect() {
+    public NoticeCommentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +28,32 @@ public class LentSelect extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int noticeNo = Integer.parseInt(request.getParameter("h_noticeNo"));
+		System.out.println(noticeNo);
+		int commentNo = Integer.parseInt(request.getParameter("h_CommentNo"));
+		System.out.println(commentNo);
 		
-		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
 		
-		request.setAttribute("methodNum", methodNum);
+		int result = new NoticeService().deleteNoticeComment(commentNo);
 		
-		request.getRequestDispatcher("/lentPage.jsp").forward(request, response);
+		String msg = "";
+		String loc="/notice/noticeList";
+	
+		
+		if(result >0) {
+			msg="공지사항 삭제 완료!!";
+			new NoticeService().commentCountMinus(noticeNo);
+			
+		}else {
+			msg="공지사항 삭제 실패!!";
+			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc); 
+		
+		request.getRequestDispatcher("/views/common/communityMsg.jsp").forward(request,response);
+		
+	
 	}
 
 	/**

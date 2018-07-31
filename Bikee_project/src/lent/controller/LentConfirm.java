@@ -33,7 +33,6 @@ public class LentConfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//은별추가
 		String merchantUid = request.getParameter("merchantUid");
 		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
 		String bikeId = request.getParameter("bikeId");		
@@ -45,6 +44,7 @@ public class LentConfirm extends HttpServlet {
 		
 		LentBike lb = new LentBike(merchantUid,methodNum,bikeId,buyDate,returnDate,buyerId,shopId,lentPrice);
 		
+		
 		// DB저장
 		new LentService().insertLent(lb);
 		
@@ -54,8 +54,6 @@ public class LentConfirm extends HttpServlet {
 		// 이용권 이름, 대여소 이름 불러오기. End.jsp 출력용
 		PurchaseTicket selectPt= new LentService().selectPurchaseTicket(methodNum);
 		Shop selectShop = new LentService().selectShop(shopId);
-		
-		System.out.println("confirm.jsp selectLb = " + selectLb);
 		
 		request.setAttribute("selectLb", selectLb);
 		request.setAttribute("selectPt", selectPt);

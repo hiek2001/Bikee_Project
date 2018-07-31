@@ -21,10 +21,12 @@
 </style>
 <script>
 	function fn_update(){
-		location.href="<%=request.getContextPath()%>/views/community/communityUpdate.jsp?writer=<%=c.getCommunityWriter()%>&title=<%=c.getCommunityTitle()%>&content=<%=c.getCommunityContent() %>&no=<%=c.getCommunityNo()%>";
+		$(".update").attr("action","<%=request.getContextPath()%>/views/community/communityUpdate.jsp");
+		return true;
 	}
 	function fn_delete(){
-		location.href="<%=request.getContextPath()%>/community/communityDelete?no=<%=c.getCommunityNo()%>";
+		$(".update").attr("action","<%=request.getContextPath()%>/community/communityDelete");
+		return true;
 	}
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/community/communityList";
@@ -45,16 +47,23 @@
 			   		<div class="row">
 			   			<div class="text-center sub_title">Content Impormation</div>
 			   		</div>
+			   		<form action="" class="update" method="post">
 			   		<div class="row" style="padding-top:40px">
 			   			<div class="col-lg-3"></div>
-			   			<div class="col-lg-3" style="border:1px solid #1E68CB; height:40px; padding-top:7px;color:#1E68CB" ><span style="font-weight:bold">NO.</span> <%=c.getCommunityNo() %></div>
-			   			<div class="col-lg-3" style="border:1px solid #1E68CB;height:40px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">WRITER</span> <%=c.getCommunityWriter() %></div>
+			   			<div class="col-lg-3" style="border:1px solid #1E68CB; height:40px; padding-top:7px;color:#1E68CB" ><span style="font-weight:bold">NO.</span> <%=c.getCommunityNo() %>
+			   				<input type="hidden" name="no" value="<%=c.getCommunityNo() %>"/>
+			   			</div>
+			   			<div class="col-lg-3" style="border:1px solid #1E68CB;height:40px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">WRITER</span> <%=c.getCommunityWriter() %>
+							<input type="hidden" name="writer" value="<%=c.getCommunityWriter() %>"/>			   			
+			   			</div>
 			   			<div class="col-lg-3"></div>
 			   		</div>
 			   		
 			   		<div class="row" style="padding-top:40px">
 			   			<div class="col-lg-3"></div>
-			   			<div class="col-lg-6 div_title"><span style="font-weight:bold">TITLE</span> <%=c.getCommunityTitle() %></div>
+			   			<div class="col-lg-6 div_title"><span style="font-weight:bold">TITLE</span> <%=c.getCommunityTitle() %>
+			   				<input type="hidden" name="title" value="<%=c.getCommunityTitle() %>"/>	
+			   			</div>
 			   			<div class="col-lg-3"></div>
 			   		</div>
 			   		
@@ -67,15 +76,17 @@
 			    				</p>
 			    			<br><br>
 			   				<%=c.getCommunityContent() %>
+			   				<input type="hidden" name="content" value="<%=c.getCommunityContent() %>"/>	
 			   			</div>
 			   			<%} else{%>
 			    			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:250px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span><br><br>
 			   				<%=c.getCommunityContent() %>
+			   				<input type="hidden" name="content" value="<%=c.getCommunityContent() %>"/>	
 			   				</div>
 			    			<%} %>
 			   			<div class="col-lg-3"></div>
 			   		</div>
-			   		
+			   	
 			   		
 			   		<%if(memberLoggedIn!=null) {%> 
 			   			<%if(memberLoggedIn.getMem_id().equals("admin")){ %>
@@ -93,13 +104,14 @@
 			   		<div class="row" style="padding-top:40px;padding-bottom:100px">
 			   			<div class="col-lg-3"></div>
 			   			<div class="col-lg-6">
-			   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn1" onclick="fn_update()">update</button></div>
-			   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
+			   				<div class="col-lg-3"><button type="submit" class="btn btn-primary" id="btn1" onclick="fn_update()">update</button></div>
+			   				<div class="col-lg-3"><button type="submit" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
 			   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn3" onclick="fn_cancel()">cancel</button></div>
 			   				<div class="col-lg-3"></div>
 			   			</div>
 			   			<div class="col-lg-3"></div>
 			   		</div>
+			   	</form>
 			   			<%} else{%>
 			   				<div class="row" style="padding-top:40px;padding-bottom:100px"></div>
 			   			<%} %>

@@ -20,13 +20,17 @@
 </style>
 <script>
 	function fn_update(){
-		location.href="<%=request.getContextPath()%>/views/review/reviewUpdate.jsp?writer=<%=r.getReviewWriter()%>&title=<%=r.getReviewTitle()%>&content=<%=r.getReviewContent() %>&no=<%=r.getReviewNo()%>";
+		$(".update").attr("action","<%=request.getContextPath()%>/views/review/reviewUpdate.jsp");
+		return true;
+		
 	}
 	function fn_delete(){
-		location.href="<%=request.getContextPath()%>/reviewDelete?no=<%=r.getReviewNo()%>";
+		$('.update').attr("action","<%=request.getContextPath()%>/reviewDelete");
+		return true;
 	}
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/reviewList";
+
 	}
 </script>
 <section>
@@ -44,16 +48,23 @@
 			   		<div class="row">
 			   			<div class="text-center sub_title">Content Impormation</div>
 			   		</div>
+			   		<form action="" class="update" method="post">
 			   		<div class="row" style="padding-top:40px">
 			   			<div class="col-lg-3"></div>
-			   			<div class="col-lg-3" style="border:1px solid #1E68CB; height:40px; padding-top:7px;color:#1E68CB" ><span style="font-weight:bold">NO.</span> <%=r.getReviewNo()%></div>
-			   			<div class="col-lg-3" style="border:1px solid #1E68CB;height:40px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">WRITER</span> <%=r.getReviewWriter() %></div>
+			   			<div class="col-lg-3" style="border:1px solid #1E68CB; height:40px; padding-top:7px;color:#1E68CB" ><span style="font-weight:bold">NO.</span><%=r.getReviewNo()%>
+			   				<input type="hidden"name="no" value="<%=r.getReviewNo()%>"/>
+			   			</div>
+			   			<div class="col-lg-3" style="border:1px solid #1E68CB;height:40px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">WRITER</span> <%=r.getReviewWriter() %>
+			   				<input type="hidden" name="writer" value="<%=r.getReviewWriter() %>"/>
+			   			</div>
 			   			<div class="col-lg-3"></div>
 			   		</div>
 			   		
 			   		<div class="row" style="padding-top:40px">
 			   			<div class="col-lg-3"></div>
-			   			<div class="col-lg-6 div_title"><span style="font-weight:bold">TITLE</span> <%=r.getReviewTitle() %></div>
+			   			<div class="col-lg-6 div_title"><span style="font-weight:bold">TITLE</span><%=r.getReviewTitle() %>
+			   				<input type="hidden" name="title" value="<%=r.getReviewTitle() %>"/>
+			   			</div>
 			   			<div class="col-lg-3"></div>
 			   		</div>
 			   		
@@ -65,11 +76,18 @@
 			    				<img style="width:450px; height:300px"src='<%=request.getContextPath() %>/upload/review/<%=r.getOriginalFileName()%>' width='16px'>
 			    				</p>
 			    			<br><br>
-			   				<%=r.getReviewContent() %>
+			    			<p style="font-weight:bold">[<%=r.getCourseType()%>]</p>
+			    			<input type="hidden" name="course" value="<%=r.getCourseType()%>"/>
+			   				<p name="content" ><%=r.getReviewContent() %></p>
+			   				<input type="hidden" name="content" value="<%=r.getReviewContent() %>"/>
+			   				
 			   			</div>
 			   			<%} else{%>
 			    			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:250px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span><br><br>
-			   				<%=r.getReviewContent() %>
+			   				<p style="font-weight:bold" >[<%=r.getCourseType()%>]</p>
+			   				<input type="hidden" name="course" value="<%=r.getCourseType()%>"/>
+			   				<p name="content"><%=r.getReviewContent() %></p>
+			   				<input type="hidden" name="content" value="<%=r.getReviewContent() %>"/>
 			   				</div>
 			    			<%} %>
 			   			<div class="col-lg-3"></div>
@@ -92,13 +110,14 @@
 			   		<div class="row" style="padding-top:40px;padding-bottom:100px">
 			   			<div class="col-lg-3"></div>
 			   			<div class="col-lg-6">
-			   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn1" onclick="fn_update()">update</button></div>
-			   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
+			   				<div class="col-lg-3"><button type="submit" class="btn btn-primary" id="btn1" onclick="fn_update()">update</button></div>
+			   				<div class="col-lg-3"><button type="submit" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
 			   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn3" onclick="fn_cancel()">cancel</button></div>
 			   				<div class="col-lg-3"></div>
 			   			</div>
 			   			<div class="col-lg-3"></div>
 			   		</div>
+			   		</form>
 			   			<%} else{%>
 			   				<div class="row" style="padding-top:40px;padding-bottom:100px"></div>
 			   			<%} %>

@@ -69,6 +69,7 @@ public class ReviewDAO {
 				r.setRenameFileName(rs.getString("review_renamed_filename"));
 				r.setReviewDate(rs.getDate("review_date"));
 				r.setReviewReadCount(rs.getInt("review_readcount"));
+				r.setCourseType(rs.getString("review_course_type"));
 				list.add(r);
 			}
 		}catch(Exception e) {
@@ -118,6 +119,7 @@ public class ReviewDAO {
 				r.setRenameFileName(rs.getString("review_renamed_filename"));
 				r.setReviewDate(rs.getDate("review_date"));
 				r.setReviewReadCount(rs.getInt("review_readcount"));
+				r.setCourseType(rs.getString("review_course_type"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -138,6 +140,7 @@ public class ReviewDAO {
 			pstmt.setString(3, r.getReviewContent());
 			pstmt.setString(4, r.getOriginalFileName());
 			pstmt.setString(5, r.getRenameFileName());
+			pstmt.setString(6, r.getCourseType());
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -156,7 +159,8 @@ public class ReviewDAO {
 			pstmt.setString(2, r.getOriginalFileName());
 			pstmt.setString(3, r.getRenameFileName());
 			pstmt.setString(4, r.getReviewContent());
-			pstmt.setInt(5, r.getReviewNo());
+			pstmt.setString(5, r.getCourseType());
+			pstmt.setInt(6, r.getReviewNo());
 			
 			result =pstmt.executeUpdate();
 		}catch(Exception e) {
