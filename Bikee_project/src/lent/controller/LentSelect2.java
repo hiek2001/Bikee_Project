@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,7 +60,6 @@ public class LentSelect2 extends HttpServlet {
 		//시간받아오기
 		String bTime = (String)request.getParameter("bTime");
 		String rTime = (String)request.getParameter("rTime");
-		
 		//날짜+시간 합침
 		String buyDate = bDate+" "+bTime;
 		String returnDate =rDate+" "+rTime;

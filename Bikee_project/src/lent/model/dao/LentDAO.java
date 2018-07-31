@@ -58,14 +58,14 @@ public class LentDAO {
 			java.util.Date returnDate = formatter2.parse(lb.getReturnDate());
 			Date sql_returnDate = new Date(returnDate.getTime());
 			pstmt.setDate(5, sql_returnDate);
-/*			SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+			/*SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 			java.util.Date buyDate = format.parse(lb.getBuyDate());
 			Date sql_buyDate = new Date(buyDate.getTime());
 			pstmt.setDate(4, sql_buyDate);
 			SimpleDateFormat format2 = new SimpleDateFormat("yyyy-mm-dd");
 			java.util.Date returnDate = format2.parse(lb.getReturnDate());
-			Date sql_returnDate = new Date(returnDate.getTime());*/
-			pstmt.setDate(5, sql_returnDate);
+			Date sql_returnDate = new Date(returnDate.getTime());
+			pstmt.setDate(5, sql_returnDate);*/
 			pstmt.setString(6, lb.getBuyerId());
 			pstmt.setString(7, lb.getShopId());
 			//String형 int변환
