@@ -35,7 +35,7 @@ public class LentSelect extends HttpServlet {
 		
 		request.setAttribute("methodNum", methodNum);
 		
-		request.getRequestDispatcher("/lentPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/lent/lentPage.jsp").forward(request, response);
 	}
 
 	/**
@@ -45,5 +45,4 @@ public class LentSelect extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
