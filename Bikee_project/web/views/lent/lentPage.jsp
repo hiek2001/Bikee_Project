@@ -3,10 +3,10 @@
     
  <%@ include file= '/views/common/header.jsp' %>
  
-<%--  <%
+ <%
 	int methodNum = (int) request.getAttribute("methodNum");
 
- %> --%>
+ %>
 <!doctype html>
 <html>
 <head>
@@ -491,4 +491,3 @@ td{ width:110px;
 </html>
 
 <%@ include file= '/views/common/footer.jsp' %>
-
