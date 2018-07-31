@@ -82,11 +82,11 @@ td {
 		</tr>
 	</table>
 	<div id="btn">
-		<% if(referer.contains("/lentSelect2")) { %>
-		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>/views/member/memberLentHistory.jsp';">확인</button>
-		<% } else { %>
-		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>/views/member/memberLentHistory.jsp';">확인</button>
+		<% if(referer.contains("/memberLentHistory")) { %>
+		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button>
 		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">구매 취소</button>
+		<% } else { %>
+		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button>
 		<% } %>
 	</div>
 </div>

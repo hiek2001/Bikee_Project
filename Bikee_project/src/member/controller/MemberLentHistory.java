@@ -34,7 +34,6 @@ public class MemberLentHistory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memId = request.getParameter("memId");
-
 		List<LentBike> list = new LentService().selectLentBikeList(memId);
 		
 		request.setAttribute("list", list);
@@ -49,5 +48,4 @@ public class MemberLentHistory extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
