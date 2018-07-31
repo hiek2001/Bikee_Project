@@ -63,6 +63,7 @@ public class ReviewFormEndServlet extends HttpServlet {
 		r.setReviewContent(content);
 		r.setOriginalFileName(origin);
 		r.setRenameFileName(rename);
+		r.setCourseType(course);
 		
 		int result = new ReviewService().insertReview(r);
 		String msg="";

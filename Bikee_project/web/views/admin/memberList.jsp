@@ -27,7 +27,7 @@ function fn_search(){
 	    padding-top:10px;margin-left:230px;margin-top:5px;width:75%;}
 </style>
 <div class="col-lg-8 main_title text-center">
-	MEMBERLIST
+	MEMBER LIST
 </div>
 <div id="memberList-container">	
 	<!-- <h4>회원 관리</h4> -->

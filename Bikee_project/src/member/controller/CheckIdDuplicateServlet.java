@@ -31,7 +31,6 @@ public class CheckIdDuplicateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String mem_id=request.getParameter("mem_id");
-		System.out.println(mem_id);
 		boolean isAble=new MemberService().checkId(mem_id);
 		request.setAttribute("isAble", isAble);
 		request.setAttribute("mem_id", mem_id);

@@ -53,10 +53,10 @@ public class MemberService {
 		return result;
 	}
 	
-	public Member findId(String findPhone)
+	public Member findId(String findEmail)
 	{
 		Connection conn=getConnection();
-		Member m=new MemberDAO().findId(conn,findPhone);
+		Member m=new MemberDAO().findId(conn,findEmail);
 		close(conn);
 		return m;
 	}

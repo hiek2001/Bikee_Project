@@ -130,7 +130,7 @@ public class NoticeService {
 			rollback(conn);
 		}
 		close(conn);
-
+		
 		return result;
 	}
 
@@ -145,8 +145,49 @@ public class NoticeService {
 	}
 
 
+	public int deleteNoticeComment(int commentNo) {
+		System.out.println("deleteNoticeComment - Service");
+		Connection conn= getConnection();
+		int result = new NoticeDAO().deleteNoticeComment(conn,commentNo);
+		System.out.println("123");
+		if(result>0){
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 
+	public int commentCountMinus(int noticeNo) {
+		Connection conn =getConnection();
+		
+		int result = new NoticeDAO().commentCountMinus(conn,noticeNo);
+		
+		if(result>0){
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+		
+	}
 
-
-
+	public int commentMinusCount(int noticeNo) {
+		Connection conn =getConnection();
+		
+		
+		int count = new NoticeDAO().commentMinusCount(conn,noticeNo);
+		if(count>0){
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return count;
+	}
 }

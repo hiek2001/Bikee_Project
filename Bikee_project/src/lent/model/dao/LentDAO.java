@@ -8,8 +8,12 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import bike.model.vo.BikePrice;
@@ -190,5 +194,99 @@ public class LentDAO {
 		}
 		
 		return s;
+	}
+	
+	// MemberLentHistory Servlet에서 전체 리스트 출력
+	public List<LentBike> selectLentBikeList(Connection conn, String memId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectLentBikeList");
+		ArrayList<LentBike> list = new ArrayList();
+		LentBike lb = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				lb = new LentBike();
+				
+				lb.setMerchantUid(rs.getString("merchant_uid"));
+				lb.setMethodNum(rs.getInt("method_num"));
+				lb.setBikeId(rs.getString("bike_id"));
+				lb.setBuyDate(rs.getString("buy_date"));
+				lb.setReturnDate(rs.getString("return_date"));
+				lb.setBuyerId(rs.getString("buyer_id"));
+				lb.setShopId(rs.getString("shop_id"));
+				lb.setLentPrice(rs.getInt("lent_price"));
+				
+				list.add(lb);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public List<LentBike> memberPayList(Connection conn,int cPage,int numPerPage){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("memberPayList");
+		ArrayList<LentBike> list = new ArrayList();
+		LentBike lb = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				lb = new LentBike();
+				
+				lb.setMerchantUid(rs.getString("merchant_uid"));
+				lb.setMethodNum(rs.getInt("method_num"));
+				lb.setBikeId(rs.getString("bike_id"));
+				lb.setBuyDate(rs.getString("buy_date"));
+				lb.setReturnDate(rs.getString("return_date"));
+				lb.setBuyerId(rs.getString("buyer_id"));
+				lb.setShopId(rs.getString("shop_id"));
+				lb.setLentPrice(rs.getInt("lent_price"));
+				
+				list.add(lb);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} 
+			close(rs);
+			close(pstmt);
+		
+		return list;
+	}
+	
+	public int payListCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		
+		int result=0;
+		try {
+				String sql = prop.getProperty("selectCommunityCount");
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		close(rs);
+		close(pstmt);
+		return result;
 	}
 }

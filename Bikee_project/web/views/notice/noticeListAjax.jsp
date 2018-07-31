@@ -5,8 +5,8 @@
 
 
 	        
-<legend class="glyphicon glyphicon-flash">공지사항</legend>	           
-	<div class="notice-container"  >
+<legend class="glyphicon glyphicon-flash" >공지사항</legend>	           
+	<div class="notice-container"  style="background-color: #F3F3F3;" >
 		   <table id="tickets" class="table table-hover">
 		   <thead>
 			      <tr>

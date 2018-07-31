@@ -3,7 +3,9 @@
     
  <%@ include file= '/views/common/header.jsp' %>
  
+
 <%
+
 	int methodNum = (int) request.getAttribute("methodNum");
 
  %>
@@ -12,6 +14,7 @@
 <head>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
 
 <title>lentPage</title>
 		<!-- 공통 -->
@@ -72,10 +75,16 @@
 
 
 
+
+
 <style>
+body {font-family:'Roboto';}
+
 td{ width:110px;
 	height:110px}
 </style>
+
+
 
 
 </head>
@@ -87,8 +96,11 @@ td{ width:110px;
 	<div class="1">
 		<div class="col-md-12">
 			<div class="jumbotron">
+
 				<h2>이용권 구매</h2>
 				<p>원하는 날짜, 시간을 선택하여 자유롭게 바이키를 즐길 수 있습니다.</p>
+
+
 			</div>
 			<br>
 			<br>
@@ -109,7 +121,9 @@ td{ width:110px;
 								<h6>경기도 성남시</h6>
 							</p>
 							<p>	
+
 								<input type="radio" name="shopId" id="shopId" value="tc_01" checked/>
+
 								<a href="#sungnam" >click</a>
 							</p>
 						</div>
@@ -126,7 +140,9 @@ td{ width:110px;
 								<h6>서울시 동작구</h6>							
 							</p>
 							<p>
+
 							<input type="radio" name="shopId" id="shopId" value="no_02" checked/>
+
 								<a href="#nono" >click</a>
 							</p>
 						</div>
@@ -143,7 +159,9 @@ td{ width:110px;
 								<h6>인천시 소래포구</h6>
 							</p>
 							<p>
+
 							<input type="radio" name="shopId" id="shopId" value="ic_03" checked/>
+
 								<a href="#inin" >click</a>
 							</p>
 						</div>
@@ -160,7 +178,9 @@ td{ width:110px;
 								<h6>경기도 양평시</h6>
 							</p>
 							<p>
+
 							<input type="radio" name="shopId" id="shopId" value="yp_04" checked/>
+
 								<a href="#yang" >click</a>
 							</p>
 						</div>
@@ -177,7 +197,9 @@ td{ width:110px;
 								<h6>서울시 송파구</h6>
 							</p>
 							<p>
+
 								<input type="radio" name="shopId" id="shopId" value="gs_05" checked/>
+
 								<a href="#jamsil" >click</a>
 							</p>
 						</div>
@@ -194,12 +216,15 @@ td{ width:110px;
 								<h6>서울시 마포구</h6>
 							</p>
 							<p>
+
 								<input type="radio" name="shopId" id="shopId" value="ha_06" checked/>
+
 								<a href="#mapo" >click</a>
 							</p>
 						</div>
 					</div>
 				</div>
+
 				
 				<pre>
 				
@@ -550,10 +575,12 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm210"/>
 				<a href ="#time">click</a>
 				</td>
+
 				</tr>
 				
 				</table>
 				
+
 				<pre>
 				
 				
@@ -724,10 +751,11 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm310"/>
 				<a href ="#time">click</a>
 				</td>
+
 				</tr>
 				
 				</table>
-				
+
 				<pre>
 				
 				
@@ -740,10 +768,12 @@ td{ width:110px;
 <!--양평북한강점 자전거 섹터 yp_04-->
 				<a id='yang'></a>				
 				<h3>자전거 선택</h3><p>양평북한강점 BIKEEBOX</p>
+
 				<hr>				
 				
 				<table class="yp" id = 'yang'>
 				<tr>
+
 				<td>
 				<img src ="<%=request.getContextPath() %>/images/button/bmx_01.jpg" width="100px" height="100px" id = 'a1'/>
 				<input type="radio" name="bikeId" id="bikeId" value="bmx401"/>
@@ -899,10 +929,11 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm410"/>
 				<a href ="#time">click</a>
 				</td>
+
 				</tr>
 				
 				</table>
-				
+
 				<pre>
 				
 				
@@ -1072,10 +1103,12 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm510"/>
 				<a href ="#time">click</a>
 				</td>
+
 				</tr>
 				
 				</table>
 				
+
 				<pre>
 				
 				
@@ -1087,10 +1120,12 @@ td{ width:110px;
 <!--하늘공원점 자전거 섹터 ha_06-->
 				<a id='mapo'></a>				
 				<h3>자전거 선택</h3><p>하늘공원점 BIKEEBOX</p>
+
 				<hr>				
 								
 				<table class="ha" id = 'mapo'>
 				<tr>
+
 				<td>
 				<img src ="<%=request.getContextPath() %>/images/button/bmx_01.jpg" width="100px" height="100px" id = 'a1'/>
 				<input type="radio" name="bikeId" id="bikeId" value="bmx601"/>
@@ -1276,6 +1311,7 @@ td{ width:110px;
 				<input type='hidden' name ='lentPrice' value='10000'> -->
 				
 				<input type="hidden" name="methodNum" value="2">
+
 				<input type="submit" value="결제"  onclick="fn_callingJsp()">
 				<input type="reset" value="취소">
 				
@@ -1286,7 +1322,9 @@ td{ width:110px;
 			    <script src="js/jquery.min.js"></script>
 			    <script src="js/bootstrap.min.js"></script>
 			    <script src="js/scripts.js"></script>
+
 			
+
   </body>
 </html>
 

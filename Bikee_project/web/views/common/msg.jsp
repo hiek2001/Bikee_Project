@@ -9,7 +9,6 @@
 <%
    String msg = (String)request.getAttribute("msg");
    String loc = (String)request.getAttribute("loc");
-   String script = (String)request.getAttribute("script");  /* 보류 */
    String referer = (String)request.getAttribute("referer");
    
 %>
@@ -17,7 +16,6 @@
    <script>
    	
 	location.href = "<%=referer %>";
-	<%= script != null ? script : "" %>;
    </script>
 </body>
 </html>

@@ -187,7 +187,7 @@
 				/* $('#mem_id').focus(); */
 				return false;
 			}
-			else if($('#mem_id').val().trim()=="")
+			else if($('#mem_id').val().trim()==""||$('#mem_id').val()==null)
 			{
 				alert("아이디를 4자 이상 입력해주세요.");
 				
@@ -206,7 +206,7 @@
 			
 		 	
 		 	//패스워드 검사
-			 if($('#mem_pw').val().trim()==""){
+			 if($('#mem_pw').val().trim()==""||$('#mem_pw').val()==null){
 				alert("패스워드를 입력하여 주시기 바랍니다.");
 				
 				divPw.removeClass("has-success");
@@ -219,7 +219,7 @@
 				
 			}
 			//패스워드 확인
-			if($('#mem_pw_2').val().trim()==""){
+			if($('#mem_pw_2').val().trim()==""||$('#mem_pw_2').val()==null){
 				alert("패스워드 확인을 입력하여 주시기 바랍니다.");
 				
 				divPwCheck.removeClass("has-success");
@@ -233,6 +233,7 @@
 			} 
 			//패스워드 비교
 			if($('#mem_pw').val()!=$('#mem_pw_2').val() || $('#mem_pw_2').val().trim()==""){
+				
 				alert("패스워드가 일치하지 않습니다.");
 				
 				divPwCheck.removeClass("has-success");
@@ -246,7 +247,7 @@
 			}
 			
 			//이름
-			if($('#mem_name').val().trim()==""){
+			if($('#mem_name').val().trim()==""||$('#mem_name').val()==null){
 				alert("이름을 입력하여 주시기 바랍니다.");
 				
 				divName.removeClass("has-success");
@@ -259,7 +260,7 @@
 				
 			}
 			//생년월일
-			if($('#mem_birthdate').val().trim()==""){
+			if($('#mem_birthdate').val().trim()==""||$('#mem_birthdate').val()==null){
 				alert("생년월일을 입력하여 주시기 바랍니다.");
 				
 				divBirthDate.removeClass("has-success");
@@ -272,7 +273,7 @@
 				
 			}
 			//전화번호
-			if($('#mem_phone').val().trim()==""){
+			if($('#mem_phone').val().trim()==""||$('#mem_phone').val()==null){
 				alert("전화번호를 입력하여 주시기 바랍니다.");
 				
 				divPhone.removeClass("has-success");
@@ -285,7 +286,7 @@
 				
 			}
 			//이메일
-			if($('#mem_email').val().trim()==""){
+			if($('#mem_email').val().trim()==""||$('#mem_email').val()==null){
 				alert("이메일을 입력하여 주시기 바랍니다.");
 				
 				divEmail.removeClass("has-success");
@@ -298,7 +299,7 @@
 				
 			}
 			//주소
-			if($('#mem_addr').val().trim()==""){
+			if($('#mem_addr').val().trim()==""||$('#mem_addr').val()==null){
 				alert("주소을 입력하여 주시기 바랍니다.");
 				
 				divAddr.removeClass("has-success");
@@ -312,6 +313,23 @@
 			} 
 			return true;
 	 }
+
+$(function(){
+	$('#openInChk').click(function(event){
+		 if($('#mem_id').val().trim()==""||!($('#mem_id').val()))
+		{
+			 alert("아이디를 입력해주시길 바랍니다.");
+			 divId.removeClass("has-success");
+			 divId.addClass("has-error");
+			 $('#mem_id').focus();
+		}
+		 else {
+			 divId.removeClass("has-error");
+			 divId.addClass("has-success");
+		 }
+	 });
+});	 
+	 
 	 
 	
  
