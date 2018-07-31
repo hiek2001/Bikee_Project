@@ -3,12 +3,11 @@
 <%@ page import="lent.model.vo.LentBike, bike.model.vo.Bike, shop.model.vo.Shop, bike.model.vo.BikePrice" %>
 <%
 	int methodNum = (int) request.getAttribute("methodNum");
+	String shopId = (String) request.getAttribute("shopId");
 	String bikeId = (String) request.getAttribute("bikeId");
 	String buyDate =  (String) request.getAttribute("buyDate");
 	String returnDate = (String) request.getAttribute("returnDate");
-	String shopId = (String) request.getAttribute("shopId");
-	int lentPrice = 100;
-	int realLentPrice = (int)request.getAttribute("lentPrice");
+	int lentPrice = (int)request.getAttribute("lentPrice");
 %>
 <%@ include file= '/views/common/header.jsp' %>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script> <!-- 아임포트 -->

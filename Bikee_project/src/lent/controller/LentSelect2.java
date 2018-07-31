@@ -37,12 +37,15 @@ public class LentSelect2 extends HttpServlet {
 		
 		
 		//데이터 받아오기
-		String merchantUid = (String)request.getParameter("merchantUid");
+		/*String merchantUid = (String)request.getParameter("merchantUid");*/
+		/*int lentPrice = Integer.parseInt(request.getParameter("lentPrice"));*/
+		/*String buyerId = (String)request.getParameter("buyerId");*/
 		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
-		String bikeId = (String) request.getParameter("bikeId");		
-		String buyerId = (String)request.getParameter("buyerId");
+		
 		String shopId = (String) request.getParameter("shopId");
-		int lentPrice = Integer.parseInt(request.getParameter("lentPrice"));	
+		String bikeId = (String) request.getParameter("bikeId");		
+		
+		
 		
 		//대여료 계산하기 위해 필요한 bike_type -> price
 		//고유 ID를 받아서 sql join 이용 하여 자전거 가격을 찾아옴 b = bikeId의 가격
@@ -67,55 +70,62 @@ public class LentSelect2 extends HttpServlet {
 		
 				
 
-				//받은 대여/반납 시간을 db에 삽입하기 위해  lentBike vo객체에 있는 변수명과 동일하게 붙여줌.
-				//대여시간에서 반납시간의 분 차이를 구하여 대여로를 계싼하는 로직
-				String date2 = buyDate;
-				String date1 = returnDate;
-				 
-				// String -> Date 로 캐스팅하면서 생기는 예외 발생으로 예외처리
-				    try{ 
-				        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				        // String date1, date2 를 Date로 parsing하는 과정
-				        Date FirstDate = format.parse(date1);
-				        Date SecondDate = format.parse(date2);
-				        //parse 후 time을 가져옴
-				        long FirstDateTime = FirstDate.getTime();
-				        long SecondDateTime = SecondDate.getTime();
-				        //분으로 대여시간 계산
-				        long minute = (FirstDateTime-SecondDateTime)/60000;
-				        
-				        System.out.println(minute+"분 대여함");
-				        
-				        //분단위기때문에 60으로 나눠준 뒤 계산
-				        System.out.println("대여료: "+(int)(minute/60*b.getPrice()));
-				        
-/*				        //서블릿에서 계산 후 최종 결제값이 옮겨짐
-				        int lentPrice = (int)(minute/60*b.getPrice());
-				        
-				        request.setAttribute("lentPrice", lentPrice);*/
-				    	}
-				        catch(ParseException e)
-				        {
-				            // 예외 처리
-				        }
+		//받은 대여/반납 시간을 db에 삽입하기 위해  lentBike vo객체에 있는 변수명과 동일하게 붙여줌.
+		//대여시간에서 반납시간의 분 차이를 구하여 대여로를 계싼하는 로직
+		String date2 = buyDate;
+		String date1 = returnDate;
+		 
+		// String -> Date 로 캐스팅하면서 생기는 예외 발생으로 예외처리
+		    try{ 
+		        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		        // String date1, date2 를 Date로 parsing하는 과정
+		        Date FirstDate = format.parse(date1);
+		        Date SecondDate = format.parse(date2);
+		        //parse 후 time을 가져옴
+		        long FirstDateTime = FirstDate.getTime();
+		        long SecondDateTime = SecondDate.getTime();
+		        //분으로 대여시간 계산
+		        long minute = (FirstDateTime-SecondDateTime)/60000;
+		        
+		        System.out.println(minute+"분 대여함");
+		        
+		        //분단위기때문에 60으로 나눠준 뒤 계산
+		        System.out.println("대여료: "+(int)(minute/60*b.getPrice()));
+		        
+		        //서블릿에서 계산 후 최종 결제값이 옮겨짐
+		        int lentPrice = (int)(minute/60*b.getPrice());
+		        
+		        request.setAttribute("lentPrice", lentPrice);
+		        request.setAttribute("methodNum", methodNum);		
+				request.setAttribute("shopId", shopId);
+				request.setAttribute("bikeId", bikeId);		
+				request.setAttribute("buyDate", buyDate);
+				request.setAttribute("returnDate", returnDate);
+		        request.getRequestDispatcher("/views/lent/lentConfirm.jsp").forward(request, response);
+		    	}
+		        catch(ParseException e)
+		        {
+		            // 예외 처리
+		        }
 
 				
-		//jdbc 작업 : 결제완료되면  할 부분, 시험용으로 DB삽입되는지 넣어봄
+		/*//jdbc 작업 : 결제완료되면  할 부분, 시험용으로 DB삽입되는지 넣어봄
 		LentBike lb = new LentBike(merchantUid,methodNum,bikeId,buyDate,returnDate,buyerId,shopId,lentPrice);
 		System.out.println(lb);
 	
 		//DB입력  -->결제완료되면  할 부분, 시험용으로 DB삽입되는지 넣어봄
-		int result = new LentService().insertLent(lb);
+		int result = new LentService().insertLent(lb);*/
 		
 
 
-		request.setAttribute("methodNum", methodNum);		
+		/*request.setAttribute("methodNum", methodNum);		
+		request.setAttribute("shopId", shopId);
 		request.setAttribute("bikeId", bikeId);		
 		request.setAttribute("buyDate", buyDate);
 		request.setAttribute("returnDate", returnDate);
-		request.setAttribute("shopId", shopId);
 		
-		request.getRequestDispatcher("/views/lent/lentConfirm.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/views/lent/lentConfirm.jsp").forward(request, response);*/
 	}
 
 	/**

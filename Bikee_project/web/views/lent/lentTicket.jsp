@@ -18,7 +18,7 @@
 		<div class="col-sm-6">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
-					<h1>정기권_테스트</h1>
+					<h1>이용권 구매</h1>
 				</div>
 				<div class="panel-body">
 					
@@ -43,7 +43,7 @@
 		<div class="col-sm-6">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
-					<h1>일일권</h1>
+					<h1>선물하기</h1>
 				</div>
 				<div class="panel-body">
 				</div>

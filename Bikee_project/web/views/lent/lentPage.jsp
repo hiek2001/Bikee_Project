@@ -19,11 +19,14 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-desktop.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<!-- 타임피커 -->
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" />
+		
 
+<!-- 서블릿  호출 -->
+<script>
+	function fn_callingJsp() {
+		location.href="<%= request.getContextPath() %>/lent/lentSelect2"
+	}
+</script>
 
 <!-- 자전거버튼이미지 클릭 시 이미지 변경 -->
 <script type='text/javascript'>
@@ -68,13 +71,6 @@
 </script>
 
 
-<!-- 서블릿  호출 -->
-<script>
-	function fn_callingJsp() {
-		location.href="<%= request.getContextPath() %>/lent/lentSelect2"
-	}
-</script>
-
 
 <style>
 td{ width:110px;
@@ -91,8 +87,8 @@ td{ width:110px;
 	<div class="1">
 		<div class="col-md-12">
 			<div class="jumbotron">
-				<h2>정기권 결제</h2>
-				<p>정기권을 결제하여 자유롭게 바이키를 즐길 수 있습니다.</p>
+				<h2>이용권 구매</h2>
+				<p>원하는 날짜, 시간을 선택하여 자유롭게 바이키를 즐길 수 있습니다.</p>
 			</div>
 			<br>
 			<br>
@@ -1275,11 +1271,11 @@ td{ width:110px;
 		 		<hr>	
 		 		</div>					
 								
-
-				<input type="hidden" name="methodNum" value="2">
-				<input type='hidden' name ='merchantUid' value='uid0039dateTest6'>
+				<!-- <input type='hidden' name ='merchantUid' value='uid0039dateTest6'>
 				<input type='hidden' name ="buyerId" value ='eunbyul'>
-				<input type='hidden' name ='lentPrice' value='10000'>
+				<input type='hidden' name ='lentPrice' value='10000'> -->
+				
+				<input type="hidden" name="methodNum" value="2">
 				<input type="submit" value="결제"  onclick="fn_callingJsp()">
 				<input type="reset" value="취소">
 				
