@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,20 +42,34 @@ public class LentDAO {
 		int result = 0;
 		String sql = prop.getProperty("insertLent3");
 		
+		
+		/*DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+		Date date = (Date)formatter.parse(lb.getBuyDate());
+		Date sql_buyDate = new Date(buyDate.getTime());
+		pstmt.setDate(4, sql_buyDate);*/
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, lb.getMerchantUid());
 			pstmt.setInt(2, lb.getMethodNum());
 			pstmt.setString(3, lb.getBikeId());
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			java.util.Date buyDate = formatter.parse(lb.getBuyDate());
+			Date sql_buyDate = new Date(buyDate.getTime());
+			pstmt.setDate(4, sql_buyDate);
+			DateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			java.util.Date returnDate = formatter2.parse(lb.getReturnDate());
+			Date sql_returnDate = new Date(returnDate.getTime());
+			pstmt.setDate(5, sql_returnDate);
+			/*SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 			java.util.Date buyDate = format.parse(lb.getBuyDate());
 			Date sql_buyDate = new Date(buyDate.getTime());
 			pstmt.setDate(4, sql_buyDate);
 			SimpleDateFormat format2 = new SimpleDateFormat("yyyy-mm-dd");
 			java.util.Date returnDate = format2.parse(lb.getReturnDate());
 			Date sql_returnDate = new Date(returnDate.getTime());
-			pstmt.setDate(5, sql_returnDate);
+			pstmt.setDate(5, sql_returnDate);*/
 			pstmt.setString(6, lb.getBuyerId());
 			pstmt.setString(7, lb.getShopId());
 			//String형 int변환

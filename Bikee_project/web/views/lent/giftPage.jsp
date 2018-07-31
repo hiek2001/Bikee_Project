@@ -3,11 +3,8 @@
     
  <%@ include file= '/views/common/header.jsp' %>
  
-
 <%
-
 	int methodNum = (int) request.getAttribute("methodNum");
-
  %>
 <!doctype html>
 <html>
@@ -15,21 +12,13 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-
 <title>lentPage</title>
 		<!-- 공통 -->
         <link rel="stylesheet" href="css/skel-noscript.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-desktop.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		
-
-<!-- 서블릿  호출 -->
-<script>
-	function fn_callingJsp() {
-		location.href="<%= request.getContextPath() %>/lent/lentSelect2"
-	}
-</script>
+	
 
 <!-- 자전거버튼이미지 클릭 시 이미지 변경 -->
 <script type='text/javascript'>
@@ -74,17 +63,61 @@
 </script>
 
 
+<!-- 서블릿  호출 -->
+<script>
+	function fn_callingJsp() {
+		location.href="<%= request.getContextPath() %>/lent/lentSelect2"
+	}
+</script>
+
+<!-- 받을회원 휴대폰번호 검색 -->
+<script>
+	function fn_selectMem(){
+		location.href="<%=request.getContextPath()%>/gift/giftSelectMemPhone"
+	}
+
+</script>
+<script type='text/javascript'>
+
+$("#selectPhone").keyup(function() {
+	alert("낭녕");
+	/* var 
+	function autoHypenPhone(str){
+		  str = str.replace(/[^0-9]/g, '');
+		  var tmp = '';
+		  if( str.length < 4){
+		    return str;
+		  }else if(str.length < 7){
+		    tmp += str.substr(0, 3);
+		    tmp += '-';
+		    tmp += str.substr(3);
+		    return tmp;
+		  }else if(str.length < 11){
+		    tmp += str.substr(0, 3);
+		    tmp += '-';
+		    tmp += str.substr(3, 3);
+		    tmp += '-';
+		    tmp += str.substr(6);
+		    return tmp;
+		  }else{        
+		    tmp += str.substr(0, 3);
+		    tmp += '-';
+		    tmp += str.substr(3, 4);
+		    tmp += '-';
+		    tmp += str.substr(7);
+		    return tmp;
+		  }
+		  return str;
+		} */
+	});
 
 
 
+</script>
 <style>
-body {font-family:'Roboto';}
-
 td{ width:110px;
 	height:110px}
 </style>
-
-
 
 
 </head>
@@ -96,14 +129,30 @@ td{ width:110px;
 	<div class="1">
 		<div class="col-md-12">
 			<div class="jumbotron">
-
-				<h2>이용권 구매</h2>
-				<p>원하는 날짜, 시간을 선택하여 자유롭게 바이키를 즐길 수 있습니다.</p>
-
-
+				<h2>선물하기</h2>
+				<p>가까운 사람에게 바이키 이용권을  선물해보세요.</p>
 			</div>
 			<br>
 			<br>
+			
+			<div class='container'>
+			<h3>회원 검색</h3>
+			<p>전화번호로 간단하게 선물할 회원의 가입여부를 확인할 수 있습니다.</p>
+			<input type='text' id = 'giftSelectPhone' name= 'giftSelectPhone' placeholder="핸드폰 번호 입력" maxlength="13">
+			<input type="submit" value="검색"  onclick="fn_selectMem()">
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			<h3>
 				지점선택
@@ -121,9 +170,7 @@ td{ width:110px;
 								<h6>경기도 성남시</h6>
 							</p>
 							<p>	
-
 								<input type="radio" name="shopId" id="shopId" value="tc_01" checked/>
-
 								<a href="#sungnam" >click</a>
 							</p>
 						</div>
@@ -140,9 +187,7 @@ td{ width:110px;
 								<h6>서울시 동작구</h6>							
 							</p>
 							<p>
-
 							<input type="radio" name="shopId" id="shopId" value="no_02" checked/>
-
 								<a href="#nono" >click</a>
 							</p>
 						</div>
@@ -159,9 +204,7 @@ td{ width:110px;
 								<h6>인천시 소래포구</h6>
 							</p>
 							<p>
-
 							<input type="radio" name="shopId" id="shopId" value="ic_03" checked/>
-
 								<a href="#inin" >click</a>
 							</p>
 						</div>
@@ -178,9 +221,7 @@ td{ width:110px;
 								<h6>경기도 양평시</h6>
 							</p>
 							<p>
-
 							<input type="radio" name="shopId" id="shopId" value="yp_04" checked/>
-
 								<a href="#yang" >click</a>
 							</p>
 						</div>
@@ -197,9 +238,7 @@ td{ width:110px;
 								<h6>서울시 송파구</h6>
 							</p>
 							<p>
-
 								<input type="radio" name="shopId" id="shopId" value="gs_05" checked/>
-
 								<a href="#jamsil" >click</a>
 							</p>
 						</div>
@@ -216,15 +255,12 @@ td{ width:110px;
 								<h6>서울시 마포구</h6>
 							</p>
 							<p>
-
 								<input type="radio" name="shopId" id="shopId" value="ha_06" checked/>
-
 								<a href="#mapo" >click</a>
 							</p>
 						</div>
 					</div>
 				</div>
-
 				
 				<pre>
 				
@@ -575,12 +611,10 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm210"/>
 				<a href ="#time">click</a>
 				</td>
-
 				</tr>
 				
 				</table>
 				
-
 				<pre>
 				
 				
@@ -751,11 +785,10 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm310"/>
 				<a href ="#time">click</a>
 				</td>
-
 				</tr>
 				
 				</table>
-
+				
 				<pre>
 				
 				
@@ -768,12 +801,10 @@ td{ width:110px;
 <!--양평북한강점 자전거 섹터 yp_04-->
 				<a id='yang'></a>				
 				<h3>자전거 선택</h3><p>양평북한강점 BIKEEBOX</p>
-
 				<hr>				
 				
 				<table class="yp" id = 'yang'>
 				<tr>
-
 				<td>
 				<img src ="<%=request.getContextPath() %>/images/button/bmx_01.jpg" width="100px" height="100px" id = 'a1'/>
 				<input type="radio" name="bikeId" id="bikeId" value="bmx401"/>
@@ -929,11 +960,10 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm410"/>
 				<a href ="#time">click</a>
 				</td>
-
 				</tr>
 				
 				</table>
-
+				
 				<pre>
 				
 				
@@ -1103,12 +1133,10 @@ td{ width:110px;
 				<input type="radio" name="bikeId" id="bikeId" value="nm510"/>
 				<a href ="#time">click</a>
 				</td>
-
 				</tr>
 				
 				</table>
 				
-
 				<pre>
 				
 				
@@ -1120,12 +1148,10 @@ td{ width:110px;
 <!--하늘공원점 자전거 섹터 ha_06-->
 				<a id='mapo'></a>				
 				<h3>자전거 선택</h3><p>하늘공원점 BIKEEBOX</p>
-
 				<hr>				
 								
 				<table class="ha" id = 'mapo'>
 				<tr>
-
 				<td>
 				<img src ="<%=request.getContextPath() %>/images/button/bmx_01.jpg" width="100px" height="100px" id = 'a1'/>
 				<input type="radio" name="bikeId" id="bikeId" value="bmx601"/>
@@ -1306,12 +1332,11 @@ td{ width:110px;
 		 		<hr>	
 		 		</div>					
 								
-				<!-- <input type='hidden' name ='merchantUid' value='uid0039dateTest6'>
-				<input type='hidden' name ="buyerId" value ='eunbyul'>
-				<input type='hidden' name ='lentPrice' value='10000'> -->
-				
-				<input type="hidden" name="methodNum" value="2">
 
+				<input type="hidden" name="methodNum" value="2">
+				<input type='hidden' name ='merchantUid' value='uid0039dateTest6'>
+				<input type='hidden' name ="buyerId" value ='eunbyul'>
+				<input type='hidden' name ='lentPrice' value='10000'>
 				<input type="submit" value="결제"  onclick="fn_callingJsp()">
 				<input type="reset" value="취소">
 				
@@ -1322,9 +1347,7 @@ td{ width:110px;
 			    <script src="js/jquery.min.js"></script>
 			    <script src="js/bootstrap.min.js"></script>
 			    <script src="js/scripts.js"></script>
-
 			
-
   </body>
 </html>
 
