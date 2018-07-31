@@ -12,21 +12,63 @@
 <style>
 	div#notice-container{width:800px; margin:0 auto; text-align:center;}
 	div#notice-container h2{margin:10px 0;}
-	form#tbl-notice{width:500px; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
- 	div#comment-container button#btn-insert{width: 70px; height: 40px;   position: relative; top: -20px; } 
+	form#tbl-notice{width:500px; margin:0 auto; border-bottom:1px solid black; border-collapse:collapse; clear:both; }
+ 	div#comment-container button#btn-insert{width :70px; height: 40px;   position :relative; top :-20px; } 
 	table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse; clear:both; } 
-    table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
-    table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 20px;}
-    table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
-    table#tbl-comment button.btn-reply{display:none; width: 50px;}
-    table#tbl-comment tr:hover {background:lightgray;}
-    table#tbl-comment tr:hover button.btn-reply{display:inline;}
+    table#tbl-comment tr td{border-bottom:0.3px dotted black;  padding:5px; text-align:left; line-height:120%;}
+    
+    tr td:first-of-type{padding: 5px 5px 5px 20px;}
+    tr td:last-of-type {text-align:right; width: 130px;}
+    
+    
     table#tbl-comment tr.level2 {color:gray; font-size: 14px;}
-    table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
-    table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
-    table#tbl-comment tr.level2 td:first-of-type{padding-left:400px;}
-    table#tbl-comment tr.level2 sub.comment-writer {color:#8e8eff; font-size:14px}
-    table#tbl-comment tr.level2 sub.comment-date {color:#ff9c8a; font-size:10px}
+    
+    
+    
+    
+     /* level 1 */
+   	
+     .level1 .comment-writer { color : navy; font-size:25px; font-family: "comic sans Ms" }
+     .level1 .comment-date   {color:tomato; font-size:13px}
+     .user-comment{font-size: 20px;color: gray;}
+     .level1 tr td:first-of-type{padding :5px 5px 10px 20px;}
+     tr td:last-of-type {text-align:right; width: 200px; padding: 0px; height: 120px;}
+    
+    
+     /* level 2 */ 
+    
+    .level2 .comment-writer{color:#8e8eff; font-size:20px;}
+    .level2 .comment-date{color:#ff9c8a; font-size:10px}
+    .admin-comment{font-size: 20px;color: gray;padding-top :10px;}
+    .level2 td:last-of-type {color:gray; font-size: 20px;}
+    table#tbl-comment .level2 td:first-of-type{padding-left:100px;}
+    /* table#tbl-comment tr.level2 td:first-of-type{padding-left:200px;} */
+    
+    
+    /*   삭제  */
+   .comment-delete{display:inline;width: 70px; height:20px; background-color: white;border: 1px solid white;}
+   .comment-delete:hover{display:inline;width :70px;color:#F15F5F;font-size:14px;
+	text-shadow:1px 1px 1px  #DB0000,10px 10px 20px  palegoldenrod;
+	}
+    tr:hover .comment-delete{display :inline;}
+    /*  답글  */
+     #commentFrm1{display: inline;}
+     .btn-reply{display:inline; width: 70px; height:20px; background-color: white;border: 1px solid white;}
+     .btn-reply:hover{display:inline; width: 70px; color:skyblue;font-size:14px;
+     text-shadow:1px 1px 1px  blue,10px 10px 20px  palegoldenrod;
+     }  
+    tr:hover .btn-reply{display:inline;}
+
+   	
+   	/*  hr  */
+   	.colorgraph {
+	  height: 7px;
+	  border-top: 0;
+	  background :#c4e17f;
+	  border-radius: 5px;
+	  background-image: linear-gradient(to right,#A2D1DF,#B3C9E6 50%);
+	}
+	.commentlistAdd{ background-color: rgba(130,130,130,0.1) ;border-radius :25px 35px 25px 35px;}
     
 </style>
 
@@ -80,7 +122,7 @@
 				html+="<input type='hidden' name='noticeCommentLevel' value='2' />";
 				html+="<input type='hidden' name='noticeCommentRef' value='"+$(this).val()+"'/>";  /* $(this) = 이벤트가 걸린놈 = 버튼   [btn-reply의 value값]*/                    
 				html+="<textarea name='noticeCommentContent' cols='40' rows='3'></textarea>";
-				html+="<button type='submit' class='btn btn-default' style='top:-20px;'>등록</button>";
+				html+="<button type='submit' class='btn btn-default' style='top:-20px;background-color: white;border: 1px solid white;'>등록</button>";
 				html+="</form>";
 				html+="</td>";
 				
@@ -139,7 +181,7 @@
 }
  
  function fn_delete() {
-	 alert("12");
+	
 	var frm = $('#commentFrm1');
 	var url = "<%=request.getContextPath()%>/notice/noticeCommentDelete";
 	frm.attr("action",url);
@@ -178,6 +220,66 @@
 	 		</form>
 		</div>	 
 	</div>
+	
+	<table id="tbl-comment">
+	
+	<%if(commentList !=null) { /* 값이있는지여부 */
+		
+		for(NoticeComment bc:commentList){ /* bc에 list담아서 포문 */
+			if(bc.getNoticeCommentLevel()==1){%> <!-- bc가 가져왔으면  -->
+			
+				<tr class='level1' style="padding: 0px; margin: 0px;height: 120px;">
+					<td >
+						<sub class = 'comment-writer'><%=bc.getNoticeCommentWrite()%></sub>
+						<br><br><br>
+						<%= bc.getNoticeCommentContent() %>
+					</td>
+					<%if(memberLoggedIn !=null ) {%>
+					<td>
+						<sub class = 'comment-date'><%=bc.getNoticeCommentDate() %></sub><p></p>
+						<%if(memberLoggedIn.getMem_id().equals(bc.getNoticeCommentWrite()) || memberLoggedIn.getMem_id().equals("admin")) {%>
+						<form name="commentFrm1"  id="commentFrm1">
+								<input type="hidden" name="h_CommentNo" value="<%=bc.getNoticeCommentNo() %>" >
+								<input type="hidden" name="h_noticeNo" value="<%=notice.getNoticeNo() %>">
+								<button onclick="fn_delete()" class=' glyphicon glyphicon-remove comment-delete' >삭제</button>
+						</form>
+						<%} %>
+						<%if(memberLoggedIn.getMem_id().equals("admin")) {%>
+								<button class="btn-reply fa fa-cloud" value="<%=bc.getNoticeCommentNo()%>">답글</button>
+						<%} %>
+					
+						</td>
+						<% }%>
+				</tr>
+			
+			<%}       /* if */ 
+			else{%>
+				<tr class='level2'>
+				
+					<td>
+						<img src='<%=request.getContextPath() %>/images/notice.png'>
+						<sub class = 'comment-writer'><%=bc.getNoticeCommentWrite()%></sub>
+						<sub class = 'comment-date'><%=bc.getNoticeCommentDate() %></sub>
+						<br/>
+						<%= bc.getNoticeCommentContent() %>
+					</td>
+					<%if(memberLoggedIn !=null && memberLoggedIn.getMem_id().equals("admin")) {%>
+					<td>
+						
+						<button class="btn-reply fa fa-cloud" value="<%=bc.getNoticeCommentNo()%>" style="font-size: 14px;">답글</button>
+					</td>
+					<% }%>
+				</tr>
+		 	
+			<%} /* else */
+		} /* for */ 
+	} %>  <!-- if -->
+	
+	
+	
+	
+	
+	</table>
 	<%if(memberLoggedIn !=null){ %>
 	<div id="comment-container">
 		<div class="comment-editor">
@@ -194,61 +296,6 @@
 		</div>
 	</div>
 	<%} %>
-	<table id="tbl-comment">
-	
-	<%if(commentList !=null) { /* 값이있는지여부 */
-		
-		for(NoticeComment bc:commentList){ /* bc에 list담아서 포문 */
-			if(bc.getNoticeCommentLevel()==1){%> <!-- bc가 가져왔으면  -->
-			<form name="commentFrm1"  id="commentFrm1">
-				<tr class='level1'>
-					<td>
-						
-						<sub class = 'comment-writer'><%=bc.getNoticeCommentWrite()%></sub>
-						<sub class = 'comment-date'><%=bc.getNoticeCommentDate() %></sub>
-						<br/><br/>
-						<%= bc.getNoticeCommentContent() %>
-					</td>
-					<%if(memberLoggedIn !=null ) {%>
-						<%if(memberLoggedIn.getMem_id().equals(bc.getNoticeCommentWrite()) || memberLoggedIn.getMem_id().equals("admin")) {%>
-						<td>	
-								<button onclick="fn_delete()" >삭제</button>
-								<input type="hidden" name="h_CommentNo" value="<%=bc.getNoticeCommentNo() %>" >
-								<input type="hidden" name="h_noticeNo" value="<%=notice.getNoticeNo() %>">
-								
-						<%} %>
-						<%if(memberLoggedIn.getMem_id().equals("admin")) {%>
-								<button class="btn-reply" value="<%=bc.getNoticeCommentNo()%>">답글</button>
-						<%} %>
-						</td>
-						<% }%>
-				</tr>
-			</form>
-			<%}       /* if */ 
-			else{%>
-				<tr class='level2'>
-					<td>
-						<sub class = 'comment-writer'><%=bc.getNoticeCommentWrite()%></sub>
-						<sub class = 'comment-date'><%=bc.getNoticeCommentDate() %></sub>
-						<br/>
-						<%= bc.getNoticeCommentContent() %>
-					</td>
-					<%if(memberLoggedIn !=null && memberLoggedIn.getMem_id().equals("admin")) {%>
-					<td>
-						<button class="btn-reply" value="<%=bc.getNoticeCommentNo()%>">답글</button>
-					</td>
-					<% }%>
-				</tr>
-		 	
-			<%} /* else */
-		} /* for */ 
-	} %>  <!-- if -->
-	
-	
-	
-	
-	
-	</table>
 </div>
 </section>
 <%@ include file= '/views/common/footer.jsp' %>     
