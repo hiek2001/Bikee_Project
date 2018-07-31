@@ -3,7 +3,7 @@
 
 
 <!-- Header.jsp -->
-<%@ include file= 'views/common/header.jsp' %> <!-- 파일 include. header.jsp 파일을 읽어들인다 -->
+<%@ include file= '/views/common/header.jsp' %> <!-- 파일 include. header.jsp 파일을 읽어들인다 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,9 +20,9 @@
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <!--메인테마-->
-      <script src="js/skel.min.js"></script>
-      <script src="js/skel-panels.min.js"></script>
-      <script src="js/init.js"></script>
+      <script src="../../js/skel.min.js"></script>
+      <script src="../../js/skel-panels.min.js"></script>
+      <script src="../../js/init.js"></script>
       <!-- //카로셀 -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -909,7 +909,7 @@
 					<section class="4u">
 						<span class="pennant"><span class="fa fa-globe"></span></span>
 						<h3>BIKEEBOX</h3>
-						<p>경기도 내 80여개의 대여소 보유, 탄천 및 자전거도로의 대여소를 조회할 수 있습니다. 누르면 상세페이지로 이동시킬까용</p>
+						<p>경기도 내 80여개의 대여소 보유, 경기도 내의 대여소를 조회하여 대여소와 코스 정보를 확인 할 수 있습니다.</p>
 						<a href="#" class="button button-style1">Read More</a>
 					</section>
 
@@ -923,14 +923,14 @@
 
 				<div class="row">
 					<section class="6u">
-						<a href="#" class="image full"><img src="images/pic01.jpg" alt=""></a>
+						<a href="#" class="image full"><img src="../../images/pic01.jpg" alt=""></a>
 						<header>
 							<h2>Riding</h2>
 						</header>
 						<p>바이키는 자전거도로를 누구보다 잘 알고 있습니다. 바이키가 추천하는 자전거도로는 많은 라이더들에게 호평받는 코스가 되어가고 있습니다.</p>
 					</section>				
 					<section class="6u">
-						<a href="#" class="image full"><img src="images/pic02.jpg" alt=""></a>
+						<a href="#" class="image full"><img src="../../images/pic02.jpg" alt=""></a>
 						<header>
 							<h2>Various</h2>
 						</header>
@@ -940,14 +940,14 @@
 
 				<div class="row">
 					<section class="6u">
-						<a href="#" class="image full"><img src="images/pic03.jpg" alt=""></a>
+						<a href="#" class="image full"><img src="../../images/pic03.jpg" alt=""></a>
 						<header>
 							<h2>System</h2>
 						</header>
 							<p>한번의 터치로 손안에서 이루어지는 간단한 예약과정, 예약번호를 바이키박스 앞 직원에게 제시하기만 하면  바이키를 탈 수 있습니다.</p>
 						</section>				
 					<section class="6u">
-						<a href="#" class="image full"><img src="images/pic04.jpg" alt=""></a>
+						<a href="#" class="image full"><img src="../../images/pic04.jpg" alt=""></a>
 						<header>
 							<h2>Facilities</h2>
 						</header>
@@ -983,23 +983,23 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="images/introduce_0.jpg" alt="0" style="width:100%;">
+        <img src="../../images/introduce_0.jpg" alt="0" style="width:100%;">
       </div>
 
       <div class="item">
-        <img src="images/introduce_1.jpg" alt="1" style="width:100%;">
+        <img src="../../images/introduce_1.jpg" alt="1" style="width:100%;">
       </div>
     
       <div class="item">
-        <img src="images/introduce_2.jpg" alt="2" style="width:100%;">
+        <img src="../../images/introduce_2.jpg" alt="2" style="width:100%;">
       </div>
       
        <div class="item">
-        <img src="images/introduce_3.jpg" alt="3" style="width:100%;">
+        <img src="../../images/introduce_3.jpg" alt="3" style="width:100%;">
       </div>
       
        <div class="item">
-        <img src="images/introduce_4.jpg" alt="4" style="width:100%;">
+        <img src="../../images/introduce_4.jpg" alt="4" style="width:100%;">
       </div>
     </div>
 
@@ -1026,11 +1026,11 @@
 		</header>
 		
 		<div id='how'>
-		<img src ='images/introuduce_how.jpg' width="85%">	
+		<img src ='../../images/introuduce_how.jpg' width="85%">	
 		</div>
 		</div>
 
 
 
 
-<%@ include file= 'views/common/footer.jsp' %>
+<%@ include file= '/views/common/footer.jsp' %>
