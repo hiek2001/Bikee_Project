@@ -46,7 +46,6 @@ public class MemberLoginServlet extends HttpServlet {
             msg = "로그인 되었습니다.";
             HttpSession session = request.getSession();
             session.setAttribute("memberLoggedIn", m); // 로그인 세션 생성
-            session.setAttribute("referer",   referer);
             
             String saveId = request.getParameter("saveId");
             

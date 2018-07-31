@@ -5,17 +5,18 @@
 	LentBike selectLb = (LentBike) request.getAttribute("selectLb");
 	PurchaseTicket selectPt = (PurchaseTicket) request.getAttribute("selectPt");
 	Shop selectShop = (Shop) request.getAttribute("selectShop");
+	String referer = (String) request.getAttribute("referer");
 %>
     
 <%@ include file= '/views/common/header.jsp' %>
 
 <style>
 h1 {
-	margin: 30px 0 0 0;
+	margin: 50px 0 0 0;
 	font-weight: 700;
 }
 .table {
-	margin: 50px 0 50px 0;
+	margin: 50px 0 30px 0;
 }
 
 td {
@@ -26,15 +27,29 @@ td {
 	font-weight: 700;
 	font-size: 1.5em;
 }
+
+#btn {
+	margin-bottom: 50px; 
+	
+}
+
+.btn {
+	margin: 10px;
+}
 </style>
 <script>
 	$("#btnOK").click(function() {
 		location.href="<%= request.getContextPath() %>";
 	})
+	
 </script>
 
 <div class="container text-center">
+	<% if(referer.contains("/lentSelect2")) { %>
 	<h1>이용권 구매가 완료되었습니다.</h1>
+	<% } else { %>
+	<h1>이용권 구매내역</h1>
+	<% } %>
 	<table class="table table-hover table-responsive">
 		<tr>
 			<td class="row">구매 번호</td>
@@ -68,10 +83,15 @@ td {
 			<td class="row">대여소</td>
 			<td><%= selectShop.getShopName() %></td>
 		</tr>
-		<tr>
-			<td colspan="2"><button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button></td>
-		</tr>
 	</table>
+	<div id="btn">
+		<% if(referer.contains("lentSelect2")) { %>
+		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button>
+		<% } else { %>
+		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button>
+		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">구매 취소</button>
+		<% } %>
+	</div>
 </div>
 
 <%@ include file= '/views/common/footer.jsp' %>
