@@ -6,9 +6,23 @@
 %>
 <%@ include file= '/views/common/header.jsp' %>
 <style>
+.jumbotron{
+	background-image: url("<%=request.getContextPath() %>/images/jumbo.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: 100%;
+}
+
+.jumbotron h1 {
+	color: white;
+	font-weight: 500;
+}
+	
 p {
-	margin-top: 100px;
+	margin-top: 30px;
 	float: right;
+	font-style: italic;
 }
 
 table {
@@ -18,14 +32,30 @@ table {
 thead {
 	font-size: 1.3em;
 	font-weight: 700;
-	background-color: blue;
+	background-color: rgb(7, 48, 110);
 	color: white;
 }
+
+#btn {
+	position: relative;
+	left: 47%;
+	
+}
+
+.btn {
+	margin: 10px;
+	floag: right;
+	margin-bottom: 100px;
+}
+
 </style>
 <script>
 </script>
 
 <div class="container">
+	<div class="jumbotron text-center">
+		<h1>이용권 구매내역</h1>
+	</div>
 	<p>구매번호를 클릭하면 상세 정보가 나옵니다.</p>
 	<table class="table table-hover">
 		<thead>
@@ -47,5 +77,8 @@ thead {
 			<% } %>
 		</tbody>
 	</table>
+	<div id="btn">
+		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button>
+	</div>
 </div>
 <%@ include file= '/views/common/footer.jsp' %>
