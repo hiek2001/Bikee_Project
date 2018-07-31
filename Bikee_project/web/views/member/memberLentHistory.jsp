@@ -19,7 +19,7 @@
 	font-weight: 500;
 }
 	
-p {
+#pp {
 	margin-top: 30px;
 	float: right;
 	font-style: italic;
@@ -56,7 +56,7 @@ thead {
 	<div class="jumbotron text-center">
 		<h1>이용권 구매내역</h1>
 	</div>
-	<p>구매번호를 클릭하면 상세 정보가 나옵니다.</p>
+	<p id="pp">구매번호를 클릭하면 상세 정보가 나옵니다.</p>
 	<table class="table table-hover">
 		<thead>
 			<tr>
