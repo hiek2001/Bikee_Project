@@ -9,14 +9,14 @@ form.form-horizontal{margin-top:100px;width:300px;margin-left:750px;margin-botto
 <form class="form-horizontal" name="findId" method="post" action="<%=request.getContextPath()%>/findId">
 <div class="form-group">
   <h1>아이디 찾기</h1><br>
-  <p>가입할때 작성했던 휴대폰번호어야 합니다.</p>
+  <p>가입할때 작성했던 이메일어야 합니다.</p>
   	<div class="form-group" id="divfindName">
 	   <label for="findName">이름</label>
 	   <input type="text" class="form-control onlyHangul" name="findName" id="findName" requried/>
 	 </div>
-	 <div class="form-group" id="divfindPhone">
-	   <label for="findPhone">휴대폰 번호</label>
-	   <input type="text" class="form-control"  placeholder="-없이 입력해주세요" name="findPhone" id="findPhone" requried/>
+	 <div class="form-group" id="divEmail">
+	   <label for="findEmail">이메일</label>
+	   <input type="text" class="form-control"  placeholder="@gmail.com으로 작성해주세요" name="findEmail" id="findEmail" requried/>
 	  <!--  <input type="button" id="SendNum" class="btn btn-default" value="인증번호전송"/> -->
 	 </div>
 	 <!-- <div class="form-group" id="divfindAddrNum">
