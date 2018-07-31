@@ -179,14 +179,17 @@
  }
  	
  function fn_updateNotice() {
-		alert("실행?");
+		
 		var frm = $('#noticeFrm');
 		var url = "<%= request.getContextPath() %>/notice/noticeUpdate";
+		frm.removeAttr(ra)
 		frm.attr("action", url);
 		frm.submit();
 	}
- function returnList() {
-	 location.href="<%=request.getContextPath()%>/notice/noticeList";
+ function fn_returnList() {
+	 
+	 	location.href="<%=request.getContextPath()%>/notice/noticeList";
+	 
 }
  
  function fn_delete() {
@@ -202,6 +205,20 @@ function fn_delete2()  {
 	frm.attr("action",url);
 	frm.submit();
 }
+$(function(){
+	$(document).ready(function(){ 
+	    $("#toggle").on("click", function(){ 
+	       $(this).toggleClass($('#updateContent').removeAttr('readonly')); 
+	    }); 
+	}); 
+})
+
+
+
+
+
+
+
 
 </script>
 
@@ -228,7 +245,7 @@ function fn_delete2()  {
 			 		<input type="button" value="수정" onclick="fn_updateNotice()" class="btn btn-default"/>
 			 		<input type="button" value="삭제" onclick="deleteNotice()" class="btn btn-default " >
 	 			<%} %>
-	 			<input type="button" value="뒤로가기" onclick="returnList()" class="btn btn-default">
+	 			<input type="button" value="뒤로가기" onclick="fn_returnList()" class="btn btn-default" id="back">
 	 			<b><hr></b>
 
 	 		</form>
@@ -257,10 +274,11 @@ function fn_delete2()  {
 						<form name="commentFrm1"  id="commentFrm1">
 								<input type="hidden" name="h_CommentNo" value="<%=bc.getNoticeCommentNo() %>">
 								<input type="hidden" name="h_noticeNo" value="<%=notice.getNoticeNo() %>">
-								<button onclick="fn_delete()" class=' glyphicon glyphicon-remove comment-delete' >삭제</button>
+								
+								<button onclick="fn_delete()" class='  comment-delete' ><img src="<%=request.getContextPath()%>/images/notice/delete2.png">삭제</button>
 						</form>
-						<%} %>
-								<button class="btn-reply fa fa-cloud" value="<%=bc.getNoticeCommentNo()%>">답글</button>
+						<%} %>												
+								<button class="btn-reply " value="<%=bc.getNoticeCommentNo()%>"><i src="<%=request.getContextPath()%>/images/notice/comment.png"></i>답글</button>
 						</td>
 						<% }%>
 				</tr>
@@ -269,7 +287,7 @@ function fn_delete2()  {
 			<!-- style="padding: 0px; margin: 0px;height: 120px;" -->
 				<tr class='level2' style="padding: 0px; margin: 0px;height: 120px;">
 					<td >
-						<img src="<%=request.getContextPath()%>/images/notice.png">
+						<img src="<%=request.getContextPath()%>/images/notice/notice.png">
 						<sub class = 'comment-writer'><%=bc.getNoticeCommentWrite()%></sub>
 						<br><br><br>
 						<%= bc.getNoticeCommentContent() %>
@@ -284,10 +302,7 @@ function fn_delete2()  {
 								<button onclick="fn_delete2()" class=' glyphicon glyphicon-remove comment-delete' >삭제</button>
 						</form>
 						<%} %>
-						
 								<button class="btn-reply fa fa-cloud" value="<%=bc.getNoticeCommentNo()%>">답글</button>
-						
-					
 						</td>
 						<% }%>
 				</tr>
@@ -295,11 +310,7 @@ function fn_delete2()  {
 			<%} /* else */
 		} /* for */ 
 	} %>  <!-- if -->
-	
-	
-	
-	
-	
+
 	</table><br><br>
 	<hr class="colorgraph">
 	<%if(memberLoggedIn !=null){ %>
