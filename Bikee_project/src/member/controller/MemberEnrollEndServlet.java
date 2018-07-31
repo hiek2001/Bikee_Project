@@ -50,6 +50,7 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		m.setMem_email(mem_email);
 		m.setMem_addr(mem_addr);
 		
+	
 		
 		
 		

@@ -140,8 +140,10 @@ function validate() {
 				<a href='#' class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 관리자<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 		                <li><a href="<%=request.getContextPath() %>/memberView">회원관리</a></li>
-						<li><a href="#">자전거관리</a></li>
+
+						<li><a href="<%=request.getContextPath() %>/bikeView">자전거관리</a></li>
 						<li><a href="<%=request.getContextPath()%>/member/PayHistory">결제관리</a></li>
+
 					</ul>
 				</li>
 				<%} %>

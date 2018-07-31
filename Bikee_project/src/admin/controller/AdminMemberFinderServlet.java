@@ -52,8 +52,7 @@ public class AdminMemberFinderServlet extends HttpServlet {
 			cPage=1;
 		}
 		String msg="";
-		System.out.println("Servlet::"+searchKey);
-		System.out.println("Servlet::"+searchValue);
+	
 		switch(searchKey)
 		{
 			case "memName" : list=new AdminService().searchMemberName(searchValue);break; 

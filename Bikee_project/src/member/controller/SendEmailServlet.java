@@ -39,6 +39,7 @@ public class SendEmailServlet extends HttpServlet {
 		
 		//먼저 아이디 확인
 		String findId=(String)request.getParameter("findId");
+		System.out.println("SendEmailServlet"+findId);
 		boolean isAble=new MemberService().checkId2(findId);//아이디 값이 있으면 false, 아이디 값 사용 가능
 		String msg="";
 		String loc="";

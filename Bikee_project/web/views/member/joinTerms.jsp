@@ -6,6 +6,7 @@
 	tr td input.btn-primary{
 		margin-left:820px;
 	}
+	span.join-main b{font-size:30px;}
 </style>
 <script>
 	$(function()  {
@@ -37,15 +38,19 @@
 	<table width="1400" height="800">
 	<tr>
 		<td width="100%" height="10%">
-			<span style="padding-left: 160px">
-		   		<b>회원가입</b>
-			</span><br>
+			<div class="row">
+				<div class="col-log-2">
+					<span class="join-main" style="padding-left: 400px;">
+				   		<b>회원가입</b>
+					</span>
+				</div>
+			</div><br>
 		</td>
 	</tr>
 	<tr>
 		<td width="100%" height="50%" align="center">
 		<p align="left">
-			<span style="padding-left: 160px">BIKEE 약관동의</span>
+			<span style="padding-left: 390px;">BIKEE 약관동의</span>
 		</p><br>
 			<div class="form-group" >
 				<label for="provision">
