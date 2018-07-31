@@ -6,6 +6,7 @@
 	String writer=request.getParameter("writer");
 	String title=request.getParameter("title");
 	String content=request.getParameter("content");
+	String course=request.getParameter("course");
 %>
 <style>
 	div.container-fluid{padding-top:10px; padding-bottom:10px}
@@ -32,6 +33,12 @@
     		return true;
     	}
     	
+    	
+    	$(document).ready(function(){
+
+    	    $("select option[value='<%=course%>']").attr("selected", true);
+    	});
+
     </script>
 <section>
 

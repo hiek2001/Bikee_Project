@@ -8,7 +8,6 @@
 	System.out.println(list);
 	String pageBar =(String)request.getAttribute("pageBar");
     List<Comment> comment = (List<Comment>)request.getAttribute("total");
-    System.out.println(comment);
 %>
 <style>
 	div.container-fluid{padding-top:10px; padding-bottom:10px}
