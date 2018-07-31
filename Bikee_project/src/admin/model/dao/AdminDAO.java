@@ -8,10 +8,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import bike.model.vo.Bike;
 import member.model.vo.Member;
+import notice.model.vo.Notice;
 
 public class AdminDAO {
 
@@ -155,4 +157,104 @@ public class AdminDAO {
 	}
 	
 	
+//	자전거
+	public List<Bike> selectBikeList(Connection conn, int cPage, int numPerPage){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("BikeList");
+		Bike b=null;
+		ArrayList<Bike> list=new ArrayList<>();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				b=new Bike();
+				b.setBikeId(rs.getString("bike_id"));
+				b.setBikeStatus(rs.getString("bike_status"));
+				b.setBikeType(rs.getString("bike_type"));
+				b.setShopId(rs.getString("shop_id"));
+				list.add(b);
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		close(rs);
+		close(pstmt);
+		return list;
+		
+		
+		
+		
+	}
+
+	public int selectBikeTotalCount(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("BikeTotalCount");
+		int result = 0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs =pstmt.executeQuery();
+			if(rs.next()) {
+//				테이블 데이터갯수가져옴
+				result = rs.getInt("CNT");
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+//	ajax
+	public List<Bike> selectBikeListAjax(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("BikeListAjax");
+		
+		Bike b=null;
+		ArrayList<Bike> list = new ArrayList();
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				b=new Bike();
+				b.setBikeId(rs.getString("bike_id"));
+				b.setBikeStatus(rs.getString("bike_status"));
+				b.setBikeType(rs.getString("bike_type"));
+				b.setShopId(rs.getString("shop_id"));
+				list.add(b);
+			}
+			
+		}
+			
+		catch (Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+		
+	}
+
 }

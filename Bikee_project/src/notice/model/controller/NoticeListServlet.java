@@ -86,16 +86,15 @@ public class NoticeListServlet extends HttpServlet {
 				7. pageEnd : pageBar에 표시되는 끝숫자*/
 //		pageNo이 처음엔 1
 		if(pageNo ==1) {
-			pageBar += "<ul class='"+"pagination"+"'><li><a href='#' ><span>&laquo;</span></a></li></ul>";
+			pageBar += "<ul class='"+"pagination"+"'><li><span>&laquo;</span></li></ul>";
 					
 					
 		}else {													/*현재페이지 연결*/
-			pageBar += "<ul class='"+"pagination"+"'><li><a href='"+request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"' ><span>&laquo;"
-					+ "</span></a></li></ul>";
+			pageBar += "<ul class='"+"pagination"+"'><li><a href='"+request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"' ><span>&laquo;</span></a></li></ul>";
 		}
 		while(!(pageNo > pageEnd|| pageNo>totalPage)) {
 			if(cPage == pageNo) { 
-				pageBar += "<ul class='"+"pagination"+"'><li><a href='#' ><span>"+pageNo+"</span></a></li></ul>";  /*현재페이지와 페이지번호가 같으면 그번호를 span으로 해버려서 클릭할 수 없게함*/
+				pageBar += "<ul class='"+"pagination"+"'><li><span>"+pageNo+"</span></li></ul>";  /*현재페이지와 페이지번호가 같으면 그번호를 span으로 해버려서 클릭할 수 없게함*/
 			}else {  				 /*나머지 페이지는 누를수 있게해놈*/                                
 				pageBar += "<ul class='"+"pagination"+"'><li><a href='"+request.getContextPath()+"/notice/noticeList?cPage="+pageNo+"' >"+pageNo+"</a></li></ul>";
 				//             
@@ -105,10 +104,9 @@ public class NoticeListServlet extends HttpServlet {
 		
 		
 		if(pageNo > totalPage) {
-			pageBar+="<ul class='"+"pagination"+"'><li><a href='#' ><span>&raquo;</span></a></li></ul>";
+			pageBar+="<ul class='"+"pagination"+"'><li><span>&raquo;</span></li></ul>";
 		}else {
-			pageBar += "<ul class='"+"pagination"+"'><li><a href='"+request.getContextPath()+"/notice/noticeList?cPage="+pageNo+"' ><span>&raquo;"
-					+ "</span></a></li></ul>";
+			pageBar += "<ul class='"+"pagination"+"'><li><a href='"+request.getContextPath()+"/notice/noticeList?cPage="+pageNo+"' ><span>&raquo;</span></a></li></ul>";
 		}
 		request.setAttribute("list", list);
 		

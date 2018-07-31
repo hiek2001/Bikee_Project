@@ -68,7 +68,7 @@ $(function() {
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 		<form  role="form" method="post" class="updateForm" action="<%= request.getContextPath() %>/member/memberPassUpdateEnd">
-			<legend><h2 style="text-align: center;" >비밀번호변경</h2></legend>
+			<h2 style="text-align: center;" >비밀번호변경</h2>
 			
 			
 			
@@ -99,7 +99,6 @@ $(function() {
 					<br><br><br>
 					<p >안전한 비밀번호로 내정보를 보호하세요.</p>
 						<br>		
-						
 						<br>
 						<p>이전에 사용한 적 없는 비밀번호가</p>
 						<p> 안전합니다.</p>
