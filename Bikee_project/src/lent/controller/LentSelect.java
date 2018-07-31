@@ -33,10 +33,18 @@ public class LentSelect extends HttpServlet {
 		
 		int methodNum = Integer.parseInt(request.getParameter("methodNum"));
 		
-		request.setAttribute("methodNum", methodNum);
-		
-		request.getRequestDispatcher("/views/lent/lentPage.jsp").forward(request, response);
-	}
+		//request.setAttribute("methodNum", methodNum);
+			if(methodNum==1)
+			{
+				request.setAttribute("methodNum", methodNum);
+				request.getRequestDispatcher("/views/lent/lentPage.jsp").forward(request, response);
+			}
+			else
+			{
+				request.setAttribute("methodNum", methodNum);
+				request.getRequestDispatcher("/views/lent/lentPage_day.jsp").forward(request, response);
+			}
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
+<!-- Header.jsp -->
+<%@ include file= 'views/common/header.jsp' %> <!-- 파일 include. header.jsp 파일을 읽어들인다 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,7 +52,6 @@
    {
       margin: 0;
       padding: 0;
-      background: #161616;
    }
 
    body,input,textarea,select
@@ -820,99 +823,7 @@
          background: rgba(64,64,64,0.125);
       }
 
-/*********************************************************************************/
-/* Logo                                                                          */
-/*********************************************************************************/
 
-   #logo
-   {
-      position: relative;
-      z-index: 1;
-   }
-   
-      #logo h1
-      {
-         color: #FFF;
-      }
-   
-      #logo a
-      {
-         display: block;
-         text-decoration: none;
-         font-weight: 300;
-         line-height: 1em;
-         font-size: 7em;
-         color: #FFF;
-         letter-spacing: -0.05em;
-         margin: 0 0 0.125em 0;
-      }
-      
-      #logo span
-      {
-         font-size: 1.4em;
-         color: #FFF;
-      }
-
-/*********************************************************************************/
-/* Nav                                                                           */
-/*********************************************************************************/
-
-   #nav
-   {
-   }
-
-      #nav-wrapper
-      {
-         background: rgba(0,0,0,.1);
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-      }
-      
-      #nav > ul
-      {
-         margin: 0;
-         padding: 0;
-         text-align: center;
-      }
-
-      #nav > ul > li
-      {
-         display: inline-block;
-         border-right: 1px solid;
-         border-color: rgba(255,255,255,.1);
-      }
-      
-         #nav > ul > li:last-child
-         {
-            padding-right: 0;
-            border-right: none;
-         }
-
-         #nav > ul > li > a,
-         #nav > ul > li > span
-         {
-            display: inline-block;
-            padding: 1.5em 1.5em;
-            letter-spacing: 0.06em;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 1.1em;
-            outline: 0;
-            color: #FFF;
-         }
-
-         #nav li.active a
-         {
-            color: #FFF;
-         }
-
-         #nav > ul > li > ul
-         {
-            display: none;
-         }
-   
 /*********************************************************************************/
 /* Main                                                                          */
 /*********************************************************************************/
@@ -938,50 +849,6 @@
       padding-bottom: 0.50em;
    }
 
-/*********************************************************************************/
-/* Footer                                                                        */
-/*********************************************************************************/
-   
-   #footer
-   {
-      position: relative;
-      text-align: center;
-   }
-   
-   #footer header h2
-   {
-      color: #FFF !important;
-   }
-   
-   #footer header .byline
-   {
-      color: rgba(255,255,255,.2);
-   }
-
-/*********************************************************************************/
-/* Copyright                                                                     */
-/*********************************************************************************/
-   
-   #copyright
-   {
-      position: relative;
-      text-align: center;
-      color: #774535;
-   }
-   
-   #copyright .container
-   {
-      padding: 3em 0em;
-      border-top: 1px solid;
-      border-color: rgba(255,255,255,.05);
-      color:  rgba(255,255,255,.1);
-   }
-   
-   #copyright a
-   {
-      text-decoration: none;
-      color:  rgba(255,255,255,.2);
-   }
    
 /*********************************************************************************/
 /* Featured                                                                      */
@@ -1010,100 +877,160 @@
       margin-top: 1.5em;
    }
 
-/*********************************************************************************/
-/* Tweet                                                                         */
-/*********************************************************************************/
-   
-   #tweet
-   {
-      position: relative;
-      text-align: center;
-      background: url(../images/header.jpg) no-repeat center center;
-      background-attachment: fixed;
-      background-size: cover;
-   }
 
-      #tweet:before
-      {
-         content: '';
-         position: absolute;
-         left: 0;
-         top: 0;
-         width: 100%;
-         height: 100%;
-         background: rgba(64,64,64,0.5);
-      }
-   
-      #tweet section
-      {
-         border-top: 1px solid;
-         border-bottom: 1px solid;
-         border-color: rgba(255,255,255,.1);
-      }
-
-      #tweet blockquote
-      {
-         position: relative;
-         border: none;
-         margin: 0;
-         font-weight: 300;
-         color: rgba(255,255,255,.6);
-      }   
  </style>
 
 <title>Introduce</title>
 </head>
 <body class="homepage">
 
-   <!-- Header -->
-      <div id="header">
-         <div id="nav-wrapper"> 
-            <!-- Nav -->
-            <nav id="nav">
-               <ul>
-                  <li class="active"><a href="index.jsp">Homepage</a></li>
-                  <li><a href="#">Introduce</a></li>
-                  <li><a href="#">Buy</a></li>
-                  <li><a href="#">location</a></li>
-                  <li><a href="#">Notice</a></li>
-                  <li><a href="#">Community</a></li>
-                  <li><a href="#">QnA</a></li>
-      
-               </ul>
-            </nav>
-         </div>
-         <div class="container"> 
-            
-            <!-- Logo -->
-            <div id="logo">
-               <h1><a href="#">BIKEE</a></h1>
-               <span class="tag">JUST RIDE IT.</span>
-            </div>
-         </div>
+  	<!-- Featured -->
+		<div id="featured">
+			<div class="container">
+				<header>
+					<h2>Introduce to BIKEE</h2>
+				</header>
+				<p>바쁘게 살아가는 일상 속에서 건강을 잃어버리고 있진 않나요?
+				 신개념 이동수단 바이키. 바이키는 당신의 고민을 해결 해 줄 수 있습니다. </p>
+				<hr />
+				<div class="row">
+					<section class="4u">
+						<span class="pennant"><span class="fa fa-briefcase"></span></span>
+						<h3>BEFORE RIDING</h3>
+						<p>자전거를 타기 전에 알아야 할 간단한 상식들을 알아볼까요? 바이키를 더 안전하게 즐길 수 있습니다.</p>
+						<a href="#myCarousel" class="button button-style1">Read More</a>
+					</section>
+					<section class="4u">
+						<span class="pennant"><span class="fa fa-lock"></span></span>
+						<h3>HOW TO USE</h3>
+						<p>바이키의 대여방법과 반납방법에 대한 자세한 안내사항을 확인해보세요. 바이키가 더 쉬워집니다.</p>
+						<a href="#how" class="button button-style1">Read More</a>
+					</section>
+					<section class="4u">
+						<span class="pennant"><span class="fa fa-globe"></span></span>
+						<h3>BIKEEBOX</h3>
+						<p>경기도 내 80여개의 대여소 보유, 탄천 및 자전거도로의 대여소를 조회할 수 있습니다. 누르면 상세페이지로 이동시킬까용</p>
+						<a href="#" class="button button-style1">Read More</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	<!-- Main -->
+		<div id="main">
+			<div id="content" class="container">
+
+				<div class="row">
+					<section class="6u">
+						<a href="#" class="image full"><img src="images/pic01.jpg" alt=""></a>
+						<header>
+							<h2>Riding</h2>
+						</header>
+						<p>바이키는 자전거도로를 누구보다 잘 알고 있습니다. 바이키가 추천하는 자전거도로는 많은 라이더들에게 호평받는 코스가 되어가고 있습니다.</p>
+					</section>				
+					<section class="6u">
+						<a href="#" class="image full"><img src="images/pic02.jpg" alt=""></a>
+						<header>
+							<h2>Various</h2>
+						</header>
+						<p>바이키는 기본 레저용 자전거 뿐 아니라  MTB, 리컴번트, 원바이크등 다양한 종류와 기능을 가진 자전거를 보유하고 있습니다.</p>
+					</section>				
+				</div>
+
+				<div class="row">
+					<section class="6u">
+						<a href="#" class="image full"><img src="images/pic03.jpg" alt=""></a>
+						<header>
+							<h2>System</h2>
+						</header>
+							<p>한번의 터치로 손안에서 이루어지는 간단한 예약과정, 예약번호를 바이키박스 앞 직원에게 제시하기만 하면  바이키를 탈 수 있습니다.</p>
+						</section>				
+					<section class="6u">
+						<a href="#" class="image full"><img src="images/pic04.jpg" alt=""></a>
+						<header>
+							<h2>Facilities</h2>
+						</header>
+						<p>바이키박스에서 바이커들과 휴식하며 이야기를 나누어보세요. 더위를 피할 수 있는 3피트의 차광막은 갑작스런 우천도 두렵지 않아요!</p>
+					</section>				
+				</div>
+			
+			</div>
+		</div>
+			
+			<br>
+			<br>
+			
+
+		<div id='featured' class="container">
+		<header>
+				<h2>Safty Rules</h2>
+		</header>
+			
+	<br>
+ 
+	<!-- <div class="container"> -->
+  	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;">
+    <!-- 안전수칙 카로셀부분 : Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="images/introduce_0.jpg" alt="0" style="width:100%;">
       </div>
 
-   <!-- Featured -->
-      <div id="featured">
-         <div class="container">
-            <header>
-               <h2>Introduce to BIKEE</h2>
-            </header>
-            <p>바쁘게 살아가는 일상 속에서 건강을 잃어버리고 있진 않나요?
-             신개념 이동수단 바이키. 바이키는 당신의 고민을 해결 해 줄 수 있습니다. </p>
-            <hr />
-            <div class="row">
-               <section class="4u">
-                  <span class="pennant"><span class="fa fa-briefcase"></span></span>
-                  <h3>BEFORE RIDING</h3>
-                  <p>자전거를 타기 전에 알아야 할 간단한 상식들을 알아볼까요? 바이키를 더 안전하게 즐길 수 있습니다.</p>
-                  <a href="#myCarousel" class="button button-style1">Read More</a>
-               </section>
-               <section class="4u">
-                  <span class="pennant"><span class="fa fa-lock"></span></span>
-                  <h3>HOW TO USE</h3>
-                  <p>바이키의 대여방법과 반납방법에 대한 자세한 안내사항을 확인해보세요. 바이키가 더 쉬워집니다.</p>
-                  <a href="#how" class="button button-style1">Read More</a>
-               </section>
-               <section class="4u">
-                  <span class="pennant"><span class="fa fa-globe"></span></span>
-   
+      <div class="item">
+        <img src="images/introduce_1.jpg" alt="1" style="width:100%;">
+      </div>
+    
+      <div class="item">
+        <img src="images/introduce_2.jpg" alt="2" style="width:100%;">
+      </div>
+      
+       <div class="item">
+        <img src="images/introduce_3.jpg" alt="3" style="width:100%;">
+      </div>
+      
+       <div class="item">
+        <img src="images/introduce_4.jpg" alt="4" style="width:100%;">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+
+ </div>
+ </div> 
+		
+		
+		<br>
+		<br>
+
+		<div id='featured' class="container">
+		<header>
+				<h2>HOW TO USE</h2>
+		</header>
+		
+		<div id='how'>
+		<img src ='images/introuduce_how.jpg' width="85%">	
+		</div>
+		</div>
+
+
+
+
+<%@ include file= 'views/common/footer.jsp' %>
