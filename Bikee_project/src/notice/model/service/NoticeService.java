@@ -161,7 +161,7 @@ public class NoticeService {
 	}
 
 	public int commentCountMinus(int noticeNo) {
-Connection conn =getConnection();
+		Connection conn =getConnection();
 		
 		int result = new NoticeDAO().commentCountMinus(conn,noticeNo);
 		
@@ -176,4 +176,18 @@ Connection conn =getConnection();
 		
 	}
 
+	public int commentMinusCount(int noticeNo) {
+		Connection conn =getConnection();
+		
+		
+		int count = new NoticeDAO().commentMinusCount(conn,noticeNo);
+		if(count>0){
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return count;
+	}
 }

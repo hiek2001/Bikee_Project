@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -21,6 +22,7 @@ import notice.model.vo.NoticeComment;
 public class NoticeDAO {
 	
 	private Properties prop;
+
 	
 	public NoticeDAO() {
 		prop = new Properties();
@@ -36,15 +38,13 @@ public class NoticeDAO {
 	
 	
 	public List<Notice> selectNoticeList(Connection conn,int cPage,int numPerPage ){
-		System.out.println("deleteNoticeComment - DAO");
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectNoticeList");
 		
 		Notice n=null;
 		ArrayList<Notice> list = new ArrayList();
-		System.out.println(cPage);
-		System.out.println(numPerPage);
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class NoticeDAO {
 		String sql = prop.getProperty("insertNotice");
 		try {
 			
-			System.out.println(sql);
+
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, n.getNoticeTitle());
 			pstmt.setString(2, n.getNoticeWriter());
@@ -176,7 +176,7 @@ public class NoticeDAO {
 		int result = 0;
 		String sql = prop.getProperty("insertNoticeCount");
 		try {
-			System.out.println(sql);
+		
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, NoticeNo);
 			result = pstmt.executeUpdate();
@@ -291,7 +291,7 @@ public class NoticeDAO {
 		int result = 0;
 		String sql = prop.getProperty("commentCountAdd");
 		try {
-			System.out.println(sql);
+		
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, noticeRef);
 			result = pstmt.executeUpdate();
@@ -348,15 +348,14 @@ public class NoticeDAO {
 		PreparedStatement pstmt=null;
 		int result =0;
 		String sql = prop.getProperty("deleteNoticeComment");
-		System.out.println(sql);
-		System.out.println(commentNo);
+	
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, commentNo);
 			
 			result = pstmt.executeUpdate();
-			System.out.println("123");
+	
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -369,8 +368,10 @@ public class NoticeDAO {
 		int result = 0;
 		String sql = prop.getProperty("commentCountMinus");
 		try {
-			System.out.println(sql);
+			
 			pstmt=conn.prepareStatement(sql);
+			
+			
 			pstmt.setInt(1, noticeNo);
 			result = pstmt.executeUpdate();
 			
@@ -382,5 +383,35 @@ public class NoticeDAO {
 		
 		return result;
 	}
+
+
+	public int commentMinusCount(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("commentMinusCount");
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,noticeNo);
+			result=pstmt.executeUpdate();
+			
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		close(pstmt);
+		
+		return result;
+	}
+
+
+
+
+
+
+
 
 }

@@ -33,8 +33,8 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 		int commentNo = Integer.parseInt(request.getParameter("h_CommentNo"));
 		System.out.println(commentNo);
 		
-		
-		int result = new NoticeService().deleteNoticeComment(commentNo);
+		//코멘트삭제
+		int result = new NoticeService().deleteNoticeComment(commentNo); 
 		
 		String msg = "";
 		String loc="/notice/noticeList";
@@ -42,7 +42,11 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 		
 		if(result >0) {
 			msg="공지사항 삭제 완료!!";
+			//공지사항 댓글수 찾기
+			/*int count = new NoticeService().commentMinusCount(noticeNo);*/
+			//공지사항 댓글수 감소
 			new NoticeService().commentCountMinus(noticeNo);
+		
 			
 		}else {
 			msg="공지사항 삭제 실패!!";
