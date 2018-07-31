@@ -12,12 +12,13 @@
 <style>
 /*총 자전거 수  */
 
- #pp{ text-align: right; width: 1000px;margin: 0px;}
+ 	#pp{ text-align: right; width: 1000px;margin: 0px;}
 /* 상태 호버 */
-	#status:hover{display:inline;width :70px;color:#F15F5F;font-size:14px;
-	text-shadow:1px 1px 1px  #DB0000,10px 10px 20px  palegoldenrod;
+	#status:hover{display:inline;width :70px;color:#6799FF;font-size:14px;
+	text-shadow:1px 1px 5px  #9EBEC4,10px 10px 20px  palegoldenrod;
 	}
-
+/* 상태 설정 드롭다운 */
+	.dropdown span{background-color: white;border: 1px solid white;}
 
 </style>
 
@@ -34,7 +35,18 @@ $(function() {
 
 	});
 });
+
+$(function name() {
+	$('#status').on('click',function(){
+		
+		
+	});
+});
+
+
 </script>
+
+
 
 
 
@@ -67,7 +79,7 @@ $(function() {
 		      <li><a href="#">하늘공원점[ha_06]</a></li>
 	    	</ul>
 	  </div>
-	</div>
+ </div>
   
 	
 	
@@ -84,6 +96,8 @@ $(function() {
       </tr>
     </thead>
    <% for(Bike b : list)  { %>
+   <%String status =""; %>
+   <%status= b.getBikeStatus(); %>
       <tbody id="myTable">
 	      <tr>																																
 	         <th><%= b.getBikeId()%></th>
@@ -99,11 +113,25 @@ $(function() {
 	         <%}else if(b.getShopId().equals("no_02")){%>
 	         	<td >노량진역점</td>
 	         <%}else { %>
-	         	<td >노량진역점</td>
+	         	<td >성남탄천점</td>
 	         <% }%>
 	         
 		     <td ><%= b.getBikeType() %></td>
-	         <td ><span id="status"><%= b.getBikeStatus() %><span></td>
+	         <td  >
+	         	<div class="dropdown" >
+				    	
+				    	
+				        <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="caret" ><%=status%>  </span>
+				    
+				    <ul class="dropdown-menu dropdown-menu-bottom"  >
+				      <li><a id='status' value='Available'>사용가능</a></li>
+				      <li><a id='status' value='use'>사용중</a></li>
+				      <li><a id='status' value='repair'>수리중</a></li>
+				      
+				    </ul>
+				</div>
+	         </td>
+	         
 	      </tr>
       </tbody>
       <% } %>
