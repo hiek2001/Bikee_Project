@@ -18,7 +18,7 @@ public class ShopDAO {
 		prop = new Properties();
 		
 		try {
-			String file = ShopDAO.class.getResource("/sql/lent/lent-sql.properties").getPath();
+			String file = ShopDAO.class.getResource("/sql/shop/shop-sql.properties").getPath();
 			prop.load(new FileReader(file));
 		} catch(IOException e) {
 			e.printStackTrace();
