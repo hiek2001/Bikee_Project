@@ -30,7 +30,7 @@ public class ReviewFormDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 int no = Integer.parseInt(request.getParameter("no"));
-			
+			System.out.println("review no:"+no);
 			int result = new ReviewService().deleteReview(no);
 			String msg="";
 			String loc="/reviewList";
