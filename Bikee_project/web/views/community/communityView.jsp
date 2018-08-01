@@ -25,8 +25,14 @@
 		return true;
 	}
 	function fn_delete(){
-		$(".update").attr("action","<%=request.getContextPath()%>/community/communityDelete");
-		return true;
+		var result=confirm("해당 글을 삭제하시겠습니까?");
+		if(result){
+			$(".update").attr("action","<%=request.getContextPath()%>/community/communityDelete");
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/community/communityList";

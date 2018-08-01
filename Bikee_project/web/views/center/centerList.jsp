@@ -156,7 +156,7 @@
 				    </div>
 				
 			    <div class="col-lg-8"> 
-				     <table class="table table-striped">
+				     <table class="table">
 					   <thead>
 							<tr>
 								<th>NO</th>
