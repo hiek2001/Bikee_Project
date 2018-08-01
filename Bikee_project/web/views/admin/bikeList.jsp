@@ -16,21 +16,24 @@
 /* 상태 호버 */
 	
 /* 상태 설정 드롭다운 */
-	.status-update .dropdown span{background-color: red;border: 1px solid white;}
-	ul button {display:inline;width :70px;color:gray;font-size:14px;;background-color: white;}
-/* 상태스타일 */
+	
+	
+/* 상태 버튼 */
 	.Using{display:inline;width :70px;color:#ED0000;font-size:14px;
-	text-shadow:1px 1px 1px  #FF6C6C ,10px 10px 20px  palegoldenrod;background-color: white;}
+	text-shadow:1px 1px 1px  #FF6C6C ,1px 1px 10px  palegoldenrod;background-color: white;}
 	.Using:hover{color:#ED0000}
 	
 	.Available{display:inline;width :70px;color:#6799FF;font-size:14px;
-	text-shadow:1px 1px 1px  #9EBEC4 ,10px 10px 20px  palegoldenrod;background-color: white;}
+	text-shadow:1px 1px 1px  #9EBEC4 ,1px 1px 10px  palegoldenrod;background-color: white;}
 	.Available:hover{color:#6799FF}
 	
 	.Repair{display:inline;width :70px;color:#DB9700;font-size:14px;
-	text-shadow:1px 1px 1px  #FFDF24 ,10px 10px 20px  palegoldenrod; background-color: white;}
+	text-shadow:1px 1px 1px  #FFDF24 ,1px 1px 10px  palegoldenrod; background-color: white;}
 	.Repair:hover{color:#DB9700}
 	
+/* 상태li */
+	ul form button{background-color: white; border: solid #ffffff 0px;}
+	ul form button:hover{background-color: rgba(130,130,130,0.1); font-color: color:#6799FF}	
 
 </style>
 
@@ -65,6 +68,7 @@ $(function () {
 		form1.submit();
 	});
 });
+
 
 
 </script>
@@ -149,11 +153,11 @@ $(function () {
 				    <ul class="dropdown-menu dropdown-menu-bottom"  >
 				     <form id='statusAvailableFrm' action="<%= request.getContextPath() %>/bikeStatusUpdate"> 	
 					      
-					      <li>
-					      <button type="submit()" id='statusAvailable' name='statusAvailable' value='사용가능'><a>사용가능</a></button>
+					     
+					      <button type="submit()" id='statusAvailable' name='statusAvailable' value='사용가능'>사용가능</button>
 					      <input type="hidden" name='bikeId' value="<%=b.getBikeId()%>">
 					      <input type="hidden" id='statusAvailable' name='input_statusAvailable' value='사용가능'>
-					      </li>
+					   
 				      </form>
 				      <form id='statusUsingFrm' action="<%= request.getContextPath() %>/bikeStatusUpdate"> 
 					      
