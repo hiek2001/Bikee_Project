@@ -25,12 +25,7 @@ function fn_update(){
 	location.href="<%=request.getContextPath()%>/views/center/centerUpdate.jsp?writer=<%=c.getCenterWriter()%>&title=<%=c.getCenterTitle()%>&content=<%=c.getCenterContent() %>&no=<%=c.getCenterNo()%>&password=<%=c.getCenterPwd()%>";
 }
 	function fn_delete(){
-		var result = confirm("해당 글을 삭제하시겠습니까?");
-		if(result){
-			location.href="<%=request.getContextPath()%>/centerDelete?no=<%=c.getCenterNo()%>";
-		}else{
-			
-		}
+		location.href="<%=request.getContextPath()%>/centerDelete?no=<%=c.getCenterNo()%>";
 	}
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/centerList";

@@ -76,7 +76,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
    #btn-add{ width:100px;;position:absolute;right: 30%; display: inline; font-size: 15px;}
    #h2Title{left: 250px;}
    #pp{ text-align: right; width: 1000px;margin: 0px;}
-	#bad{background-color: rgba(125,125,125,0.5) ;font-size: 12px;}
+
 </style>
 
 
@@ -135,9 +135,9 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 		         <th ><%= n.getNoticeNo() %></th>
 		         <td style="text-align: left;" >
 			         <a class="noticeViewConnect" href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>'>
-			         <%= n.getNoticeTitle() %>&nbsp;
+			         <%= n.getNoticeTitle() %>&nbsp;&nbsp;&nbsp;
 			         <%if(n.getNoticeCommentCount() !=0){ %>
-			         	<img  src="<%=request.getContextPath()%>/images/notice/new.png">&nbsp;&nbsp;<span id='bad' class="badge badge-info" ><%=n.getNoticeCommentCount() %></span> 
+			         	<span class="badge"><%=n.getNoticeCommentCount() %></span> 
 			         <%} %>
 			         </a>
 			     </td>

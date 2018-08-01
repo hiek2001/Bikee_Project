@@ -25,14 +25,8 @@
 		return true;
 	}
 	function fn_delete(){
-		var result=confirm("해당 글을 삭제하시겠습니까?");
-		if(result){
-			$(".update").attr("action","<%=request.getContextPath()%>/community/communityDelete");
-			return true;
-		}else{
-			return false;
-		}
-		
+		$(".update").attr("action","<%=request.getContextPath()%>/community/communityDelete");
+		return true;
 	}
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/community/communityList";
@@ -100,7 +94,7 @@
 					   			<div class="col-lg-3"></div>
 					   			<div class="col-lg-6">
 					   				<div class="col-lg-3"></div>
-					   				<div class="col-lg-3"><button type="submit" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
+					   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
 					   				<div class="col-lg-3"></div>
 					   				<div class="col-lg-3"></div>
 					   			</div>

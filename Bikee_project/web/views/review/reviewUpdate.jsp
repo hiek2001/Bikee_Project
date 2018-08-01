@@ -67,18 +67,6 @@
    			<div class="col-lg-3"></div>
    		</div>
    		
-   		
-   		<div class="row form-group" style="padding-top:40px">
-   			<div class="col-lg-3"></div>
-   			<div class="col-lg-6">
-   				<label class="control-label col-sm-2">NAME</label>
-   				<div class="col-sm-10">
-   					<input type="text" class="form-control" name="writer" readonly value="<%=writer%>"/>
-   				</div>
-   			</div>
-   			<div class="col-lg-3"></div>
-   		</div>
-   		
    		<div class="row form-group" style="padding-top:40px">
    			<div class="col-lg-3"></div>
    			<div class="col-lg-6">
@@ -97,6 +85,17 @@
    				</div>
    			</div>
    			<div class="col-lg-3"></div>   			
+   		</div>
+   		
+   		<div class="row form-group" style="padding-top:40px">
+   			<div class="col-lg-3"></div>
+   			<div class="col-lg-6">
+   				<label class="control-label col-sm-2">NAME</label>
+   				<div class="col-sm-10">
+   					<input type="text" class="form-control" name="writer" readonly value="<%=writer%>"/>
+   				</div>
+   			</div>
+   			<div class="col-lg-3"></div>
    		</div>
    		
    		<div class="row form-group" style="padding-top:40px">
