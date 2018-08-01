@@ -25,8 +25,14 @@
 		
 	}
 	function fn_delete(){
-		$('.update').attr("action","<%=request.getContextPath()%>/reviewDelete");
-		return true;
+		var result = confirm("해당 글을 삭제하시겠습니까?");
+		if(result){
+			$('.update').attr("action","<%=request.getContextPath()%>/reviewDelete");
+			return true;
+		}else{
+			false;
+		}
+		
 	}
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/reviewList";
