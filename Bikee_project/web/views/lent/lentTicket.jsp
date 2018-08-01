@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		
-		<!-- 일일권 -->
+		<!-- 선물하기 -->
 		<div class="col-sm-6">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
@@ -49,7 +49,7 @@
 				</div>
 				<div class="panel-footer">
 					<ul>
-						<li>1회 1매씩 구매가 가능합니다.</li>
+						<li>가입된 바이키 회원에 한해 선물이 가능합니다</li>
 						<li>기본대여시간은 1시간권(60분)입니다.</li>
 						<li>초과시 5분마다 추가요금(200원)과금됩니다.</li>
 						<li>예시) 기본 초과 1분 ~ 5분 : 200원, 6분 ~ 10분 : 400원</li>

@@ -49,7 +49,7 @@
 				    	CONSUMER REVIEWS 
 				    </div>
 			    <div class="col-lg-8"> 
-				     <table class="table">
+				     <table class="table table-striped">
 					   <thead>
 							<tr>
 								<th>NO</th>
