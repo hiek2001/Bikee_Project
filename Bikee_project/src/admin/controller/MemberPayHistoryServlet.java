@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import community.model.service.CommunityService;
-import community.model.vo.Community;
 import lent.model.service.LentService;
 import lent.model.vo.LentBike;
 
@@ -33,6 +31,8 @@ public class MemberPayHistoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String content = request.getParameter("content");
+		String opt = request.getParameter("opt");
 		int numPerPage = 10;
 		int cPage;
 		try {
@@ -40,7 +40,7 @@ public class MemberPayHistoryServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		List<LentBike> list = new LentService().memberPayList(cPage,numPerPage);
+		List<LentBike> list = new LentService().memberPayList(cPage,numPerPage,content,opt);
 		int totalContent = new LentService().payListCount();
 		int totalPage = (int)Math.ceil((double)totalContent/numPerPage);
 		int barSize=5;
