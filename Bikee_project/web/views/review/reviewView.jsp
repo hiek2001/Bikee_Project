@@ -56,8 +56,14 @@
 		
 	}
 	function fn_delete(){
-		$('.update').attr("action","<%=request.getContextPath()%>/reviewDelete");
-		return true;
+		var result = confirm("해당 글을 삭제하시겠습니까?");
+		if(result){
+			$('.update').attr("action","<%=request.getContextPath()%>/reviewDelete");
+			return true;
+		}else{
+			false;
+		}
+		
 	}
 	function fn_cancel(){
 		location.href="<%=request.getContextPath()%>/reviewList";
@@ -113,48 +119,46 @@
 			   		<div class="row" style="padding-top:40px">
 			   			<div class="col-lg-3"></div>
 			   			<%if(r.getOriginalFileName()!=null){ %>
-			   			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:550px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span>
-			   			<br><br><br>
+			   			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:550px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span><br><br>
 			   					<p style="text-align:center;">
 			    				<img style="width:450px; height:300px"src='<%=request.getContextPath() %>/upload/review/<%=r.getOriginalFileName()%>' width='16px'>
 			    				</p>
-			    			<br><br>
-			    			<label class="control-label col-sm-2"style="font-weight:bold;padding:0px;width:50px">[<%=r.getCourseType()%>]</label>
-			    	
-			    			<div class="col-sm-11" style="padding:0px">
-		   					<section class='rating-widget'>
-		  
-							  <!-- Rating Stars Box -->
-							  <div class='rating-stars col'>
-							    <ul id='stars'>
-							      <li class='star'  title='Poor' data-value='1'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star' title='Fair' data-value='2'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star'  title='Good' data-value='3'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star'  title='Excellent' data-value='4'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star'  title='WOW!!!' data-value='5'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      
-							    </ul>
-								     <div class='success-box'>
-								    <div class='clearfix'></div>
-								    
-								    <div class='text-message'></div>
-								    <input type="hidden" name="star" value=""/>
-								    <div class='clearfix'></div>
-								  </div>
-							  </div>
-					  
-								</section>
-			   				</div>
+			    			<br><br><br>
+			    			<label style="font-weight:bold; padding:0px;width:50px" class="control-label col-sm-2">[<%=r.getCourseType()%>]</label>
+			    			<div class="col-sm-11">
+				   					<section class='rating-widget'>
+				  
+									  <!-- Rating Stars Box -->
+									  <div class='rating-stars col'>
+									    <ul id='stars'>
+									      <li class='star'  title='Poor' data-value='1'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star' title='Fair' data-value='2'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star'  title='Good' data-value='3'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star'  title='Excellent' data-value='4'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star'  title='WOW!!!' data-value='5'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      
+									    </ul>
+										     <div class='success-box'>
+										    <div class='clearfix'></div>
+										    
+										    <div class='text-message'></div>
+										    <input type="hidden" name="star" value=""/>
+										    <div class='clearfix'></div>
+										  </div>
+									  </div>
+									  
+									</section>
+				   				</div>
 
 			    			<input type="hidden" name="course" value="<%=r.getCourseType()%>"/>
 			   				<p name="content" ><%=r.getReviewContent() %></p>
@@ -162,42 +166,43 @@
 			   				
 			   			</div>
 			   			<%} else{%>
-			    			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:250px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span><br><br>
-			   					<label class="control-label col-sm-2"style="font-weight:bold;padding:0px;width:50px">[<%=r.getCourseType()%>]</label>
-			   				<div class="col-sm-11" style="padding:0px">
-		   					<section class='rating-widget'>
-		  
-							  <!-- Rating Stars Box -->
-							  <div class='rating-stars col'>
-							    <ul id='stars'>
-							      <li class='star'  title='Poor' data-value='1'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star' title='Fair' data-value='2'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star'  title='Good' data-value='3'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star'  title='Excellent' data-value='4'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      <li class='star'  title='WOW!!!' data-value='5'>
-							        <i class='fa fa-star fa-fw'></i>
-							      </li>
-							      
-							    </ul>
-								     <div class='success-box'>
-								    <div class='clearfix'></div>
-								    
-								    <div class='text-message'></div>
-								    <input type="hidden" name="star" value=""/>
-								    <div class='clearfix'></div>
-								  </div>
-							  </div>
-					  
-								</section>
-			   				</div>
+			    			<div class="container" style="border:1px solid #1E68CB; width:644.32px; height:250px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span>
+			    			<br><br><br>
+			   					<label style="font-weight:bold; padding:0px;width:50px" class="control-label col-sm-2">[<%=r.getCourseType()%>]</label>
+			    			<div class="col-sm-11">
+				   					<section class='rating-widget'>
+				  
+									  <!-- Rating Stars Box -->
+									  <div class='rating-stars col'>
+									    <ul id='stars'>
+									      <li class='star'  title='Poor' data-value='1'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star' title='Fair' data-value='2'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star'  title='Good' data-value='3'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star'  title='Excellent' data-value='4'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      <li class='star'  title='WOW!!!' data-value='5'>
+									        <i class='fa fa-star fa-fw'></i>
+									      </li>
+									      
+									    </ul>
+										     <div class='success-box'>
+										    <div class='clearfix'></div>
+										    
+										    <div class='text-message'></div>
+										    <input type="hidden" name="star" value=""/>
+										    <div class='clearfix'></div>
+										  </div>
+									  </div>
+									  
+									</section>
+				   				</div>
 								
 			   				<input type="hidden" name="course" value="<%=r.getCourseType()%>"/>
 			   				<br><br>
@@ -215,7 +220,7 @@
 					   			<div class="col-lg-3"></div>
 					   			<div class="col-lg-6">
 					   				<div class="col-lg-3"></div>
-					   				<div class="col-lg-3"><button type="button" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
+					   				<div class="col-lg-3"><button type="submit" class="btn btn-primary" id="btn2" onclick="fn_delete()">delet</button></div>
 					   				<div class="col-lg-3"></div>
 					   				<div class="col-lg-3"></div>
 					   			</div>
