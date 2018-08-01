@@ -134,7 +134,7 @@
 				
 				
 				tr.html(html);
-				tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);   /* $(this).parent().parent() 뒤에 tr넣는다 = insertAfter */
+				tr.insertAfter($(this).parent().parent()).children("td").slideDown(500);   /* $(this).parent().parent() 뒤에 tr넣는다 = insertAfter */
 				$(this).off('click'); /* 한번만할때 off 안막으면 계속생김*/	/* td = html */
 				tr.find("form").submit(function(e) {
 					if(<%=memberLoggedIn==null%>){
@@ -182,7 +182,7 @@
 		
 		var frm = $('#noticeFrm');
 		var url = "<%= request.getContextPath() %>/notice/noticeUpdate";
-		frm.removeAttr(ra)
+		frm.removeAttr('readonly');
 		frm.attr("action", url);
 		frm.submit();
 	}
@@ -278,7 +278,7 @@ $(function(){
 								<button onclick="fn_delete()" class='  comment-delete' ><img src="<%=request.getContextPath()%>/images/notice/delete2.png">삭제</button>
 						</form>
 						<%} %>												
-								<button class="btn-reply " value="<%=bc.getNoticeCommentNo()%>"><i src="<%=request.getContextPath()%>/images/notice/comment.png"></i>답글</button>
+								<button class="btn-reply " value="<%=bc.getNoticeCommentNo()%>"><img src="<%=request.getContextPath()%>/images/notice/comment.png"></img>답글</button>
 						</td>
 						<% }%>
 				</tr>

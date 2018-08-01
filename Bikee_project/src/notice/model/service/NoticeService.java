@@ -146,7 +146,7 @@ public class NoticeService {
 
 
 	public int deleteNoticeComment(int commentNo) {
-		System.out.println("deleteNoticeComment - Service");
+		
 		Connection conn= getConnection();
 		int result = new NoticeDAO().deleteNoticeComment(conn,commentNo);
 		System.out.println("123");

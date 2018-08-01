@@ -83,9 +83,9 @@ public class LentService {
 		return list;
 	}
 	
-	public List<LentBike> memberPayList(int cPage, int numPerPage,String content, String opt){
+	public List<LentBike> memberPayList(int cPage, int numPerPage){
 		Connection conn = getConnection();
-		List<LentBike> list = new LentDAO().memberPayList(conn,cPage,numPerPage,content,opt);
+		List<LentBike> list = new LentDAO().memberPayList(conn,cPage,numPerPage);
 		close(conn);
 		return list;
 	}

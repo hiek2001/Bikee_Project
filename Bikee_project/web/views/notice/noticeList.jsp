@@ -137,7 +137,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 			         <a class="noticeViewConnect" href='<%= request.getContextPath() %>/notice/noticeView?no=<%= n.getNoticeNo() %>'>
 			         <%= n.getNoticeTitle() %>&nbsp;
 			         <%if(n.getNoticeCommentCount() !=0){ %>
-			         	<img  src="<%=request.getContextPath()%>/images/notice/new.png">&nbsp;&nbsp;<span id='bad' class="badge badge-info" ><%=n.getNoticeCommentCount() %></span> 
+			         	<img src="<%=request.getContextPath()%>/images/notice/new.png">&nbsp;&nbsp;<span id='bad' class="badge badge-info" ><%=n.getNoticeCommentCount() %></span> 
 			         <%} %>
 			         </a>
 			     </td>

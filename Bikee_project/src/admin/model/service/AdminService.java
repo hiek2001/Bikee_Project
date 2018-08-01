@@ -1,7 +1,9 @@
 package admin.model.service;
 
 import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
 import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -65,17 +67,26 @@ public class AdminService {
 		return result;
 	}
 
-//	ajax
-	
-	public List<Bike> selectBikeListAjax(){
-		Connection conn = getConnection();
-		List<Bike> list = new AdminDAO().selectBikeListAjax(conn);
-		close(conn);
+//  status 변경
+	public int bikeStatusUpdate(String bikeId,String status) {
+		
+		Connection conn=getConnection();
+		int result=new AdminDAO().bikeStatusUpdate(conn,bikeId,status);
+		if(result>0){
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 		
 		
-		return list;
 		
+		
+
+
 	}
+	
+	
 	
 	
 }

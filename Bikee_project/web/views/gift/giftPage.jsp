@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- <%@ include file= '/views/common/header.jsp' %>
- 
-<%
-	int methodNum = (int) request.getAttribute("methodNum");
-	String selectPhoneMem = (String)request.getAttribute("m.getMem_name()");
- %>
+<%@ include file= '/views/common/header.jsp' %>
+<%! public int getRandom(){
+	
+	int random = 0;
+	random=(int)Math.floor((Math.random()*(99999-10000+1)))+10000;
+	return random;
+} %> 
+
 <!doctype html>
 <html>
 <head>
@@ -14,12 +16,20 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 <title>lentPage</title>
-		<!-- 공통 -->
-        <link rel="stylesheet" href="css/skel-noscript.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-desktop.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	
+		<!-- 공통 -->
+       <link rel="stylesheet" href="css/skel-noscript.css" />
+       <link rel="stylesheet" href="css/style.css" />
+       <link rel="stylesheet" href="css/style-desktop.css" />
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       
+<!-- 서블릿  호출 -->
+<script>
+	function fn_callingJsp() {
+		location.href="<%= request.getContextPath() %>/gift/giftSelectMemPhone"
+	}
+</script>
+
 
 <!-- 자전거버튼이미지 클릭 시 이미지 변경 -->
 <script type='text/javascript'>
@@ -64,28 +74,6 @@
 </script>
 
 
-<!-- 서블릿  호출 -->
-<%-- <script>
-	function fn_callingJsp() {
-		location.href="<%= request.getContextPath() %>/lent/lentSelect2"
-	}
-</script> --%>
-
-<!-- 받을회원 휴대폰번호 검색 -->
-<script>
-	function fn_selectMem(){
-		<%-- var b =$('#giftSelectPhone').val();
-		$('.test111').attr("action"."");
-		
-		location.href="<%=request.getContextPath()%>/gift/giftSelectMemPhone?b="+b; --%>
-		location.href="<%=request.getContextPath()%>/gift/giftSelectMemPhone"
-	}
-
-</script>
-<script type='text/javascript'>
-
-
-</script>
 <style>
 td{ width:110px;
 	height:110px}
@@ -97,48 +85,27 @@ td{ width:110px;
 <body>
 
 
-<div class="jumbotron">
-				<h2>선물하기</h2>
-				<p>가까운 사람에게 바이키 이용권을  선물해보세요.</p>
-			</div>
-
-
-			<!-- <div class='container'>
-			<h3>회원 검색</h3>
-			<p>전화번호로 간단하게 선물할 회원의 가입여부를 확인할 수 있습니다.</p>
-			<input type='text' id = 'giftSelectPhone' name= 'giftSelectPhone' placeholder="핸드폰 번호 입력" maxlength="13" required>
-			<input type='hidden' id ='hehe' name='hehe' value='2'>
-			<input type='submit' value='검색'>
-			</div> -->
-<form class ='test111' name='lentBikeeFrm' action="<%=request.getContextPath()%>/gift/giftSelectMemPhone" method='post'>
+<form class ='test111' name='GiftBike' action="<%=request.getContextPath()%>/gift/giftSelectMemPhone" method='post'>
     <div class="container-fluid">
 	<div class="1">
 		<div class="col-md-12">
-			<div class='container'>
-			<h3>회원 검색</h3>
-			<p>전화번호로 간단하게 선물할 회원의 가입여부를 확인할 수 있습니다.</p>
-			<input type='text' id = 'giftSelectPhone' name= 'giftSelectPhone' placeholder="핸드폰 번호 입력" maxlength="13" required>
-			<input type='hidden' id ='hehe' name='hehe' value='2'>
-			<input type='submit' value='검색'>
+			<div class="jumbotron">
+				<h2>선물하기</h2>
+				<p>가까운 사람에게 바이키 이용권을  선물해보세요.</p>
+				
+				</div>
 			</div>
-			<br>
-			<br>
+		</div>
+	
+				
+			<h3>선물할 회원 휴대폰번호 입력</h3>
+			<hr>
+			<p>바이키 회원에 한하여 선물이 가능합니다.</p>
+			<input type='text' id = 'giftSelectPhone' name= 'giftSelectPhone' placeholder="휴대폰번호입력" maxlength="13" required>
+
+		
+			<h3>지점선택</h3>
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<h3>
-				지점선택
-			</h3>
 			<hr>
 			<div class="1">
 				<div class="col-md-2">
@@ -1312,18 +1279,22 @@ td{ width:110px;
 		 		  <input type="date" name="rDate"><input type="time" name="rTime"/>
 		 		  
 		 		<hr>	
-		 		</div>					
-								
+		 		</div>
+		 		
+		 		
 
-				<input type="hidden" name="methodNum" value="2">
+
+<!-- 			
 				<input type='hidden' name ='merchantUid' value='uid0039dateTest6'>
 				<input type='hidden' name ="buyerId" value ='eunbyul'>
-				<input type='hidden' name ='lentPrice' value='10000'>
+				<input type='hidden' name ='lentPrice' value='10000'> -->
+				<input type="hidden" name="methodNum" value="2">
+				<input type="hidden" readonly="readonly" id ="sendEmail" name="sendEmail" value="<%=getRandom() %>"/>
 				<input type="submit" value="결제"  onclick="fn_callingJsp()">
 				<input type="reset" value="취소">
 				
 				<br><br><br><br>
-
+				</div>
 				</form>
 
 			    <script src="js/jquery.min.js"></script>

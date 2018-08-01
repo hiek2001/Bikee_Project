@@ -22,14 +22,20 @@
    //공백여부 기능
    function validate() {
 		var content = $('[name=content]').val();
+		var title = $('[name=title]').val();
 		
 		if(content.trim().length==0){
 			alert("내용을 입력하세요!!!");
 			return false;
 		}
+		if(title.trim().length==0){
+			alert("제목을 입력하세요!!!");
+			return false;
+		}
 		
 		return true;
 	}
+   
    
    //돌아가기 버튼
    function rtList() {
@@ -50,7 +56,7 @@
 <legend><strong> <h2>공지사항 작성</h2></strong></legend>
  <form class="form-inline" action="<%=request.getContextPath()%>/notice/noticeFormEnd" method="post" onsubmit="return validate()">
     <div class="form-group">
-        <label for=title>제목:&nbsp;&nbsp;&nbsp;&nbsp; </label>
+        <label for=title >제목:&nbsp;&nbsp;&nbsp;&nbsp; </label>
         <input type="text"  class="form-control"  placeholder="Title " id ="title" name="title" style="border-radius: 10px;">
         <label for="writer">작성자 :</label>
       <input type="text" class="form-control"   name="writer" value="admin"  style="border-radius: 10px;" readonly>
