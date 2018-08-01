@@ -275,7 +275,7 @@ $(function(){
 								<input type="hidden" name="h_CommentNo" value="<%=bc.getNoticeCommentNo() %>">
 								<input type="hidden" name="h_noticeNo" value="<%=notice.getNoticeNo() %>">
 								
-								<button onclick="fn_delete()" class='  comment-delete' ><img src="<%=request.getContextPath()%>/images/notice/delete2.png">삭제</button>
+								<button onclick="fn_delete()" class='comment-delete' ><img src="<%=request.getContextPath()%>/images/notice/delete2.png">삭제</button>
 						</form>
 						<%} %>												
 								<button class="btn-reply " value="<%=bc.getNoticeCommentNo()%>"><img src="<%=request.getContextPath()%>/images/notice/comment.png"></img>답글</button>

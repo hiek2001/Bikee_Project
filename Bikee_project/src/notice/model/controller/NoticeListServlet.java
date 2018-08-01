@@ -46,7 +46,6 @@ public class NoticeListServlet extends HttpServlet {
 		
 		
 		List<Notice> list = new NoticeService().selectNoticeList(cPage,numPerPage);
-		System.out.println(list);
 		/*int coCount = new NoticeService().commentCount(list.get);*/
 		/*페이지 선언!
 		====사용 변수====

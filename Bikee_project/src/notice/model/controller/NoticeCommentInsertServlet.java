@@ -65,7 +65,6 @@ public class NoticeCommentInsertServlet extends HttpServlet {
 		if(result>0) {
 			msg= "댓글등록 성공";
 			new NoticeService().commentCountAdd(noticeRef);
-			System.out.println("1이면 완료" + coCount);
 		}else {
 			msg= "댓글등록 실패";
 		}										
