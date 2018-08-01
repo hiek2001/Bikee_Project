@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="review.model.vo.Review"%>
 <%@ include file='/views/common/header.jsp' %>
+<link rel="stylesheet" type="text/css" href="star-rating-svg.css">
 <%
 	Review r = (Review)request.getAttribute("c");
 %>
@@ -17,7 +18,37 @@
 	button#btn1{background-color:#1E68CB; width:170px; height:50px}
 	button#btn2{background-color:#1E68CB; width:170px; height:50px;margin-left:65px}
 	button#btn3{background-color:#1E68CB; width:170px; height:50px;margin-left:130px}
+
+	.rating-stars ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+  display:inline-block;
+  
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size:1em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
 </style>
+<script src="jquery.star-rating-svg.js"></script>
+
 <script>
 	function fn_update(){
 		$(".update").attr("action","<%=request.getContextPath()%>/views/review/reviewUpdate.jsp");
@@ -38,6 +69,17 @@
 		location.href="<%=request.getContextPath()%>/reviewList";
 
 	}
+	
+	$(document).ready(function(){
+
+	   <%--  $("ul li[value='<%=r.getReviewStar()%>']").attr("selected", true); --%>
+	    var onStar = <%=r.getReviewStar()%> // The star currently selected
+	    var stars = $('#stars li').parent().children('li.star');
+	    for (i = 0; i < onStar; i++) {
+		      $(stars[i]).addClass('selected');
+		    }
+	});
+
 </script>
 <section>
 
@@ -77,12 +119,49 @@
 			   		<div class="row" style="padding-top:40px">
 			   			<div class="col-lg-3"></div>
 			   			<%if(r.getOriginalFileName()!=null){ %>
-			   			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:450px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span><br><br>
+			   			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:550px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span>
+			   			<br><br><br>
 			   					<p style="text-align:center;">
 			    				<img style="width:450px; height:300px"src='<%=request.getContextPath() %>/upload/review/<%=r.getOriginalFileName()%>' width='16px'>
 			    				</p>
 			    			<br><br>
-			    			<p style="font-weight:bold">[<%=r.getCourseType()%>]</p>
+			    			<label class="control-label col-sm-2"style="font-weight:bold;padding:0px;width:50px">[<%=r.getCourseType()%>]</label>
+			    	
+			    			<div class="col-sm-11" style="padding:0px">
+		   					<section class='rating-widget'>
+		  
+							  <!-- Rating Stars Box -->
+							  <div class='rating-stars col'>
+							    <ul id='stars'>
+							      <li class='star'  title='Poor' data-value='1'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star' title='Fair' data-value='2'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star'  title='Good' data-value='3'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star'  title='Excellent' data-value='4'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star'  title='WOW!!!' data-value='5'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      
+							    </ul>
+								     <div class='success-box'>
+								    <div class='clearfix'></div>
+								    
+								    <div class='text-message'></div>
+								    <input type="hidden" name="star" value=""/>
+								    <div class='clearfix'></div>
+								  </div>
+							  </div>
+					  
+								</section>
+			   				</div>
+
 			    			<input type="hidden" name="course" value="<%=r.getCourseType()%>"/>
 			   				<p name="content" ><%=r.getReviewContent() %></p>
 			   				<input type="hidden" name="content" value="<%=r.getReviewContent() %>"/>
@@ -90,8 +169,44 @@
 			   			</div>
 			   			<%} else{%>
 			    			<div class="col-lg-6 div_content" style="border:1px solid #1E68CB; width:644.32px; height:250px; padding-top:7px;color:#1E68CB"><span style="font-weight:bold">CONTENT</span><br><br>
-			   				<p style="font-weight:bold" >[<%=r.getCourseType()%>]</p>
+			   					<label class="control-label col-sm-2"style="font-weight:bold;padding:0px;width:50px">[<%=r.getCourseType()%>]</label>
+			   				<div class="col-sm-11" style="padding:0px">
+		   					<section class='rating-widget'>
+		  
+							  <!-- Rating Stars Box -->
+							  <div class='rating-stars col'>
+							    <ul id='stars'>
+							      <li class='star'  title='Poor' data-value='1'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star' title='Fair' data-value='2'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star'  title='Good' data-value='3'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star'  title='Excellent' data-value='4'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      <li class='star'  title='WOW!!!' data-value='5'>
+							        <i class='fa fa-star fa-fw'></i>
+							      </li>
+							      
+							    </ul>
+								     <div class='success-box'>
+								    <div class='clearfix'></div>
+								    
+								    <div class='text-message'></div>
+								    <input type="hidden" name="star" value=""/>
+								    <div class='clearfix'></div>
+								  </div>
+							  </div>
+					  
+								</section>
+			   				</div>
+								
 			   				<input type="hidden" name="course" value="<%=r.getCourseType()%>"/>
+			   				<br><br>
 			   				<p name="content"><%=r.getReviewContent() %></p>
 			   				<input type="hidden" name="content" value="<%=r.getReviewContent() %>"/>
 			   				</div>

@@ -26,7 +26,7 @@
 
 /* Idle State of the stars */
 .rating-stars ul > li.star > i.fa {
-  font-size:2.5em; /* Change the size of the stars */
+  font-size:2em; /* Change the size of the stars */
   color:#ccc; /* Color on idle state */
 }
 
@@ -62,18 +62,8 @@
     		location.href="<%=request.getContextPath()%>/reviewList";
     	}
     	
-    	$(document).on('ready', function(){
-    	    $('.kv-ltr-theme-svg-star').rating({
-    	        hoverOnClear: false,
-    	        theme: 'krajee-svg'
-    	    });
-    	});
-    	
-    	
-    	
     	
     	$(document).ready(function(){
-    		  
     		  /* 1. Visualizing things on Hover - See next part for action on click */
     		  $('#stars li').on('mouseover', function(){
     		    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
@@ -120,13 +110,16 @@
     		    responseMessage(msg);
     		    
     		  });
+    		  
+    		  
     		});
 
 
-    		function responseMessage(msg) {
+    		 function responseMessage(msg) {
     		  $('.success-box').fadeIn(200);  
-    		  $('.success-box div.text-message').html("<span>" + msg + "</span>");
-    		}
+    		/*    $('.success-box div.text-message').html("<span>" + msg + "</span>");   */
+    		 $('[name=star]').val(msg);
+    		 }
     </script>
 <section>
 
@@ -179,26 +172,26 @@
    		<div class="row form-group" style="padding-top:40px">
    			<div class="col-lg-3"></div>
    			<div class="col-lg-6">
-   				<label class="control-label col-sm-2">CORE</label>
+   				<label class="control-label col-sm-2">SCORE</label>
    				<div class="col-sm-10">
    					<section class='rating-widget'>
   
 					  <!-- Rating Stars Box -->
-					  <div class='rating-stars text-center col'>
+					  <div class='rating-stars col'>
 					    <ul id='stars'>
-					      <li class='star' title='Poor' data-value='1'>
+					      <li class='star'  title='Poor' data-value='1'>
 					        <i class='fa fa-star fa-fw'></i>
 					      </li>
 					      <li class='star' title='Fair' data-value='2'>
 					        <i class='fa fa-star fa-fw'></i>
 					      </li>
-					      <li class='star' title='Good' data-value='3'>
+					      <li class='star'  title='Good' data-value='3'>
 					        <i class='fa fa-star fa-fw'></i>
 					      </li>
-					      <li class='star' title='Excellent' data-value='4'>
+					      <li class='star'  title='Excellent' data-value='4'>
 					        <i class='fa fa-star fa-fw'></i>
 					      </li>
-					      <li class='star' title='WOW!!!' data-value='5'>
+					      <li class='star'  title='WOW!!!' data-value='5'>
 					        <i class='fa fa-star fa-fw'></i>
 					      </li>
 					      
@@ -206,14 +199,11 @@
 						     <div class='success-box'>
 						    <div class='clearfix'></div>
 						    
-						    <div class='text-message'>0</div>
+						    <div class='text-message'></div>
+						    <input type="hidden" name="star" value=""/>
 						    <div class='clearfix'></div>
 						  </div>
 					  </div>
-					  
-					 
-					  
-					  
 					  
 					</section>
    				</div>

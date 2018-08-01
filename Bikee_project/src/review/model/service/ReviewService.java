@@ -53,9 +53,9 @@ public class ReviewService {
 		return result;
 	}
 	
-	public int updateReview(Review c) {
+	public int updateReview(Review r) {
 		Connection conn = getConnection();
-		int result = new ReviewDAO().updateReview(conn,c);
+		int result = new ReviewDAO().updateReview(conn,r);
 		if(result>0) {
 			commit(conn);
 		}else {

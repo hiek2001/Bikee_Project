@@ -55,6 +55,7 @@ public class ReviewFormUpdateServlet extends HttpServlet {
 		String origin = mpreq.getOriginalFileName("file");
 		String rename = mpreq.getFilesystemName("file");
 		String course = mpreq.getParameter("course");
+		String star = mpreq.getParameter("star");
 		  
 		Review r = new Review();
 		r.setReviewNo(no);
@@ -63,6 +64,7 @@ public class ReviewFormUpdateServlet extends HttpServlet {
 		r.setOriginalFileName(origin);
 		r.setRenameFileName(rename);  
 		r.setCourseType(course);
+		r.setReviewStar(star);
 		
 		int result = new ReviewService().updateReview(r);
 		String msg="";
