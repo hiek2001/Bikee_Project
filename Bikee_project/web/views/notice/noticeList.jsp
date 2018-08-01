@@ -51,8 +51,8 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 	} */
 	
 	#conten{height: 400px;width: 200px;}
-	div#board-container{width:1000px;height:700px; margin: 70px 50px 50px 150px auto; text-align:center;} 
-   .notice-container{position:relative; height: 550px ;margin-top: 100px; margin: 50px 50px 50px 150px; }
+	/* div#board-container{width:1000px;height:700px; margin: 70px 50px 50px 150px auto; text-align:center;}  */
+   .notice-container{margin-top: 100px; } 
 	
     div#pageBar{ text-align:center; width: 200px;} 
    /* 공지사항 공간 */
@@ -72,7 +72,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
    
    table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-align:center;}
   	/* 글쓰기 버튼 */
- 	#button-div{display: flex;}
+ 	#button-div{display: flex;margin-top: 50px;}
    #btn-add{ width:100px;;position:absolute;right: 30%; display: inline; font-size: 15px;}
    #h2Title{left: 250px;}
    #pp{ text-align: right; width: 1000px;margin: 0px;}
@@ -88,7 +88,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 		location.href="<%=request.getContextPath()%>/notice/noticeForm";
 	}
 	//글 찾기 기능
-    $(document).ready(function(){
+   /*  $(document).ready(function(){
 	   $("#myInput").on("keyup", function() {
 	     var value = $(this).val();
 	     
@@ -96,7 +96,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 	       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	     });
 	   });
-	 });
+	 }); */
 	//메인공지사항
 	
 	
@@ -106,11 +106,9 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 </script>
 
   
-
-<div id="board-container"  style="width: 1300px; margin: 70px 50px 150px 50px;">
-	
+<div class="container">
 	<div id="button-div">
-				<div class="col-lg-8 main_title text-center">N o t i c e </div>
+		<div class="col-lg-6 main_title text-center">N o t i c e </div>
 	</div>
 	<hr>
 	<%if(session.getAttribute("memberLoggedIn") !=null && memberLoggedIn.getMem_id().equals("admin")) {%>
@@ -152,7 +150,7 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 	      <% } %>
 	   </table>
 	   <div>
-	   		<input class="form-control" id="myInput" style="width: 150px;" type="text" placeholder="Search..." >
+	   		<!-- <input class="form-control" id="myInput" style="width: 150px;" type="text" placeholder="Search..." > -->
 	   		<p id="pp"><%= "총 게시물 :" + request.getAttribute("totalContent") %>   </p>
 	   </div>
 	    <div style="height: 130px; width: 300px; margin-bottom: 20px;">
@@ -165,8 +163,8 @@ div.main_title{font:italic normal normal 50px/1.4em dinneuzeitgroteskltw01-_8124
 	</div>
 	
 	
-</div>
 
+</div>
 	
 	
 	

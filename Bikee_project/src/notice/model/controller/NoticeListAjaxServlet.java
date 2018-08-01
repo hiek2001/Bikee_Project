@@ -33,7 +33,6 @@ public class NoticeListAjaxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Notice> list = new NoticeService().selectNoticeListAjax();
-		System.out.println(list);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/notice/noticeListAjax.jsp").forward(request, response);
 	}

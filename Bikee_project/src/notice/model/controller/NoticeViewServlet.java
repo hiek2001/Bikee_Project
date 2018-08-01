@@ -48,7 +48,6 @@ public class NoticeViewServlet extends HttpServlet {
 					String value = c.getValue(); /*value값*/
 					if("noticeCookie".equals(name)) { /*noticeCookie값이 있다는소리는 한 번이라도 저장했다는소리 */
 						noticeCookieVal=value;
-						System.out.println("값"+c.getValue());
 						if(value.contains("|"+noticeNo+"|")) {
 								/*읽었다는소리*/
 							hasRead = true;
