@@ -14,36 +14,55 @@
 
  	#pp{ text-align: right; width: 1000px;margin: 0px;}
 /* 상태 호버 */
-	#status:hover{display:inline;width :70px;color:#6799FF;font-size:14px;
-	text-shadow:1px 1px 5px  #9EBEC4,10px 10px 20px  palegoldenrod;
-	}
+	
 /* 상태 설정 드롭다운 */
-	.status-update .dropdown span{background-color: white;border: 1px solid white;}
+	.status-update .dropdown span{background-color: red;border: 1px solid white;}
+	ul button {display:inline;width :70px;color:gray;font-size:14px;;background-color: white;}
+/* 상태스타일 */
+	.Using{display:inline;width :70px;color:#ED0000;font-size:14px;
+	text-shadow:1px 1px 1px  #FF6C6C ,10px 10px 20px  palegoldenrod;background-color: white;}
+	.Using:hover{color:#ED0000}
+	
+	.Available{display:inline;width :70px;color:#6799FF;font-size:14px;
+	text-shadow:1px 1px 1px  #9EBEC4 ,10px 10px 20px  palegoldenrod;background-color: white;}
+	.Available:hover{color:#6799FF}
+	
+	.Repair{display:inline;width :70px;color:#DB9700;font-size:14px;
+	text-shadow:1px 1px 1px  #FFDF24 ,10px 10px 20px  palegoldenrod; background-color: white;}
+	.Repair:hover{color:#DB9700}
+	
 
 </style>
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 
 <script>
-<%-- $(function() {
-	$.ajax({
-		url:"<%=request.getContextPath()%>/bikeListAjax",
-		type:"get",	
-		dataType:"html",    /*리턴받는 형식 */
-		success:function(data){
-			$('#noticeListAjaxTable').html(data);
-		}
 
-	});
-}); --%>
 
 $(function () {
-	$('#status').on('click',function(){
-		alert($(this).val());
-		<%-- var form = $('.status-update');
-		var url = '<%= request.getContextPath() %>/bikeStatusUpdate';
-		form.attr("action", url);
-		form.submit(); --%>		
+	$('#statusAvailable').on('click',function(){
+		alert('사용가능');
+		var form1 = $('#statusAvailableFrm');
+		var url = "<%= request.getContextPath() %>/bikeStatusUpdate";
+		form1.attr("action", url);
+		form1.submit();
+		
+	});
+	$('#statusUsing').on('click',function(){
+		alert("사용중");
+		var form1 = $('#statusUsingFrm');
+		
+		var url = "<%= request.getContextPath() %>/bikeStatusUpdate";
+		form1.attr("action", url);
+		form1.submit();
+		
+	});
+	$('#statusRepair').on('click',function(){
+		alert("수리중");
+		var form1 = $('#statusRepairFrm');
+		var url = "<%= request.getContextPath() %>/bikeStatusUpdate";
+		form1.attr("action", url);
+		form1.submit();
 	});
 });
 
@@ -91,8 +110,8 @@ $(function () {
       </tr>
     </thead>
    <% for(Bike b : list)  { %>
-   <%String status =""; %>
-   <%status= b.getBikeStatus(); %>
+ <%--   <%String status =""; %>
+   <%status= b.getBikeStatus(); %> --%>
       <tbody id="myTable">
 <!-- 자전거 별 폼 -->
      
@@ -115,19 +134,47 @@ $(function () {
 	         
 		     <td><%= b.getBikeType() %></td>
 		      
-	<form class='status-update'> 		  
+		  
 	         <td>
-	         	<div class="dropdown" >
-				    <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="caret" ><%=status%>  </span>
+	         
+	         
+	         	<div class="dropdown"  >
+	         		<%if(b.getBikeStatus().equals("사용가능")){ %>
+				    	<span class="Available btn btn-default dropdown-toggle abc" data-toggle="dropdown" id="caret"   ><%=b.getBikeStatus()%>  </span>
+				    <%}else if(b.getBikeStatus().equals("사용중")){ %>
+				    	<span class="Using btn btn-default dropdown-toggle abc" data-toggle="dropdown" id="caret"   ><%=b.getBikeStatus()%>  </span>
+				    <%}else{ %>
+				    	<span class="Repair btn btn-default dropdown-toggle abc" data-toggle="dropdown" id="caret"   ><%=b.getBikeStatus()%>  </span>
+				    <%} %>
 				    <ul class="dropdown-menu dropdown-menu-bottom"  >
-				      <input type="hidden" name='bikeId' value="<%=b.getBikeId()%>">
-				      <li><a id='status' name='status' value='Available' >사용가능[Available]</a></li>
-				      <li><a id='status' name='status' value='using'>사용중[using]</a></li>
-				      <li><a id='status' name='status' value='repair'>수리중[repair]</a></li>
+				     <form id='statusAvailableFrm' action="<%= request.getContextPath() %>/bikeStatusUpdate"> 	
+					      
+					      <li>
+					      <button type="submit()" id='statusAvailable' name='statusAvailable' value='사용가능'><a>사용가능</a></button>
+					      <input type="hidden" name='bikeId' value="<%=b.getBikeId()%>">
+					      <input type="hidden" id='statusAvailable' name='input_statusAvailable' value='사용가능'>
+					      </li>
+				      </form>
+				      <form id='statusUsingFrm' action="<%= request.getContextPath() %>/bikeStatusUpdate"> 
+					      
+					      <li>
+					      <button type="submit()" id='statusUsing' name='statusUsing' value='사용중'>사용중</button>
+					      <input type="hidden" name='bikeId' value="<%=b.getBikeId()%>">	
+					      <input type="hidden" id='statusUsing' name='input_statusUsing' value='사용중'>
+					      </li>
+				      </form>
+				      <form id='statusRepairFrm' action="<%= request.getContextPath() %>/bikeStatusUpdate"> 	
+					      <li>
+						      <button type="submit()" id='statusRepair' name='statusRepair' value='수리중'>수리중</button>
+						      <input type="hidden" name='bikeId' value="<%=b.getBikeId()%>">
+						      <input type="hidden" id='statusRepair' name='input_statusRepair' value='수리중'>
+					      </li>
+				      </form>
+				      
 				    </ul>
 				</div>
 	         </td>
-	</form>
+	
 	         
 	      </tr>
 	      

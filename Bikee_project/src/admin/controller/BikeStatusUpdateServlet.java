@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.model.service.AdminService;
+
 /**
  * Servlet implementation class BikeStatusUpdateServlet
  */
@@ -26,8 +28,59 @@ public class BikeStatusUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String upContent =(String)request.getParameter("bikeId");
-		String updateNo =(String)request.getParameter("updateNo");
+		String input_statusAvailable =(String)request.getParameter("input_statusAvailable");
+		String input_statusUsing =(String)request.getParameter("input_statusUsing");
+		String input_statusRepair =(String)request.getParameter("input_statusRepair");
+		String bikeId =(String)request.getParameter("bikeId");
+		String referer = request.getHeader("referer");
+		/*System.out.println(input_statusAvailable);
+		System.out.println(input_statusUsing);
+		System.out.println(input_statusRepair);
+		System.out.println(bikeId);*/
+		String msg ="";
+		String loc="/views/admin/bikeList.jsp";
+		
+		if(input_statusAvailable !=null) {
+			String status =input_statusAvailable;
+			int result = new AdminService().bikeStatusUpdate(bikeId,status);
+			if(result==1) {
+				msg =status +" 상태로 변경 되었습니다~";
+			}else {
+				msg = "상태가 변경되지 않았습니다~";
+			}
+			
+		}
+		else if(input_statusUsing !=null) {
+			String status =input_statusUsing;
+			int result = new AdminService().bikeStatusUpdate(bikeId,status);
+			if(result==1) {
+				msg =status +" 상태로 변경 되었습니다~";
+			}else {
+				msg = "상태가 변경되지 않았습니다~";
+			}
+		
+			
+		}
+		else if(input_statusRepair !=null){
+		
+			String status =input_statusRepair;
+			int result = new AdminService().bikeStatusUpdate(bikeId,status);
+			if(result==1) {
+				msg =status +" 상태로 변경 되었습니다~";
+			}else {
+				msg = "상태가 변경되지 않았습니다~";
+			}
+		
+			
+		}
+		
+		request.setAttribute("referer", referer);
+		request.setAttribute("msg", msg);
+		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+		
+		
+		
 	}
 
 	/**
