@@ -43,6 +43,7 @@ public class GiftSelectMem extends HttpServlet {
 		System.out.println(m.getMem_email());
 		
 		request.setAttribute("m.getMem_name()",m.getMem_name());
+		System.out.println("테스트용. 지워주세요");
 
 		request.getRequestDispatcher("/views/gift/giftPage.jsp").forward(request, response);
 		
