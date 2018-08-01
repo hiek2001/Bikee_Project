@@ -18,13 +18,14 @@
 	text-shadow:1px 1px 5px  #9EBEC4,10px 10px 20px  palegoldenrod;
 	}
 /* 상태 설정 드롭다운 */
-	.dropdown span{background-color: white;border: 1px solid white;}
+	.status-update .dropdown span{background-color: white;border: 1px solid white;}
 
 </style>
 
+<!-- --------------------------------------------------------------------------------------------------- -->
 
 <script>
-$(function() {
+<%-- $(function() {
 	$.ajax({
 		url:"<%=request.getContextPath()%>/bikeListAjax",
 		type:"get",	
@@ -34,28 +35,22 @@ $(function() {
 		}
 
 	});
-});
+}); --%>
 
-$(function name() {
+$(function () {
 	$('#status').on('click',function(){
-		
-		
+		alert($(this).val());
+		<%-- var form = $('.status-update');
+		var url = '<%= request.getContextPath() %>/bikeStatusUpdate';
+		form.attr("action", url);
+		form.submit(); --%>		
 	});
 });
 
 
 </script>
 
-
-
-
-
-
-
-
-
-
-
+<!-- --------------------------------------------------------------------------------------------------- -->
 	
 <div class="container" >
   <h2>자전거 현황</h2>
@@ -99,6 +94,8 @@ $(function name() {
    <%String status =""; %>
    <%status= b.getBikeStatus(); %>
       <tbody id="myTable">
+<!-- 자전거 별 폼 -->
+     
 	      <tr>																																
 	         <th><%= b.getBikeId()%></th>
 
@@ -116,23 +113,26 @@ $(function name() {
 	         	<td >성남탄천점</td>
 	         <% }%>
 	         
-		     <td ><%= b.getBikeType() %></td>
-	         <td  >
+		     <td><%= b.getBikeType() %></td>
+		      
+	<form class='status-update'> 		  
+	         <td>
 	         	<div class="dropdown" >
-				    	
-				    	
-				        <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="caret" ><%=status%>  </span>
-				    
+				    <span class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="caret" ><%=status%>  </span>
 				    <ul class="dropdown-menu dropdown-menu-bottom"  >
-				      <li><a id='status' value='Available'>사용가능</a></li>
-				      <li><a id='status' value='use'>사용중</a></li>
-				      <li><a id='status' value='repair'>수리중</a></li>
-				      
+				      <input type="hidden" name='bikeId' value="<%=b.getBikeId()%>">
+				      <li><a id='status' name='status' value='Available' >사용가능[Available]</a></li>
+				      <li><a id='status' name='status' value='using'>사용중[using]</a></li>
+				      <li><a id='status' name='status' value='repair'>수리중[repair]</a></li>
 				    </ul>
 				</div>
 	         </td>
+	</form>
 	         
 	      </tr>
+	      
+	      
+	      
       </tbody>
       <% } %>
   </table>

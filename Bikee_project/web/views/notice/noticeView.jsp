@@ -182,7 +182,7 @@
 		
 		var frm = $('#noticeFrm');
 		var url = "<%= request.getContextPath() %>/notice/noticeUpdate";
-		frm.removeAttr(ra)
+		frm.removeAttr('readonly');
 		frm.attr("action", url);
 		frm.submit();
 	}
