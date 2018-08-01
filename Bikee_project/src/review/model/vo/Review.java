@@ -12,11 +12,12 @@ public class Review {
 	private Date reviewDate;
 	private int reviewReadCount;
 	private String courseType;
+	private String reviewStar;
 	
 	public Review() {}
 
 	public Review(int reviewNo, String reviewTitle, String reviewWriter, String reviewContent, String originalFileName,
-			String renameFileName, Date reviewDate, int reviewReadCount, String courseType) {
+			String renameFileName, Date reviewDate, int reviewReadCount, String courseType, String reviewStar) {
 		super();
 		this.reviewNo = reviewNo;
 		this.reviewTitle = reviewTitle;
@@ -27,6 +28,7 @@ public class Review {
 		this.reviewDate = reviewDate;
 		this.reviewReadCount = reviewReadCount;
 		this.courseType = courseType;
+		this.reviewStar = reviewStar;
 	}
 
 	public int getReviewNo() {
@@ -101,12 +103,21 @@ public class Review {
 		this.courseType = courseType;
 	}
 
+	public String getReviewStar() {
+		return reviewStar;
+	}
+
+	public void setReviewStar(String reviewStar) {
+		this.reviewStar = reviewStar;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", reviewTitle=" + reviewTitle + ", reviewWriter=" + reviewWriter
 				+ ", reviewContent=" + reviewContent + ", originalFileName=" + originalFileName + ", renameFileName="
 				+ renameFileName + ", reviewDate=" + reviewDate + ", reviewReadCount=" + reviewReadCount
-				+ ", courseType=" + courseType + "]";
+				+ ", courseType=" + courseType + ", reviewStar=" + reviewStar + "]";
 	}
+
 	
 }
