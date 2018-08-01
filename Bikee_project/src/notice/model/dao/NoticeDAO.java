@@ -347,6 +347,7 @@ public class NoticeDAO {
 	public int deleteNoticeComment(Connection conn, int commentNo) {
 		PreparedStatement pstmt=null;
 		int result =0;
+
 		String sql = prop.getProperty("deleteNoticeComment");
 	
 		
@@ -361,6 +362,7 @@ public class NoticeDAO {
 			e.printStackTrace();
 		}
 		close(pstmt);
+		
 		return result;
 	}
 	public int commentCountMinus(Connection conn,int noticeNo) {
