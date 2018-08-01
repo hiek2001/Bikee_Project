@@ -219,42 +219,26 @@ public class AdminDAO {
 		return result;
 		
 	}
-//	ajax
-	public List<Bike> selectBikeListAjax(Connection conn){
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = prop.getProperty("BikeListAjax");
+// status 변경
+	public int bikeStatusUpdate(Connection conn , String bikeId, String status) {
 		
-		Bike b=null;
-		ArrayList<Bike> list = new ArrayList();
-		
-		
+		PreparedStatement pstmt=null;
+		int result =0;
+		String sql = prop.getProperty("statusUpdate");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			while(rs.next())
-			{
-				b=new Bike();
-				b.setBikeId(rs.getString("bike_id"));
-				b.setBikeStatus(rs.getString("bike_status"));
-				b.setBikeType(rs.getString("bike_type"));
-				b.setShopId(rs.getString("shop_id"));
-				list.add(b);
-			}
+			pstmt.setString(1, status);
+			pstmt.setString(2, bikeId);
+			result = pstmt.executeUpdate();
 			
-		}
 			
-		catch (Exception e) {
-				e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		return list;
-		
+		close(pstmt);
+		return result;
 		
 		
 	}
-
+	
 }
