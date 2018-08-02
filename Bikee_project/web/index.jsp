@@ -28,7 +28,6 @@ $(function() {
 		success:function(data){
 			$('#noticeListAjaxTable').html(data);
 		}
-
 	});
 });
 

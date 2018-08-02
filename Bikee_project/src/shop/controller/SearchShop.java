@@ -29,7 +29,9 @@ public class SearchShop extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String shopId = request.getParameter("shopId");
+		System.out.println(shopId);
 		Shop s = new ShopService().selectShop(shopId);
 		System.out.println(s.getShopName());
 		request.setAttribute("shop", s);

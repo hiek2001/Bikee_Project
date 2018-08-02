@@ -7,7 +7,7 @@
 	<div class = "row content">
 		<%@ include file = '/views/course/side.jsp' %>
 		<div class="col-sm-9 main">
-			<h1>인천대공원(소래포구역 - 인천대공원)</h1>
+			<h1>인천대공원(소래포구역 - 송도MTB파크)</h1>
 	<div class = "space"></div>
 	<div class = "course_image">
 		<div class ="view">

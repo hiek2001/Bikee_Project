@@ -5,7 +5,8 @@ public class Shop {
 	private String shopName;
 	private String shopAddr;
 	private String shopPhone;
-	
+	private String runTime;
+	private String bikeKind;
 	public Shop() {
 		
 	}
@@ -42,9 +43,27 @@ public class Shop {
 		this.shopPhone = shopPhone;
 	}
 
+	public String getRunTime() {
+		return runTime;
+	}
+
+	public void setRunTime(String runTime) {
+		this.runTime = runTime;
+	}
+
+	public String getBikeKind() {
+		return bikeKind;
+	}
+
+	public void setBikeKind(String bikeKind) {
+		this.bikeKind = bikeKind;
+	}
+
 	@Override
 	public String toString() {
 		return "Shop [shopId=" + shopId + ", shopName=" + shopName + ", shopAddr=" + shopAddr + ", shopPhone="
-				+ shopPhone + "]";
+				+ shopPhone + ", runTime=" + runTime + ", bikeKind=" + bikeKind + "]";
 	}
+	
+	
 }
