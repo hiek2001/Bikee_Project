@@ -1,7 +1,6 @@
-package member.controller;
+package lent.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lent.model.service.LentService;
-import lent.model.vo.LentBike;
 import lent.model.vo.LentCancel;
-import lent.model.vo.PurchaseTicket;
-import shop.model.vo.Shop;
 
 /**
- * Servlet implementation class MemberLentHistory
+ * Servlet implementation class LentCancelAdminServlet
  */
-@WebServlet("/memberLentHistory")
-public class MemberLentHistory extends HttpServlet {
+@WebServlet("/lent/lentCancelAdmin")
+public class LentCancelAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLentHistory() {
+    public LentCancelAdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,10 +30,28 @@ public class MemberLentHistory extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memId = request.getParameter("memId");
-		List<LentBike> list = new LentService().selectLentBikeList(memId);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/member/memberLentHistory.jsp").forward(request, response);
+		// LentCancelAdminServlet
+		String cancelMuid = (String) request.getParameter("cancelMuid");
+		String cancelReason = (String) request.getParameter("cancelReason");
+		String cancelState = (String) request.getParameter("cancelState");
+		String stateReason = (String) request.getParameter("stateReason");
+		
+		LentCancel lc = new LentCancel(cancelMuid, cancelReason, cancelState, stateReason);
+		
+		int updateResult = new LentService().updateLentCancel(lc);
+		
+		if(cancelState.equals("YES")) {
+			if(updateResult>0) {
+				int deleteResult = new LentService().deleteLentBike(cancelMuid);
+				if(deleteResult>0) {
+					response.sendRedirect(request.getContextPath());
+				}
+			}
+		} else {
+			response.sendRedirect(request.getContextPath());
+		}
+		
+		
 	}
 
 	/**
@@ -47,4 +61,5 @@ public class MemberLentHistory extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

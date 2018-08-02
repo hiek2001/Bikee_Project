@@ -7,7 +7,8 @@
 	String bikeId = (String) request.getAttribute("bikeId");
 	String buyDate =  (String) request.getAttribute("buyDate");
 	String returnDate = (String) request.getAttribute("returnDate");
-	int lentPrice = (int)request.getAttribute("lentPrice");
+	int lentPrice = 100;
+	int realLentPrice = (int)request.getAttribute("lentPrice");
 %>
 <%@ include file= '/views/common/header.jsp' %>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script> <!-- 아임포트 -->
@@ -33,7 +34,7 @@ function(rsp) {
     if ( rsp.success ) { // success => 결제 성공 / 완료 여부 판단. boolean
         var msg = '결제가 완료되었습니다.\n';
         msg += '고유ID : ' + rsp.imp_uid + "\n"; 
-        msg += '거래ID : ' + rsp.merchant_uid + "\n";
+        msg += '고유번호 : ' + rsp.merchant_uid + "\n";
         msg += '결제 금액 : ' + rsp.paid_amount + "\n";
         msg += '카드 승인번호 : ' + rsp.apply_num + "\n";
 		location.href = "<%= request.getContextPath() %>/lent/lentConfirm?merchantUid="+rsp.merchant_uid+"&methodNum=<%=methodNum%>&bikeId=<%=bikeId%>&buyDate=<%=buyDate%>&returnDate=<%=returnDate%>&buyerId=<%=memberLoggedIn.getMem_id()%>&shopId=<%=shopId%>&lentPrice=<%=lentPrice%>";

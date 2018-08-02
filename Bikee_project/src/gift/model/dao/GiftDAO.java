@@ -1,9 +1,5 @@
 package gift.model.dao;
 
-
-
-
-
 import static common.JDBCTemplate.close;
 
 import java.io.FileReader;
@@ -17,6 +13,7 @@ import java.util.Properties;
 
 import gift.model.vo.Gift;
 import lent.model.vo.LentBike;
+
 import member.model.vo.Member;
 
 public class GiftDAO {
@@ -124,6 +121,11 @@ public class GiftDAO {
 	
 	
 	
+
+	public Member selectMemPhone(Connection conn, String giftSelectPhone) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public Member selectMemPhone(Connection conn, String giftSelectPhone) {
 		// TODO Auto-generated method stub

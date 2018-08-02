@@ -139,11 +139,11 @@ function validate() {
 				<li class='dropdown admin-member'>
 				<a href='#' class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 관리자<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-		                <li><a href="<%=request.getContextPath() %>/memberView">회원관리</a></li>
-
+		         <li><a href="<%=request.getContextPath() %>/memberView">회원관리</a></li>
 						<li><a href="<%=request.getContextPath() %>/bikeList">자전거관리</a></li>
-						<li><a href="<%=request.getContextPath()%>/member/PayHistory">결제관리</a></li>
 
+						<li><a href="<%=request.getContextPath()%>/member/PayHistory">결제관리</a></li>
+						<li><a href="<%=request.getContextPath()%>/lent/lentCancelServletA">결제취소관리</a></li>
 					</ul>
 				</li>
 				<%} %>

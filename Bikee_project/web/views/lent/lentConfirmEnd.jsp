@@ -36,9 +36,33 @@ td {
 .btn {
 	margin: 10px;
 }
+
+#cancelReason {
+	max-width: 500px;
+	margin: 0 auto;
+	display: inline;
+}
 </style>
+
 <script>
+$(function() {
+	$('#cancel_box').hide();
 	
+	$("#cancel_btn").click(function() {
+		$("#cancel_box").show();
+	});
+	
+	$("#cancelReason").click(function() {
+		$("#cancelReason").val("");
+	});
+	
+	$("#cancelBtn").click(function() {
+		alert("관리자에게 결제 취소를 요청하였습니다.");
+	})
+});
+
+
+
 </script>
 
 <div class="container text-center">
@@ -84,7 +108,17 @@ td {
 	<div id="btn">
 		<% if(referer.contains("/memberLentHistory")) { %>
 		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button>
-		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">구매 취소</button>
+		<button type="button" class="btn btn-primary btn-lg" id="cancel_btn">구매 취소</button>
+		
+		<div id="cancel_box" class="alert alert-warning">
+    		<strong>구매취소</strong> 사유를 입력하세요.<br><br>
+    		<form action="<%= request.getContextPath() %>/lent/lentCancel" method="post" id="cancelFrm">
+    			<input type="text" class="form-control" name="cancelReason" id="cancelReason" value="취소사유를 입력하세요">
+    			<input type="hidden" name="cancelMuid" id="cancelMuid" value="<%= selectLb.getMerchantUid() %>">
+                <button type="submit" class="btn btn-primary text-center" id="cancelBtn">전송</button>
+    		</form>
+  		</div>
+  		
 		<% } else { %>
 		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%= request.getContextPath() %>';">확인</button>
 		<% } %>

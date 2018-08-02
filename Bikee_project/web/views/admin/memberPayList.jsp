@@ -17,6 +17,41 @@ List<LentBike> list = (List<LentBike>) request.getAttribute("list");
 	span.font{font:italic normal normal 200px}
 	table{margin-top:15px}
 </style>
+
+<div class="col-lg-8 main_title text-center">
+	MEMBER PAY LIST
+</div>
+	
+<div id="memberList-container">	
+	
+	<!-- <h4>회원 관리</h4> -->
+     <table id="admin-table" class="table table-condensed" cellspacing="0" width="80%">
+       <thead>
+         <tr>
+            <th class="th-sm">구매번호</th>
+            <th class="th-sm">이용권 가격</th>
+            <th class="th-sm">바이크 종류</th>
+            <th class="th-sm">구매자</th>
+         </tr>
+       </thead>
+     	<tbody>
+			<% for(LentBike lb : list) { %>
+			<tr>
+				<td><a href="<%= request.getContextPath() %>/lent/lentConfirm?merchantUid=<%= lb.getMerchantUid() %>&methodNum=<%=lb.getMethodNum()%>&bikeId=<%=lb.getBikeId()%>&buyDate=<%=lb.getBuyDate()%>&returnDate=<%=lb.getReturnDate()%>&buyerId=<%=lb.getBuyerId()%>&shopId=<%=lb.getShopId()%>&lentPrice=<%=lb.getLentPrice()%>"><%= lb.getMerchantUid() %></a></td>
+				<td><%= lb.getLentPrice() %></td>
+				<td><%= lb.getBikeId() %></td>
+				<td><%= lb.getBuyerId() %></td>
+			</tr>
+			<% } %>
+		</tbody>
+      </table>
+     </div>
+     <div class="pagebar text-center">
+	    <ul class="pagination pagination-member">
+	    	<%=pageBar %>
+	     </ul>  
+	 
+
 <script>
    
 	function fn_date(){

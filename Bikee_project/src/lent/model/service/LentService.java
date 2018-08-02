@@ -9,9 +9,9 @@ import java.sql.Connection;
 import java.util.List;
 
 import bike.model.vo.BikePrice;
-import community.model.dao.CommunityDAO;
 import lent.model.dao.LentDAO;
 import lent.model.vo.LentBike;
+import lent.model.vo.LentCancel;
 import lent.model.vo.PurchaseTicket;
 import shop.model.vo.Shop;
 
@@ -95,5 +95,52 @@ public class LentService {
 		int result = new LentDAO().payListCount(conn);
 		close(conn);
 		return result;
+	}
+	
+	
+	// 구매취소부분
+	public int insertLentCancel(String cancelReason, String cancelMuid) {
+		Connection conn = getConnection();
+		int result = new LentDAO().insertLentCancel(conn, cancelReason, cancelMuid);
+		if(result>0) commit(conn);
+		else rollback(conn);
+
+		return result;
+	}
+	
+	public LentCancel selectLentCancel(String cancelMuid) {
+		Connection conn = getConnection();
+		LentCancel selectLC = new LentDAO().selectLentCancel(conn, cancelMuid);
+		close(conn);
+		
+		return selectLC;
+	}
+	
+	public List<LentCancel> selectLentCancelList() {
+		Connection conn = getConnection();
+		List<LentCancel> cancelList = new LentDAO().selectLentCancelList(conn); 
+		close(conn);
+		
+		return cancelList;
+	}
+	
+	public int updateLentCancel(LentCancel lc) {
+		Connection conn = getConnection();
+		int updateResult = new LentDAO().updateLentCancel(conn, lc);
+		
+		if(updateResult>0) commit(conn);
+		else rollback(conn);
+		
+		return updateResult;
+	}
+	
+	public int deleteLentBike(String cancelMuid) {
+		Connection conn = getConnection();
+		
+		int deleteResult = new LentDAO().deleteLentBike(conn, cancelMuid);
+		if(deleteResult>0) commit(conn);
+		else rollback(conn);
+		
+		return deleteResult;
 	}
 }

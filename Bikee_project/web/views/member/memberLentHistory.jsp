@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="lent.model.vo.LentBike, java.util.List" %>
+<%@ page import="lent.model.vo.LentBike, java.util.List, lent.model.vo.LentCancel" %>
 <%
 	List<LentBike> list = (List<LentBike>) request.getAttribute("list");
 %>
@@ -23,6 +23,12 @@
 	margin-top: 30px;
 	float: right;
 	font-style: italic;
+}
+
+#selectFrm {
+	display: inline-block;
+	margin: 20px 0px 10px;
+	float: left;
 }
 
 table {
@@ -56,6 +62,7 @@ thead {
 	<div class="jumbotron text-center">
 		<h1>이용권 구매내역</h1>
 	</div>
+	
 	<p id="pp">구매번호를 클릭하면 상세 정보가 나옵니다.</p>
 	<table class="table table-hover">
 		<thead>
