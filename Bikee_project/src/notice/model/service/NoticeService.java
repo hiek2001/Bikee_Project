@@ -54,7 +54,6 @@ public class NoticeService {
 			
 			if(hasRead==true) {
 				result =new NoticeDAO().insertNoticeCount(conn,noticeNo);
-				System.out.println("조회수 증가");
 				if(result>0){
 					commit(conn);
 				}else {
@@ -146,10 +145,9 @@ public class NoticeService {
 
 
 	public int deleteNoticeComment(int commentNo) {
-		System.out.println("deleteNoticeComment - Service");
+		
 		Connection conn= getConnection();
 		int result = new NoticeDAO().deleteNoticeComment(conn,commentNo);
-		System.out.println("123");
 		if(result>0){
 			commit(conn);
 		}else {

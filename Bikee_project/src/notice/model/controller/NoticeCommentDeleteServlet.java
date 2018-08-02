@@ -29,10 +29,8 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("h_noticeNo"));
-		System.out.println(noticeNo);
 		int commentNo = Integer.parseInt(request.getParameter("h_CommentNo"));
-		System.out.println(commentNo);
-		
+		String referer = request.getHeader("referer");
 		//코멘트삭제
 		int result = new NoticeService().deleteNoticeComment(commentNo); 
 		
@@ -54,8 +52,8 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc); 
-		
-		request.getRequestDispatcher("/views/common/communityMsg.jsp").forward(request,response);
+		request.setAttribute("referer", referer); 
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
 		
 	
 	}

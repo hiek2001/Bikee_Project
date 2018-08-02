@@ -38,11 +38,17 @@
 
 </style>
 <script>
-
-   function fn_write()
-   {	
-	   	location.href="<%=request.getContextPath()%>/centerForm";		
-   }
+	function fn_write()
+	{	
+		   if(<%=memberLoggedIn==null%>){
+			   var result = confirm("로그인 후 이용이 가능합니다.");
+			   return false;
+		   }else{
+			   location.href="<%=request.getContextPath()%>/centerForm";
+			   return true;
+		   }
+		   			
+	}
    
    $(function (){
 	   $(".checkA").click(function(){
@@ -287,9 +293,9 @@
 					    <ul class="pagination pagination-lg">
 					    	<%=pageBar %>
 					     </ul> 
-					 	<%if(memberLoggedIn!=null){%>
-				       		<button type="button" class="btn btn-primary btn pull-right" onclick='fn_write()' style="background-color:#1E68CB;width:110px; height:40px; font-size:16px">WRITE</button>
-						<%} %>
+					 	
+				       		<button type="button" class="btn btn-primary btn pull-right" onclick='fn_write()' style="background-color:#1E68CB;width:110px; height:40px; font-size:16px;margin-top:25px">WRITE</button>
+					
 					</div>
 			    </div>
 		    </div>
