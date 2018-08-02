@@ -17,9 +17,16 @@
 </style>
 <script>
 
-   function fn_write(login)
+   function fn_write()
    {	
-	   	location.href="<%=request.getContextPath()%>/reviewForm";		
+	   if(<%=memberLoggedIn==null%>){
+		   var result = confirm("로그인 후 이용이 가능합니다.");
+		   return false;
+	   }else{
+		   location.href="<%=request.getContextPath()%>/reviewForm";
+		   return true;
+	   }
+	   			
    }
    
 	function fn_date(){
@@ -81,9 +88,9 @@
 					    <ul class="pagination pagination-lg">
 					    	<%=pageBar %>
 					     </ul> 
-					 	<%if(memberLoggedIn!=null){%>
-				       		<button type="button" class="btn btn-primary btn pull-right" onclick='fn_write()' style="background-color:#1E68CB;width:110px; height:40px; font-size:16px;margin-top:22px">WRITE</button>
-						<%} %>
+					 
+				       		<button type="button" class="btn btn-primary btn pull-right" onclick='fn_write()' style="background-color:#1E68CB;width:110px; height:40px; font-size:16px;margin-top:25px">WRITE</button>
+						
 					</div>
 					<form  action="<%=request.getContextPath()%>/reviewList" method="post">
 						<div style="margin-top:50px"></div>

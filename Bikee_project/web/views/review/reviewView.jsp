@@ -61,7 +61,7 @@
 			$('.update').attr("action","<%=request.getContextPath()%>/reviewDelete");
 			return true;
 		}else{
-			false;
+			return false;
 		}
 		
 	}

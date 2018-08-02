@@ -44,6 +44,7 @@ public class CenterListServlet extends HttpServlet {
 		}
 		
 		List<Center> list = new CenterService().centerList(cPage,numPerPage);
+		System.out.println("centerListServlet"+list);
 		List<Comment> total =  new CommentService().commentList();
 		int totalContent = new CenterService().selectCenterCount();
 		int totalPage = (int)Math.ceil((double)totalContent/numPerPage);
