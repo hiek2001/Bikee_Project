@@ -13,7 +13,13 @@ h4, .h4 {font-size: 20px;}
 div#rule{align:center;}
 div.header div{background-color:#1E68CB !important; color:#FFFFFF !important; width:85%; height:120px;margin-left:180px;
 font-family:"sans-serif";font-size:70px;font-style:italic;text-align:center;margin-top:10px;}
-
+@media screen and (max-width: 767px) {
+		div.header div{
+			width : 50%;
+			height : 60px;
+			font-size : 50px;
+			margin-left: 30%;}
+    }
 </style>
 <div class="header">
 	<div class="font">BIKETYPE</div>

@@ -1,5 +1,9 @@
 package gift.model.dao;
 
+
+
+
+
 import static common.JDBCTemplate.close;
 
 import java.io.FileReader;
@@ -120,5 +124,10 @@ public class GiftDAO {
 	
 	
 	
+
+	public Member selectMemPhone(Connection conn, String giftSelectPhone) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
