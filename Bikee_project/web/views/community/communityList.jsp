@@ -39,11 +39,18 @@
         }
 </style>
 <script>
-
-   function fn_write()
-   {	
-	   	location.href="<%=request.getContextPath()%>/community/communityForm";		
-   }
+	
+function fn_write()
+{	
+	   if(<%=memberLoggedIn==null%>){
+		   var result = confirm("로그인 후 이용이 가능합니다.");
+		   return false;
+	   }else{
+			location.href="<%=request.getContextPath()%>/community/communityForm";	
+		   return true;
+	   }
+	   			
+}
    
 	function fn_date(){
 		var content=$("[name=content]").val();
@@ -105,9 +112,9 @@
 					    <ul class="pagination pagination-lg">
 					    	<%=pageBar %>
 					     </ul> 
-					 	<%if(memberLoggedIn!=null){%>
+					 	
 				       		<button type="button" class="btn btn-primary btn pull-right" onclick='fn_write()' style="background-color:#1E68CB;width:110px; height:40px; font-size:16px;margin-top:22px">WRITE</button>
-						<%} %>
+						
 					</div>
 					<form  action="<%=request.getContextPath()%>/community/communityList" method="post">
 						<div style="margin-top:50px"></div>
