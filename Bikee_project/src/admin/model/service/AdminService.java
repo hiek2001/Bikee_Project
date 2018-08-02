@@ -67,6 +67,7 @@ public class AdminService {
 		return result;
 	}
 
+	
 //  status 변경
 	public int bikeStatusUpdate(String bikeId,String status) {
 		
@@ -86,7 +87,14 @@ public class AdminService {
 
 	}
 	
-	
-	
+//  shop별
+	public List<Bike> shopClassiFication(int cPage, int numPerPage, String shopCode){
+		Connection conn = getConnection();
+		List<Bike> list = new AdminDAO().shopClassiFication(conn,cPage,numPerPage,shopCode);
+		close(conn);
+		
+		return list;
+		
+	}
 	
 }

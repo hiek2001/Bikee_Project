@@ -241,4 +241,38 @@ public class AdminDAO {
 		
 	}
 	
+//	shop별
+	public List<Bike> shopClassiFication(Connection conn,int cPage, int numPerPage, String shopCode){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("shopSearch");
+		Bike b=null;
+		ArrayList<Bike> list=new ArrayList<>();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			pstmt.setString(3, shopCode);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				b=new Bike();
+				b.setBikeId(rs.getString("bike_id"));
+				b.setBikeStatus(rs.getString("bike_status"));
+				b.setBikeType(rs.getString("bike_type"));
+				b.setShopId(rs.getString("shop_id"));
+				list.add(b);
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		close(rs);
+		close(pstmt);
+		return list;
+	}
+
 }
