@@ -70,6 +70,16 @@ $(function () {
 });
 
 
+$(function () {
+	
+
+	$('#shopCode').on('click',function(){
+		alert($('#shopCode').val());
+		$('#shopFrm').submit();
+	})		
+})
+
+	
 
 </script>
 
@@ -84,27 +94,27 @@ $(function () {
 
 
   <div class="container" >
-	 
-	  <div class="dropdown" style="text-align: right;">
-		    <button  class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">대여소 선택
-		    <span class="caret"></span></button>
-		    <ul class="dropdown-menu dropdown-menu-right"  >
-		      <li><a href="#">성남탄천점[tc_01]</a></li>
-		      <li><a href="#">노량진역점[no_02]</a></li>
-		      <li><a href="#">인천소래포구역점[ic_03]</a></li>
-		      <li><a href="#">양평북한강점[yp_04]</a></li>
-		      <li><a href="#">잠실행복점[gs_05]</a></li>
-		      <li><a href="#">하늘공원점[ha_06]</a></li>
-	    	</ul>
-	  </div>
+	<form action="<%=request.getContextPath()%>/bikeShopSearch" method="post" id ='shopFrm'>
+		  <div class="dropdown" style="text-align: right;">
+			     <select class="btn btn-danger "  id="shopCode" >
+				    <option value="tc_01">성남탄천점</option> 
+					<option value="no_02">노량진역점</option> 
+					<option value="ic_03">인천소래포구역점</option>
+					<option value="yp_04">양평북한강점</option>  
+					<option value="gs_05">잠실행복점</option>  
+					<option value="ha_06">하늘공원점</option>    
+			     </select>
+		  </div>
+	</form>
  </div>
-  
-	
+
+		   
+
 	
 <!-- 자전거 리스트 --> 
 
 	      
-  <table class="table table-hover">
+  <table class="table table-hover" id='bikeTable'>
     <thead>
       <tr>
         <th>자전거 코드</th>
