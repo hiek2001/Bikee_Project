@@ -118,18 +118,6 @@ public class GiftDAO {
 	      }
 	      return selectGift;
 	}
-	
-	
-	
 
-	public Member selectMemPhone(Connection conn, String giftSelectPhone) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Member selectMemPhone(Connection conn, String giftSelectPhone) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
