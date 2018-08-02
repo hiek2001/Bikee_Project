@@ -44,7 +44,6 @@ public class LentConfirm extends HttpServlet {
 		
 		// 이전 페이지 url 확인
 		String referer = request.getHeader("referer");
-		
 		// 이용권 구매시에는 InsertLentDAO 실행.
 		if(referer.contains("/lentSelect2")) {
 			LentBike lb = new LentBike(merchantUid,methodNum,bikeId,buyDate,returnDate,buyerId,shopId,lentPrice);

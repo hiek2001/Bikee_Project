@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import bike.model.vo.BikePrice;
 import lent.model.vo.LentBike;
+import lent.model.vo.LentCancel;
 import lent.model.vo.PurchaseTicket;
 import shop.model.vo.Shop;
 
@@ -78,7 +79,6 @@ public class LentDAO {
       } finally {
          close(pstmt);
       }
-      System.out.println(result);
       return result;
    }
    
@@ -101,7 +101,6 @@ public class LentDAO {
       }
       close(rs);
       close(pstmt);
-      System.out.println(b);
       return b;
    }
    
@@ -168,7 +167,7 @@ public class LentDAO {
    public Shop selectShop(Connection conn, String shopId) {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
-      Shop s = null;
+      Shop selectShop = null;
       String sql = prop.getProperty("selectShop");
       
       try {
@@ -177,11 +176,11 @@ public class LentDAO {
          rs = pstmt.executeQuery();
          
          if(rs.next()) {
-            s = new Shop();
-            s.setShopId(rs.getString("shop_id"));
-            s.setShopName(rs.getString("shop_name"));
-            s.setShopAddr(rs.getString("shop_addr"));
-            s.setShopPhone(rs.getString("shop_phone"));
+        	selectShop = new Shop();
+        	selectShop.setShopId(rs.getString("shop_id"));
+        	selectShop.setShopName(rs.getString("shop_name"));
+        	selectShop.setShopAddr(rs.getString("shop_addr"));
+        	selectShop.setShopPhone(rs.getString("shop_phone"));
          }
       } catch(Exception e) {
          e.printStackTrace();
@@ -190,7 +189,7 @@ public class LentDAO {
          close(pstmt);
       }
       
-      return s;
+      return selectShop;
    }
    
    public List<LentBike> selectLentBikeList(Connection conn, String memId) {
@@ -284,6 +283,130 @@ public class LentDAO {
 		close(rs);
 		close(pstmt);
 		return result;
+	}
+	
+	public int insertLentCancel(Connection conn, String cancelReason, String cancelMuid) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertLentCancel");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cancelMuid);
+			pstmt.setString(2, cancelReason);
+
+			result=pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public LentCancel selectLentCancel(Connection conn, String cancelMuid) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectLentCancel");
+		LentCancel selectLC = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cancelMuid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				selectLC = new LentCancel();
+				
+				selectLC.setCancelMuid(rs.getString("cancel_muid"));
+				selectLC.setCancelReason(rs.getString("cancel_reason"));
+				selectLC.setCancelState(rs.getString("cancel_state"));
+				selectLC.setStateReason(rs.getString("State_Reason"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return  selectLC;
+	}
+	
+	public List<LentCancel> selectLentCancelList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectLentCancelList");
+		ArrayList<LentCancel> cancelList = new ArrayList();
+		LentCancel LC = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				LC = new LentCancel();
+				
+				LC.setCancelMuid(rs.getString("cancel_muid"));
+				LC.setCancelReason(rs.getString("cancel_reason"));
+				LC.setCancelState(rs.getString("cancel_state"));
+				LC.setStateReason(rs.getString("state_reason"));
+						
+				cancelList.add(LC);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return cancelList;
+	}
+	
+	public int updateLentCancel(Connection conn, LentCancel lc) {
+		PreparedStatement pstmt = null;
+		int updateResult = 0;
+		String sql = prop.getProperty("updateLentCancel");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, lc.getCancelState());
+			pstmt.setString(2, lc.getStateReason());
+			pstmt.setString(3, lc.getCancelMuid());
+			
+			updateResult = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return updateResult;
+	}
+	
+	public int deleteLentBike(Connection conn, String cancelMuid) {
+		PreparedStatement pstmt = null;
+		int deleteResult = 0;
+		String sql = prop.getProperty("deleteLentBike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, cancelMuid);
+			
+			deleteResult = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteResult;
 	}
 }
 

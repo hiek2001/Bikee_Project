@@ -16,7 +16,9 @@
 <div class="col-lg-8 main_title text-center">
 	MEMBER PAY LIST
 </div>
+	
 <div id="memberList-container">	
+	
 	<!-- <h4>회원 관리</h4> -->
      <table id="admin-table" class="table table-condensed" cellspacing="0" width="80%">
        <thead>
