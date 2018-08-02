@@ -15,8 +15,11 @@
 $(function() {
 	$("#myCarousel").carousel({
 	    interval : 3000,
+	    
+	    
 	});
 })
+
 
 	
 
@@ -28,7 +31,6 @@ $(function() {
 		success:function(data){
 			$('#noticeListAjaxTable').html(data);
 		}
-
 	});
 });
 

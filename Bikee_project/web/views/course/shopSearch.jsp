@@ -4,9 +4,24 @@
 <%@ include file= '/views/common/header.jsp' %>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38dbe520351223d7e0dbf19bedaa6d68&libraries=services"></script>
 	<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Cute+Font|Do+Hyeon|Sunflower:300" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<%
 		Shop s = (Shop)request.getAttribute("shop");
 	%>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/weather-icons-master/css/weather-icons.min.css">
+	<style>
+		p{
+			font-family: 'Cute Font', cursive;
+			font-size : 30px;
+			}
+		span{
+			font-family : font-family: 'Do Hyeon', sans-serif;
+			}
+		.wi{
+			font-size: 50px;
+			margin: 5px;
+			}
+	</style>
 	<script>
 	function drawMap(addr){
 		var container = document.getElementById('map');
@@ -41,32 +56,7 @@
 			});
 	}
 	function writeShopInfo(code){
-		$.ajax({
-			url:"<%=request.getContextPath()%>/course/changeShopInfo",
-			data : {shopId:code},
-			type:"get",
-			success : function(data){
-				var s = data.shop;
-				var info = "<p>"+data.shop.shopName+" (tel."+s.shopPhone+")</p>";
-				info += "<p>주소 : "+data.shop.shopAddr+"</p>"
-				info += "<p>운영 시간 : "+data.shop.shopAddr+"</p>"
-				info += "<p>보유 자전거 종류 : "+data.shop.shopAddr+"</p>"
-				info += "<p> : "+data.shop.shopAddr+"</p>"
-				info += "<p>주소 : "+data.shop.shopAddr+"</p>"
-				info += "<p>주소 : "+data.shop.shopAddr+"</p>"
-				
-				$('#info').html(info);
-			},
-			error:function(jxhr,textStatus,error)
-			{
-				console.log("ajax실패!");
-				console.log(jxhr);
-				console.log(textStatus);
-				console.log(error);
-			}
-		});
-	}
-	function writeShopInfo(code){
+		var course = "";
 		$.ajax({
 			url:"<%=request.getContextPath()%>/course/changeShopInfo",
 			data : {shopId:code},
@@ -74,15 +64,26 @@
 			success : function(data){
 				var s = data.shop;
 				drawMap(s.shopAddr);
-				var info = "<p>"+s.shopName+" (tel."+s.shopPhone+")</p>";
-				info += "<p>주소 : "+s.shopAddr+"</p>";
-				info += "<p>운영 시간 : "+s.shopAddr+"</p>";
-				info += "<p>보유 자전거 종류 : "+s.shopAddr+"</p>";
-				info += "<p>코스정보</p>";
-				
-				info += "<p>주소 : "+s.shopAddr+"</p>";
-				info += "<p>주소 : "+s.shopAddr+"</p>";
-				
+				drawWeather(s.shopAddr);
+				var info = "<h4> 대여소 정보</h4>";
+				info += "<table><tr><td>"+s.shopName+"</td><td>(tel."+s.shopPhone+")</td></tr>";
+				info += "<tr><td>주소 :</td><td>"+s.shopAddr+"</td></tr>";
+				info += "<tr><td>운영 시간 : </td><td>"+s.runTime+"</td></tr>";
+				info += "<tr><td>보유 자전거 종류 : </td><td>"+s.bikeKind+"</td></tr>";
+				info += "<tr><td rowspan='2'>코스정보</td></tr></table>";
+				$.ajax({
+					url:"<%=request.getContextPath()%>/course/courseInfo",
+					data : {shopId:code},
+					type:"get",
+					success : function(data){
+						for(var i=0;i<data.length;i++){
+							course += "<a href='<%=request.getContextPath()%>/course/courseChange?co="
+									+data[i].courseNum+"'><i class='fa fa-bicycle' style='font-size:20px;color:blue'></i><span>  "+data[i].courseName+" 코스</span></a><br>";
+							console.log(data[i].courseNum+data[i].courseName);
+						}
+						$('#info').append(course);
+					}
+				})
 				$('#info').html(info);
 			},
 			error:function(jxhr,textStatus,error)
@@ -94,15 +95,82 @@
 			}
 		});
 	}
+	function drawWeather(addr){
+		
+		var geocoder = new daum.maps.services.Geocoder();
+		geocoder.addressSearch(addr, function(result, status) {
+
+		     // 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+
+		        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+		        $.ajax({
+					type : "get",
+					crossDomain:true,
+					url : "https://api2.sktelecom.com/weather/summary?version=",
+					dataType: "text",
+					async : false,
+					data : { lon:coords.ib,lat:coords.jb,stnid:"",version:1 },
+					headers	:	{ appkey:"1bc9580f-f425-442e-889c-5fd3a8f694f2"},
+					beforeSend: function(){
+					},
+					success : function(data){
+						var obj = JSON.parse(data);
+						//obj.hourly
+						console.log(coords);
+						console.log(obj.weather);
+						var loc = "<h5>주소 : "+obj.weather.summary[0].grid.city+" "+obj.weather.summary[0].grid.county+"</h5>";
+						var cWeather = "<h5>오늘날씨</h5>";
+						var tWeather = "<h5>내일날씨</h5>";
+						switch(obj.weather.summary[0].today.sky.name){
+						case '맑음' : cWeather += "<i class='wi wi-day-sunny'></i>";break;
+						case '구름조금' : cWeather += "<i class='wi wi-day-cloudy'></i>"; break;
+						case '구름많음' : cWeather += "<i class='wi wi-cloudy'></i>"; break;
+						case '흐림' : cWeather += "<i class='wi wi-day-fog'></i>"; break;
+						case '비' : cWeather += "<i class='wi wi-day-rain'></i>"; break;
+						case '눈' : cWeather += "<i class='wi wi-day-snow'></i>"; break;
+						case '비 또는 눈' : cWeather += "<i class='wi wi-day-rain-mix'></i>"; break;
+						}
+						switch(obj.weather.summary[0].tomorrow.sky.name){
+						case '맑음' : tWeather += "<i class='wi wi-day-sunny'></i>";break;
+						case '구름조금' : tWeather += "<i class='wi wi-day-cloudy'></i>"; break;
+						case '구름많음' : tWeather += "<i class='wi wi-cloudy'></i>"; break;
+						case '흐림' : tWeather += "<i class='wi wi-day-fog'></i>"; break;
+						case '비' : tWeather += "<i class='wi wi-day-rain'></i>"; break;
+						case '눈' : tWeather += "<i class='wi wi-day-snow'></i>"; break;
+						case '비 또는 눈' : tWeather += "<i class='wi wi-day-rain-mix'></i>"; break;
+						}
+						
+						cWeather += "<h5>최고기온 : "+obj.weather.summary[0].today.temperature.tmax+"</h5>";
+						cWeather += "<h5>최저기온 : "+obj.weather.summary[0].today.temperature.tmin+"</h5>";
+						tWeather += "<h5>최고기온 : "+obj.weather.summary[0].tomorrow.temperature.tmax+"</h5>";
+						tWeather += "<h5>최저기온 : "+obj.weather.summary[0].tomorrow.temperature.tmin+"</h5>";
+						$('#location').html(loc);
+						$('#today_weather').html(cWeather);
+						$('#tomorrow_weather').html(tWeather);
+						
+					},
+					complete: function(){
+					},
+					error	: function(xhr, status, error){
+					alert(error);
+					}
+				});
+		        
+		     }
+		});
+		
+	}
 	$(function(){
 		var addr = "<%=s.getShopAddr()%>"
 		var code = "<%=s.getShopId()%>"
-		console.log(addr);
 		drawMap(addr);
 		writeShopInfo(code);
+
 		$('.shop_name').click(function(){
 			code = $(this).attr("alt");
 			writeShopInfo(code);
+
 			
 			
 		});
@@ -225,11 +293,19 @@
 			height : 100%;
 			border : 1px solid red;
 		}
+		
 	</style>
 	<div class ="container">
 		<div class = "row">
-			<div class = "col-sm-3"></div>
-			<div id = "info" class = "infoStyle div_shop_info col-sm-5"></div>
+			<div id = "weather_info" class = "col-sm-4">
+				<h4>대여소 현재 날씨</h4>
+				<div id="location"></div>
+				<div class ="row">
+					<div id="today_weather" class ="col-sm-6"></div>
+					<div id ="tomorrow_weather" class = col-sm-6></div>
+				</div>
+			</div>
+			<div id = "info" class = "infoStyle div_shop_info col-sm-4"></div>
 			<div class = "div_buy col-sm-4"></div>
 		</div>
 	</div>

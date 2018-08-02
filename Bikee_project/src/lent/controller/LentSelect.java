@@ -42,7 +42,7 @@ public class LentSelect extends HttpServlet {
 			else
 			{
 				request.setAttribute("methodNum", methodNum);
-				request.getRequestDispatcher("/views/lent/giftPage.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/gift/giftPage.jsp").forward(request, response);
 			}
 		}
 

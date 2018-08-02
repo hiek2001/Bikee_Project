@@ -121,6 +121,27 @@ public class SendEmailServlet extends HttpServlet {
 	
 	 	    RequestDispatcher rd=request.getRequestDispatcher("/views/member/checkCode.jsp");
 	     	rd.forward(request, response);
+	     	
+	     	class MyAuthentication extends Authenticator{
+	     		
+	     		PasswordAuthentication pa;
+	     		
+	     		public MyAuthentication() {
+	     			
+	     			String id = "hellostella226";
+	     			String pw = "Wkdtlfna119";
+	     			
+	     			pa = new PasswordAuthentication(id, pw);
+	     			
+	     		}
+	     		
+	     		public PasswordAuthentication getPasswordAuthentication() {
+	     			
+	     			return pa;
+	     		}
+	     		
+	     	}
+	     	
 	    	
 	    }
 	   

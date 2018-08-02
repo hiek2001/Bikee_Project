@@ -42,6 +42,8 @@ public class ShopDAO {
 				shop.setShopName(rs.getString("shop_name"));
 				shop.setShopAddr(rs.getString("shop_addr"));
 				shop.setShopPhone(rs.getString("shop_phone"));
+				shop.setRunTime(rs.getString("run_time"));
+				shop.setBikeKind(rs.getString("bike_kind"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
