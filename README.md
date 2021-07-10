@@ -8,10 +8,10 @@
 ### 2. 개발환경
 ```
   DB : Oracle 
+  Data Access : JDBC
   Development Environment : Windows 7
   Language : Java, HTML5, CSS, JavaScript, Servlet, Ajax
   WEB/WAS Server : Tomcat 8.0.5.2
-  JDBC
   Framework : Bootstrap
   Library : JQuery, java mail
   Build tool : Maven 3.1.1 Release
